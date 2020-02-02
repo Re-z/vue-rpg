@@ -5,12 +5,16 @@ Vue.use(Vuex)
 
 export default new Vuex.Store({
   state: {
-    screen: 'intro'
-    //intro, heroChoose,
+    
+    screen: 'intro', //intro, heroChoose, battle
+    chosenHero: {}
   },
   mutations: {
     changeScreen(state, screen) {
       state.screen = screen
+    },
+    setChosenHero(state,chosenHero) {
+      state.chosenHero = chosenHero
     }
   },
   actions: {

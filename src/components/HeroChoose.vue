@@ -13,7 +13,7 @@
 				<img src="https://www.placecage.com/100/100" alt="">
 			</div>
 		</div>
-		<div class="heroChoose__hero-description">
+		<div class="heroChoose__hero-description" v-if="chosenHero">
 			<table class="heroChoose__stats">
 				<tr>
 					<td>Hero class</td>
@@ -36,6 +36,9 @@
 					<td>{{chosenHero.healingPotions}}</td>
 				</tr>
 			</table>
+		</div>
+		<div class="heroChoose__btn-wrap">
+			<button @click="startBattle">Start Battles</button>
 		</div>
 	</div>
 </template>
@@ -70,6 +73,7 @@ export default {
 					healingPotions: 2
 				}
 			],
+			// chosenHero: this.heroes[0]
 			chosenHero: {
 				type: 'Warrior',
 				avatar: 'img path',
@@ -80,30 +84,38 @@ export default {
 			},
 		}
 	},
-	computed: {
-		
+	methods: {
+		startBattle() {
+			this.$store.commit('setChosenHero', this.chosenHero)
+			this.$store.commit('changeScreen', 'battle');
+		}
 	}
+	
+	
 }
 </script>
 
 <style lang="scss">
+@mixin sectionMarginBottom {
+	margin-bottom: 20px
+}
+$sectionMargin: 20px;
 	.heroChoose {
-		display: grid;
-		grid-template-columns: repeat(5, 1fr);
-		grid-template-rows: auto;
-		grid-gap: 20px;
 		&__text {
-			grid-column: 1/6;
 			text-align: center;
+			margin-bottom: $sectionMargin;
+			@include sectionMarginBottom;
 		}
 		&__hero-type {
 			text-align: center;
 		}
 		&__heroes {
-			grid-column: 1/6;
 			justify-items: center;
 			display: flex;
+			flex-wrap: wrap;
 			justify-content: center;
+			@include sectionMarginBottom;
+
 		}
 		&__hero {
 			&:not(:last-of-type) {
@@ -111,12 +123,17 @@ export default {
 			}
 		}
 		&__hero-description {
-			grid-column: 1/6;
+			@include sectionMarginBottom;
 
 		}
 		&__stats {
 			display: flex;
 			justify-content: space-between;
+			flex-wrap: wrap;
+
+		}
+		&__btn-wrap {
+			text-align: center;
 		}
 	}
 	.chosen {
