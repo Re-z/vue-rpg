@@ -54,8 +54,8 @@ export default {
 				{
 					type: 'Warrior',
 					avatar: warriorImg,
-					minDmg: '5',
-					maxDmg: '15',
+					minDmg: 5,
+					maxDmg: 15,
 					healthPoints: 100,
 					healingPotions: 1,
 					currentHealth: 100
@@ -63,8 +63,8 @@ export default {
 				{
 					type: 'Archer',
 					avatar: archerImg,
-					minDmg: '3',
-					maxDmg: '20',
+					minDmg: 3,
+					maxDmg: 20,
 					healthPoints: 90,
 					healingPotions: 1,
 					currentHealth: 90
@@ -72,8 +72,8 @@ export default {
 				{
 					type: 'Wizzard',
 					avatar: wizzardImg,
-					minDmg: '1',
-					maxDmg: '25',
+					minDmg: 1,
+					maxDmg: 25,
 					healthPoints: 70,
 					healingPotions: 2,
 					currentHealth: 70
@@ -83,8 +83,8 @@ export default {
 			chosenHero: {
 				type: 'Warrior',
 				avatar: warriorImg,
-				minDmg: '5',
-				maxDmg: '15',
+				minDmg: 5,
+				maxDmg: 15,
 				healthPoints: 100,
 				healingPotions: 1
 			},
@@ -96,8 +96,6 @@ export default {
 			this.$store.commit('changeScreen', 'battle');
 		}
 	}
-	
-	
 }
 </script>
 

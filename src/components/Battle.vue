@@ -2,16 +2,17 @@
 	<div class="battle">
 		<div class="battle__round">Round 1</div>
 		<div class="battle__hero">
-
-			<app-health-bar :healthPoints="getHero.currentHealth"/>
-
+			<app-health-bar :healthPoints="getHero.currentHealth" :heroType="getHero.type" />
 
 			<img class="battle__hero-img" :src="getHero.avatar" alt="" />
-			
+
 			<div class="controls">
 				<div class="controls__section">
 					<p class="controls__section-title">Attacks:</p>
-					<span class="controls__btn cup">
+					<span 
+						@click="handleSimpleAttack"
+						class="controls__btn cup"
+					>
 						<img :src="require('../assets/img/simple-attack.png')" alt="" />
 					</span>
 					<span class="controls__btn cup">
@@ -28,42 +29,56 @@
 			</div>
 		</div>
 		<div class="battle__monster">
-			<img class="battle__hero-img" :src="monsters[currentMonster].avatar" alt="" />
+			<app-health-bar :healthPoints="getMonster.currentHealth" :heroType="getMonster.type" />
+
+			<img class="battle__hero-img" :src="getMonster.avatar" alt="" />
 		</div>
 	</div>
 </template>
 
 <script>
-import HealthBar from './HealthBar.vue';
+import HealthBar from "./HealthBar.vue";
 import { mapGetters } from "vuex";
 
-import FatPalladinImg from '../assets/img/fat-paladin.png'
-import CursedDollImg from '../assets/img/cursed-doll.png'
-import GladiatorImg from '../assets/img/gladiator.png'
+import FatPalladinImg from "../assets/img/fat-paladin.png";
+import CursedDollImg from "../assets/img/cursed-doll.png";
+import GladiatorImg from "../assets/img/gladiator.png";
 export default {
 	data() {
 		return {
 			monsters: [
 				{
-					type: 'Fat Palladin',
+					type: "Fat Palladin",
 					avatar: FatPalladinImg,
-					minDmg: '5',
-					maxDmg: '15',
+					minDmg: 5,
+					maxDmg: 15,
 					healthPoints: 100,
 					currentHealth: 100
 				}
 			],
-			currentMonster: 0
+			
 		};
 	},
+	methods: {
+		handleSimpleAttack() {
+			const dmgToMonster = Math.ceil(this.generateDmg(this.getHero.minDmg, this.getHero.maxDmg));
+			const dmgToHero = Math.ceil(this.generateDmg(this.getMonster.minDmg, this.getMonster.maxDmg));
+			
+			
+		},
+		generateDmg(min, max) {
+			return Math.random() * (max - min) + min;
+		}
+	},
 	computed: {
-		...mapGetters(["getHero"])
+		...mapGetters(["getHero", "getMonster"])
 	},
 	components: {
-		'app-health-bar': HealthBar
+		"app-health-bar": HealthBar
 	},
 	mounted() {
-		this.$store.commit('setMonster', monsters)
+		//initial set monster to vuex
+		this.$store.commit("setMonster", this.monsters[0]);
 	}
 };
 </script>

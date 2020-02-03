@@ -30,11 +30,11 @@ export default new Vuex.Store({
     getCurrentScreen(state) {
       return state.screen
     },
-    bla() {
-      return 14
-    },
     getHero(state) {
       return state.hero
+    },
+    getMonster(state) {
+      return state.monster
     }
   }
 })
