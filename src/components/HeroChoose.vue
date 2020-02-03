@@ -3,14 +3,14 @@
 		<p class="heroChoose__text">Bla bla</p>
 		<div class="heroChoose__heroes">
 			<div 
-				class="heroChoose__hero"
+				class="heroChoose__hero cup"
 				v-for="hero in heroes"
 				:key="hero.type"
 				:class="{'chosen': chosenHero.type === hero.type}"
 				@click="chosenHero = hero"
 			>
 				<p class="heroChoose__hero-type">{{hero.type}}</p>
-				<img src="https://www.placecage.com/100/100" alt="">
+				<img :src="hero.avatar" alt="">
 			</div>
 		</div>
 		<div class="heroChoose__hero-description" v-if="chosenHero">
@@ -44,39 +44,45 @@
 </template>
 
 <script>
+import warriorImg from '../assets/img/warrior.png';
+import archerImg from '../assets/img/archer.png';
+import wizzardImg from '../assets/img/wizzard.png';
 export default {
 	data() {
 		return {
 			heroes: [
 				{
 					type: 'Warrior',
-					avatar: 'img path',
+					avatar: warriorImg,
 					minDmg: '5',
 					maxDmg: '15',
 					healthPoints: 100,
-					healingPotions: 1
+					healingPotions: 1,
+					currentHealth: 100
 				},
 				{
 					type: 'Archer',
-					avatar: 'img path',
+					avatar: archerImg,
 					minDmg: '3',
 					maxDmg: '20',
 					healthPoints: 90,
-					healingPotions: 1
+					healingPotions: 1,
+					currentHealth: 90
 				},
 				{
 					type: 'Wizzard',
-					avatar: 'img path',
+					avatar: wizzardImg,
 					minDmg: '1',
 					maxDmg: '25',
 					healthPoints: 70,
-					healingPotions: 2
+					healingPotions: 2,
+					currentHealth: 70
 				}
 			],
 			// chosenHero: this.heroes[0]
 			chosenHero: {
 				type: 'Warrior',
-				avatar: 'img path',
+				avatar: warriorImg,
 				minDmg: '5',
 				maxDmg: '15',
 				healthPoints: 100,
@@ -86,7 +92,7 @@ export default {
 	},
 	methods: {
 		startBattle() {
-			this.$store.commit('setChosenHero', this.chosenHero)
+			this.$store.commit('setHero', this.chosenHero)
 			this.$store.commit('changeScreen', 'battle');
 		}
 	}
@@ -113,6 +119,7 @@ $sectionMargin: 20px;
 			justify-items: center;
 			display: flex;
 			flex-wrap: wrap;
+			align-items: center;
 			justify-content: center;
 			@include sectionMarginBottom;
 

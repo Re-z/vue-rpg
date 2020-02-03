@@ -7,15 +7,20 @@ export default new Vuex.Store({
   state: {
     
     screen: 'intro', //intro, heroChoose, battle
-    chosenHero: {}
+    hero: {},
+    monster: {},
+    // currentMonsterIndex: 0
   },
   mutations: {
     changeScreen(state, screen) {
       state.screen = screen
     },
-    setChosenHero(state,chosenHero) {
-      state.chosenHero = chosenHero
-    }
+    setHero(state,hero) {
+      state.hero = hero
+    },
+    setMonster(state,monster) {
+      state.monster = monster
+    },
   },
   actions: {
   },
@@ -24,6 +29,12 @@ export default new Vuex.Store({
   getters: {
     getCurrentScreen(state) {
       return state.screen
+    },
+    bla() {
+      return 14
+    },
+    getHero(state) {
+      return state.hero
     }
   }
 })

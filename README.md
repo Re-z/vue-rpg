@@ -1,5 +1,9 @@
 # vue-rpg
-
+## Ideas
+- Easy/Medium/Hard difficulty level
+- HitChance, DodgeChance
+- Monsters Random Generation
+- Dynamic bg
 ## Project setup
 ```
 npm install
