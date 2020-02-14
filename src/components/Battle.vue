@@ -2,7 +2,8 @@
 	<div class="battle">
 		<div class="battle__round">Round 1</div>
 		<div class="battle__hero">
-			<app-health-bar :healthPoints="getHero.currentHealth" :heroType="getHero.type" />
+			<!-- <app-health-bar :healthPoints="getHero.currentHealth" :heroType="getHero.type" /> -->
+			<app-health-bar :hero="getHero" />
 
 			<img class="battle__hero-img" :src="getHero.avatar" alt="" />
 
@@ -10,7 +11,7 @@
 				<div class="controls__section">
 					<p class="controls__section-title">Attacks:</p>
 					<span 
-						@click="handleSimpleAttack"
+						@click="handleHeroSimpleAttack"
 						class="controls__btn cup"
 					>
 						<img :src="require('../assets/img/simple-attack.png')" alt="" />
@@ -22,14 +23,20 @@
 
 				<div class="controls__section" v-if="getHero.healingPotions">
 					<p class="controls__section-title">Potions:</p>
-					<span class="controls__btn cup">
+					<span 
+						class="controls__btn cup"
+						@click="handleHeroHeal"
+						
+					>
 						<img :src="require('../assets/img/potion.png')" alt="" />
 					</span>
 				</div>
 			</div>
 		</div>
 		<div class="battle__monster">
-			<app-health-bar :healthPoints="getMonster.currentHealth" :heroType="getMonster.type" />
+			<app-health-bar :hero="getMonster" />
+
+			<!-- <app-health-bar :healthPoints="getMonster.currentHealth" :heroType="getMonster.type" /> -->
 
 			<img class="battle__hero-img" :src="getMonster.avatar" alt="" />
 		</div>
@@ -60,11 +67,31 @@ export default {
 		};
 	},
 	methods: {
-		handleSimpleAttack() {
+		handleHeroSimpleAttack() {
 			const dmgToMonster = Math.ceil(this.generateDmg(this.getHero.minDmg, this.getHero.maxDmg));
+			this.monsters[0].currentHealth -= dmgToMonster;
+			this.$store.commit('setMonster', this.monsters[0]);
+
+			this.monsterHit();
+			
+		},
+		handleHeroHeal() {
+			this.getHero.currentHealth += 80;
+			//after healing if current health is more then heroe`s maximum,
+			//set health to maximum
+			if(this.getHero.currentHealth > this.getHero.healthPoints) {
+				this.getHero.currentHealth = this.getHero.healthPoints
+			}
+			this.getHero.healingPotions -= 1;
+			this.$store.commit('setHero', this.getHero)
+
+			this.monsterHit();
+
+		},
+		monsterHit() {
 			const dmgToHero = Math.ceil(this.generateDmg(this.getMonster.minDmg, this.getMonster.maxDmg));
-			
-			
+			this.getHero.currentHealth -= dmgToHero;
+			this.$store.commit('setHero', this.getHero)
 		},
 		generateDmg(min, max) {
 			return Math.random() * (max - min) + min;

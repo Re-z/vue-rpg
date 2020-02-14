@@ -86,7 +86,9 @@ export default {
 				minDmg: 5,
 				maxDmg: 15,
 				healthPoints: 100,
-				healingPotions: 1
+				healingPotions: 1,
+				currentHealth: 100
+
 			},
 		}
 	},

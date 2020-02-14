@@ -1,6 +1,7 @@
 <template>
 	<div class="healthbar">
-		<span>{{heroType}}:</span>
+		<span>{{hero.type}}:</span>
+		<!-- hearth img based on current hero/monster health -->
 		<img 
 			class="healthbar__img" 
 			:src="require('../assets/img/heart.png')" 
@@ -8,6 +9,7 @@
 			v-for="index in healthItems"
 			:key="index"
 		>
+		<p class="healthbar__numeric-health">Health: {{hero.currentHealth}} / {{hero.healthPoints}}</p>
 	</div>
 </template>
 <script>
@@ -15,18 +17,15 @@ import { mapGetters } from "vuex";
 
 export default {
 	props: {
-		healthPoints: {
-			type: Number,
-			default: 100
-		},
-		heroType: {
-			type: String,
-			default: 'Player'
+		//recieving hero or monster object and set health, based on it
+		hero: {
+			require: true
 		}
 	},
 	computed: {
 		healthItems() {
-			return Math.ceil(this.healthPoints/10)
+			//10 poinst of health === one hearth img
+			return Math.ceil(this.hero.currentHealth/10)
 		}
 	},
 }
@@ -34,10 +33,14 @@ export default {
 <style lang="scss" scoped>
 .healthbar {
 	display: flex;
+	flex-wrap: wrap;
 	align-items: center;
 	&__img {
 		display: inline-block;
 		margin-left: 5px;
+	}
+	&__numeric-health {
+		width: 100%;
 	}
 }
 </style>

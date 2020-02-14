@@ -13,13 +13,13 @@ export default new Vuex.Store({
   },
   mutations: {
     changeScreen(state, screen) {
-      state.screen = screen
+      state.screen = screen;
     },
     setHero(state,hero) {
-      state.hero = hero
+      state.hero = hero;
     },
     setMonster(state,monster) {
-      state.monster = monster
+      state.monster = monster;
     },
   },
   actions: {
