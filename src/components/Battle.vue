@@ -2,7 +2,7 @@
 	<div class="battle">
 		<div class="battle__round">Round 1</div>
 		<div class="battle__hero">
-			<!-- <app-health-bar :healthPoints="getHero.currentHealth" :heroType="getHero.type" /> -->
+			<!-- hero healthbar -->
 			<app-health-bar :hero="getHero" />
 
 			<img class="battle__hero-img" :src="getHero.avatar" alt="" />
@@ -29,22 +29,29 @@
 						
 					>
 						<img :src="require('../assets/img/potion.png')" alt="" />
+						<span>x {{getHero.healingPotions}}</span>
+
 					</span>
 				</div>
 			</div>
 		</div>
 		<div class="battle__monster">
+			<!-- monster healthbar -->
 			<app-health-bar :hero="getMonster" />
 
-			<!-- <app-health-bar :healthPoints="getMonster.currentHealth" :heroType="getMonster.type" /> -->
 
 			<img class="battle__hero-img" :src="getMonster.avatar" alt="" />
 		</div>
+		<!-- show log after first turn -->
+		<app-battle-log v-if="getCurrentTurn.number">
+
+		</app-battle-log>
 	</div>
 </template>
 
 <script>
 import HealthBar from "./HealthBar.vue";
+import BattleLog from "./BattleLog.vue";
 import { mapGetters } from "vuex";
 
 import FatPalladinImg from "../assets/img/fat-paladin.png";
@@ -53,6 +60,7 @@ import GladiatorImg from "../assets/img/gladiator.png";
 export default {
 	data() {
 		return {
+			//initial set monster in vuex?
 			monsters: [
 				{
 					type: "Fat Palladin",
@@ -63,45 +71,41 @@ export default {
 					currentHealth: 100
 				}
 			],
-			
 		};
 	},
 	methods: {
 		handleHeroSimpleAttack() {
 			const dmgToMonster = Math.ceil(this.generateDmg(this.getHero.minDmg, this.getHero.maxDmg));
-			this.monsters[0].currentHealth -= dmgToMonster;
-			this.$store.commit('setMonster', this.monsters[0]);
+			this.$store.commit('setDmgToMonster', dmgToMonster);
 
-			this.monsterHit();
-			
+			this.handleMonsterHit();
+			this.$store.commit('increaseTurn')
+
 		},
 		handleHeroHeal() {
-			this.getHero.currentHealth += 80;
-			//after healing if current health is more then heroe`s maximum,
-			//set health to maximum
-			if(this.getHero.currentHealth > this.getHero.healthPoints) {
-				this.getHero.currentHealth = this.getHero.healthPoints
-			}
-			this.getHero.healingPotions -= 1;
-			this.$store.commit('setHero', this.getHero)
+		
+			this.$store.commit('setDmgToMonster', 'Player used heal potion');
+			this.handleMonsterHit();
+			this.$store.commit('setHeroHealth', 100)
+			this.$store.commit('increaseTurn')
 
-			this.monsterHit();
 
 		},
-		monsterHit() {
+		handleMonsterHit() {
 			const dmgToHero = Math.ceil(this.generateDmg(this.getMonster.minDmg, this.getMonster.maxDmg));
-			this.getHero.currentHealth -= dmgToHero;
-			this.$store.commit('setHero', this.getHero)
+			this.$store.commit('setDmgToHero', dmgToHero)
+			
 		},
 		generateDmg(min, max) {
 			return Math.random() * (max - min) + min;
 		}
 	},
 	computed: {
-		...mapGetters(["getHero", "getMonster"])
+		...mapGetters(["getHero", "getMonster", "getCurrentTurn"])
 	},
 	components: {
-		"app-health-bar": HealthBar
+		"app-health-bar": HealthBar,
+		"app-battle-log": BattleLog
 	},
 	mounted() {
 		//initial set monster to vuex
@@ -138,11 +142,11 @@ export default {
 }
 .controls {
 	&__btn {
-		display: inline-block;
 		margin-right: 10px;
 	}
 	&__section {
 		margin-bottom: 10px;
+		
 	}
 	&__section-title {
 		margin-bottom: 5px;
