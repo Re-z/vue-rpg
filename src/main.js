@@ -3,13 +3,17 @@ import App from './App.vue'
 import store from './store'
 
 
-import Intro from './components/Intro'
-import HeroChoose from './components/HeroChoose'
-import Battle from './components/Battle'
+import Intro from './components/views/Intro'
+import HeroChoose from './components/views/HeroChoose'
+import Battle from './components/views/Battle'
+
+import Popup from './components/Popup'
 
 Vue.component('app-intro', Intro)
 Vue.component('app-hero-choose', HeroChoose)
 Vue.component('app-battle', Battle)
+
+Vue.component('app-popup', Popup)
 
 // Vue.config.productionTip = false
 

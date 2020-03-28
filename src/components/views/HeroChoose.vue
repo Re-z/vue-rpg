@@ -44,7 +44,9 @@
 </template>
 
 <script>
-import heroes from '../js/heroes'
+
+import heroes from '../../js/heroes'
+
 
 export default {
 	data() {
@@ -57,6 +59,7 @@ export default {
 		startBattle() {
 			this.$store.commit('setHero', this.chosenHero)
 			this.$store.commit('changeScreen', 'battle');
+			
 		}
 	},
 }

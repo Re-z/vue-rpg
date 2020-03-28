@@ -1,7 +1,7 @@
 <template>
 	<div class="battle">
 		<div class="battle__round">
-			<span>Round 1 , turn {{getCurrentTurn.number}}</span>
+			<span>Round {{getCurrentRound}} , turn {{getCurrentTurn.id}}</span>
 		</div>
 		<div class="battle__hero">
 			<!-- hero healthbar -->
@@ -16,15 +16,15 @@
 						@click="handleHeroSimpleAttack"
 						class="controls__btn cup"
 					>
-						<img :src="require('../assets/img/simple-attack.png')" alt="" />
+						<img :src="require('../..//assets/img/simple-attack.png')" alt="" />
 					</span>
 					<!-- special attack appears each 3th turn -->
 					<span
-						v-if="getCurrentTurn.number % 3 === 0" 
+						v-if="getCurrentTurn.id % 3 === 0" 
 						class="controls__btn cup"
 						@click="handleHeroSpecialAttack"
 					>
-						<img :src="require('../assets/img/super-attack.png')" alt="" />
+						<img :src="require('../..//assets/img/super-attack.png')" alt="" />
 					</span>
 
 				</div>
@@ -36,7 +36,7 @@
 						@click="handleHeroHeal"
 						
 					>
-						<img :src="require('../assets/img/potion.png')" alt="" />
+						<img :src="require('../../assets/img/potion.png')" alt="" />
 						<span>x {{getHero.healingPotions}}</span>
 
 					</span>
@@ -46,24 +46,22 @@
 		<div class="battle__monster">
 			<!-- monster healthbar -->
 			<app-health-bar :hero="getMonster" />
-
-
 			<img class="battle__hero-img" :src="getMonster.avatar" alt="" />
 		</div>
 		<!-- show log after first turn -->
-		<app-battle-log v-if="getCurrentTurn.number != 1">
-
-		</app-battle-log>
+		<app-battle-log v-if="getCurrentTurn.id != 1"/>
+		
+		<app-popup v-if="getHero.currentHealth <= 0"/>
 	</div>
 </template>
 
 <script>
 //modules
-import monsters from '../js/monsters'
+import monsters from '../../js/monsters'
 
 //components
-import HealthBar from "./HealthBar.vue";
-import BattleLog from "./BattleLog.vue";
+import HealthBar from "../HealthBar.vue";
+import BattleLog from "../BattleLog.vue";
 
 import { mapGetters } from "vuex";
 
@@ -80,7 +78,8 @@ export default {
 					specialHeroAction: '',
 					specialMonsterAction: `Monster ${this.getMonster.type} defeated!`
 				});
-				this.$store.commit("setMonster", monsters[1]);
+				this.$store.commit('increaseRound');
+				this.$store.commit("setMonster", monsters[this.getCurrentRound - 1]);
 			}
 			else {
 				this.handleMonsterAttack();
@@ -116,7 +115,7 @@ export default {
 		}
 	},
 	computed: {
-		...mapGetters(["getHero", "getMonster", "getCurrentTurn"])
+		...mapGetters(["getHero", "getMonster", "getCurrentTurn", "getCurrentRound","getPopup"])
 	},
 
 	components: {
@@ -124,7 +123,7 @@ export default {
 		"app-battle-log": BattleLog
 	},
 	mounted() {
-		this.$store.commit("setMonster", monsters[2]);
+		this.$store.commit("setMonster", monsters[this.getCurrentRound - 1]);
 	}
 };
 </script>

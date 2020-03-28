@@ -1,6 +1,6 @@
 <template>
 	<div class="log">
-		<p>Turn №{{getCurrentTurn.number -1}} Results:</p>
+		<p>Turn №{{getCurrentTurn.id -1}} Results:</p>
 
 		<!-- player log -->
 		<p v-if="getCurrentTurn.specialHeroAction">

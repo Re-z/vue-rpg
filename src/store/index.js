@@ -1,6 +1,7 @@
 import Vue from 'vue'
 import Vuex from 'vuex'
 
+// import './popup';
 Vue.use(Vuex)
 
 export default new Vuex.Store({
@@ -18,8 +19,12 @@ export default new Vuex.Store({
     monster: {
       //добавить объект монстра в изначальный стейт
     },
+    popup: {
+      isVisible: true,
+    },
+    currentRound: 1,
     currentTurn: {
-      number: 1,
+      id: 1,
       dmgToHero: '',
       dmgToMonster: '',
       //is using for loggin speial actions like healing, monster die, etc
@@ -47,8 +52,19 @@ export default new Vuex.Store({
     setMonster(state,monster) {
       state.monster = monster;
     },
+    setPopup() {
+
+    },
+    resetGame(state) {
+      state.currentRound = 1;
+      state.currentTurn = 1;
+      state.screen = 'intro'
+    },
     increaseTurn(state) {
-      state.currentTurn.number++;
+      state.currentTurn.id++;
+    },
+    increaseRound(state) {
+      state.currentRound++;
     },
     setDmgToHero(state, dmg) {
       state.currentTurn.dmgToHero = dmg;
@@ -80,8 +96,14 @@ export default new Vuex.Store({
     getMonster(state) {
       return state.monster
     },
+    getPopup(state) {
+      return state.popup;
+    },
     getCurrentTurn(state) {
       return state.currentTurn
     },
+    getCurrentRound(state) {
+      return state.currentRound
+    }
   }
 })

@@ -22,9 +22,7 @@ export default {
 			require: true
 		}
 	},
-	mounted() {
-		console.log(Math.ceil(this.hero.currentHealth/10));
-	},
+	
 	computed: {
 		healthItems() {
 			//10 poinst of health === one hearth img
