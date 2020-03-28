@@ -1,8 +1,7 @@
 <template>
 	<div class="battle">
 		<div class="battle__round">
-			<span>Round 1</span>
-			<span v-if="getCurrentTurn.number != 0">, turn {{getCurrentTurn.number + 1}}</span>
+			<span>Round 1 , turn {{getCurrentTurn.number}}</span>
 		</div>
 		<div class="battle__hero">
 			<!-- hero healthbar -->
@@ -52,85 +51,51 @@
 			<img class="battle__hero-img" :src="getMonster.avatar" alt="" />
 		</div>
 		<!-- show log after first turn -->
-		<app-battle-log v-if="getCurrentTurn.number">
+		<app-battle-log v-if="getCurrentTurn.number != 1">
 
 		</app-battle-log>
 	</div>
 </template>
 
 <script>
+//modules
+import monsters from '../js/monsters'
+
+//components
 import HealthBar from "./HealthBar.vue";
 import BattleLog from "./BattleLog.vue";
+
 import { mapGetters } from "vuex";
 
-import FatPalladinImg from "../assets/img/fat-paladin.png";
-import CursedDollImg from "../assets/img/cursed-doll.png";
-import GladiatorImg from "../assets/img/gladiator.png";
 export default {
 	data() {
 		return {
-			//initial set monster in vuex?
-			monsters: [
-				{
-					type: "Fat Palladin",
-					avatar: FatPalladinImg,
-					minDmg: 1,
-					maxDmg: 8,
-					healthPoints: 100,
-					currentHealth: 100
-				},
-				{
-					type: "Cursed Doll",
-					avatar: CursedDollImg,
-					minDmg: 1,
-					maxDmg: 15,
-					healthPoints: 60,
-					currentHealth: 60
-				},
-				{
-					type: "Gladiator",
-					avatar: GladiatorImg,
-					minDmg: 6,
-					maxDmg: 10,
-					healthPoints: 90,
-					currentHealth: 90
-				},
-
-
-
-			],
+			
 		};
 	},
 	methods: {
-		handleHeroSimpleAttack() {
-			const dmgToMonster = Math.ceil(this.generateDmg(this.getHero.minDmg, this.getHero.maxDmg));
-			this.$store.commit('setDmgToMonster', dmgToMonster);
-
+		checkMonsterDeathAfterHeroAttack() {
 			if(this.getMonster.currentHealth <= 0) {
 				this.$store.commit('setSpecialTurnLog', {
 					specialHeroAction: '',
 					specialMonsterAction: `Monster ${this.getMonster.type} defeated!`
 				});
-				this.$store.commit("setMonster", this.monsters[1]);
+				this.$store.commit("setMonster", monsters[1]);
 			}
 			else {
-				this.handleMonsterHit();
+				this.handleMonsterAttack();
 				this.$store.commit('increaseTurn')
 			}
 		},
+		handleHeroSimpleAttack() {
+			const dmgToMonster = Math.ceil(this.generateDmg(this.getHero.minDmg, this.getHero.maxDmg));
+			this.$store.commit('setDmgToMonster', dmgToMonster);
+			this.checkMonsterDeathAfterHeroAttack();
+			
+		},
 		handleHeroSpecialAttack() {
 			this.$store.commit('setDmgToMonster', 20);
-			if(this.getMonster.currentHealth <= 0) {
-				this.$store.commit('setSpecialTurnLog', {
-					specialHeroAction: '',
-					specialMonsterAction: `Monster ${this.getMonster.type} defeated!`
-				});
-				this.$store.commit("setMonster", this.monsters[1]);
-			}
-			else {
-				this.handleMonsterHit();
-				this.$store.commit('increaseTurn')
-			}
+			this.checkMonsterDeathAfterHeroAttack();
 
 		},
 		handleHeroHeal() {
@@ -138,11 +103,11 @@ export default {
 				specialHeroAction: 'Player used healing potion',
 				specialMonsterAction: ''
 			});
-			this.handleMonsterHit();
+			this.handleMonsterAttack();
 			this.$store.commit('setHeroHealth', 100)
 			this.$store.commit('increaseTurn')
 		},
-		handleMonsterHit() {
+		handleMonsterAttack() {
 			const dmgToHero = Math.ceil(this.generateDmg(this.getMonster.minDmg, this.getMonster.maxDmg));
 			this.$store.commit('setDmgToHero', dmgToHero)
 		},
@@ -153,13 +118,13 @@ export default {
 	computed: {
 		...mapGetters(["getHero", "getMonster", "getCurrentTurn"])
 	},
+
 	components: {
 		"app-health-bar": HealthBar,
 		"app-battle-log": BattleLog
 	},
 	mounted() {
-		//initial set monster to vuex
-		this.$store.commit("setMonster", this.monsters[2]);
+		this.$store.commit("setMonster", monsters[2]);
 	}
 };
 </script>

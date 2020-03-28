@@ -7,13 +7,19 @@ export default new Vuex.Store({
   state: {
     screen: 'heroChoose', //intro, heroChoose, battle
     hero: {
-      //добавить объект героя в изначальный стейт
+      // type: 'Warrior',
+      // avatar: warriorImg,
+      // minDmg: 5,
+      // maxDmg: 15,
+      // healthPoints: 100,
+      // healingPotions: 1,
+      // currentHealth: 100
     },
     monster: {
       //добавить объект монстра в изначальный стейт
     },
     currentTurn: {
-      number: 0,
+      number: 1,
       dmgToHero: '',
       dmgToMonster: '',
       //is using for loggin speial actions like healing, monster die, etc
@@ -43,7 +49,6 @@ export default new Vuex.Store({
     },
     increaseTurn(state) {
       state.currentTurn.number++;
-      console.log(state.currentTurn);
     },
     setDmgToHero(state, dmg) {
       state.currentTurn.dmgToHero = dmg;
