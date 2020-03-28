@@ -5,14 +5,20 @@ Vue.use(Vuex)
 
 export default new Vuex.Store({
   state: {
-    
-    screen: 'intro', //intro, heroChoose, battle
-    hero: {},
-    monster: {},
+    screen: 'heroChoose', //intro, heroChoose, battle
+    hero: {
+      //добавить объект героя в изначальный стейт
+    },
+    monster: {
+      //добавить объект монстра в изначальный стейт
+    },
     currentTurn: {
       number: 0,
       dmgToHero: '',
-      dmgToMonster: ''
+      dmgToMonster: '',
+      //is using for loggin speial actions like healing, monster die, etc
+      specialHeroAction: '', 
+      specialMonsterAction: ''
     }
     // currentMonsterIndex: 0
   },
@@ -36,16 +42,23 @@ export default new Vuex.Store({
       state.monster = monster;
     },
     increaseTurn(state) {
-      state.currentTurn.number++
+      state.currentTurn.number++;
+      console.log(state.currentTurn);
     },
     setDmgToHero(state, dmg) {
       state.currentTurn.dmgToHero = dmg;
+      state.currentTurn.specialMonsterAction = '' //monster have not done anything special
       state.hero.currentHealth -= dmg;
     },
     setDmgToMonster(state, dmg) {
       state.currentTurn.dmgToMonster = dmg;
+      state.currentTurn.specialHeroAction = ''; //hero havent done anything special at this turn
       state.monster.currentHealth -= dmg;
     },
+    setSpecialTurnLog(state, specialLog) {
+      state.currentTurn.specialHeroAction = specialLog.specialHeroAction;
+      state.currentTurn.specialMonsterAction = specialLog.specialMonsterAction;
+    }
 
   },
   actions: {
@@ -62,7 +75,6 @@ export default new Vuex.Store({
     getMonster(state) {
       return state.monster
     },
-    
     getCurrentTurn(state) {
       return state.currentTurn
     },

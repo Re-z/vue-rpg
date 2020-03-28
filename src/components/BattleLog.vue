@@ -1,8 +1,19 @@
 <template>
 	<div class="log">
 		<p>Turn №{{getCurrentTurn.number}} Results:</p>
-		<p>dmg to Monster: {{getCurrentTurn.dmgToMonster}}</p>
-		<p>dmg to player: {{getCurrentTurn.dmgToHero}}</p>
+		<!-- player log -->
+		<p v-if="getCurrentTurn.specialHeroAction">
+			{{getCurrentTurn.specialHeroAction}}
+		</p>
+		<p v-else>
+			dmg to Monster: {{getCurrentTurn.dmgToMonster}}
+		</p>
+
+		<!-- monster log -->
+		<p v-if="getCurrentTurn.specialMonsterAction">
+			{{getCurrentTurn.specialMonsterAction}}
+		</p>
+		<p v-else>dmg to player: {{getCurrentTurn.dmgToHero}}</p>
 	</div>
 </template>
 
