@@ -4,6 +4,8 @@
 - HitChance, DodgeChance
 - Monsters Random Generation
 - Dynamic bg
+- Sound after hit
+- Monster speeking
 ## Project setup
 ```
 npm install
