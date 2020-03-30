@@ -35,6 +35,7 @@
 					<td>Healing Potions</td>
 					<td>{{chosenHero.healingPotions}}</td>
 				</tr>
+				<p>Curr health {{chosenHero.currentHealth}} </p>
 			</table>
 		</div>
 		<div class="heroChoose__btn-wrap">
@@ -45,23 +46,31 @@
 
 <script>
 
-import heroes from '../../js/heroes'
+import heroesData from '../../js/heroes';
 
 
 export default {
 	data() {
 		return {
-			heroes,
-			chosenHero: heroes[0]
+			heroes: [], //here will be stored cloned array of heroes (is cloned in mounted)
+			chosenHero: {}
 		}
 	},
 	methods: {
 		startBattle() {
 			this.$store.commit('setHero', this.chosenHero)
 			this.$store.commit('changeScreen', 'battle');
-			
 		}
 	},
+
+	mounted() {
+		//берем данные с героями, конвертим в строку и обратно.
+		//за счет этого объекты копируются, а не передаются по ссылке.
+		//и при рестарте игры данные не ломаются, а приходят новые
+		let heroes =  JSON.parse(JSON.stringify([...heroesData]));
+		this.heroes = heroes;
+		this.chosenHero = this.heroes[0]
+	}
 }
 </script>
 

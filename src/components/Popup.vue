@@ -8,7 +8,7 @@
 				bla bla bla
 			</div>
 			<button
-				@click="resetAll"
+				@click="resetGame"
 			>
 				Start again
 			</button>
@@ -19,7 +19,7 @@
 <script>
 export default {
 	methods: {
-		resetAll() {
+		resetGame() {
 			this.$store.commit('resetGame')
 		}
 	}

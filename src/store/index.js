@@ -57,7 +57,7 @@ export default new Vuex.Store({
     },
     resetGame(state) {
       state.currentRound = 1;
-      state.currentTurn = 1;
+      state.currentTurn.id = 1;
       state.screen = 'intro'
     },
     increaseTurn(state) {

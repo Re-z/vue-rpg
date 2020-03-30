@@ -57,7 +57,7 @@
 
 <script>
 //modules
-import monsters from '../../js/monsters'
+import monstersData from '../../js/monsters'
 
 //components
 import HealthBar from "../HealthBar.vue";
@@ -68,8 +68,8 @@ import { mapGetters } from "vuex";
 export default {
 	data() {
 		return {
-			
-		};
+			monsters: {} //
+		}
 	},
 	methods: {
 		checkMonsterDeathAfterHeroAttack() {
@@ -79,7 +79,7 @@ export default {
 					specialMonsterAction: `Monster ${this.getMonster.type} defeated!`
 				});
 				this.$store.commit('increaseRound');
-				this.$store.commit("setMonster", monsters[this.getCurrentRound - 1]);
+				this.$store.commit("setMonster", this.monsters[this.getCurrentRound - 1]);
 			}
 			else {
 				this.handleMonsterAttack();
@@ -90,12 +90,10 @@ export default {
 			const dmgToMonster = Math.ceil(this.generateDmg(this.getHero.minDmg, this.getHero.maxDmg));
 			this.$store.commit('setDmgToMonster', dmgToMonster);
 			this.checkMonsterDeathAfterHeroAttack();
-			
 		},
 		handleHeroSpecialAttack() {
 			this.$store.commit('setDmgToMonster', 20);
 			this.checkMonsterDeathAfterHeroAttack();
-
 		},
 		handleHeroHeal() {
 			this.$store.commit('setSpecialTurnLog', {
@@ -123,7 +121,13 @@ export default {
 		"app-battle-log": BattleLog
 	},
 	mounted() {
-		this.$store.commit("setMonster", monsters[this.getCurrentRound - 1]);
+		//берем данные с монстрами, конвертим в строку и обратно.
+		//за счет этого объекты копируются, а не передаются по ссылке.
+		//и при рестарте игры данные не ломаются, а приходят новые
+		let monsters = JSON.parse(JSON.stringify([...monstersData]))
+		this.monsters = monsters;
+		
+		this.$store.commit("setMonster", this.monsters[this.getCurrentRound - 1]);
 	}
 };
 </script>
