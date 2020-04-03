@@ -35,9 +35,11 @@
 					<td>Healing Potions</td>
 					<td>{{chosenHero.healingPotions}}</td>
 				</tr>
-				<p>Curr health {{chosenHero.currentHealth}} </p>
 			</table>
 		</div>
+
+		<app-difficulty />
+
 		<div class="heroChoose__btn-wrap">
 			<button @click="startBattle">Start Battles</button>
 		</div>
@@ -47,13 +49,27 @@
 <script>
 
 import heroesData from '../../js/heroes';
-
+import Difficulty from '../Difficulty'
 
 export default {
 	data() {
 		return {
 			heroes: [], //here will be stored cloned array of heroes (is cloned in mounted)
-			chosenHero: {}
+			chosenHero: {},
+			difficulties: [
+				{
+					name: 'Easy',
+					quantifier: 1,
+				},
+				{
+					name: 'Medium',
+					quantifier: 1,
+				},
+				{
+					name: 'Hard',
+					quantifier: 1,
+				},
+			]
 		}
 	},
 	methods: {
@@ -70,7 +86,11 @@ export default {
 		let heroes =  JSON.parse(JSON.stringify([...heroesData]));
 		this.heroes = heroes;
 		this.chosenHero = this.heroes[0]
+	},
+	components: {
+		'app-difficulty': Difficulty
 	}
+	
 }
 </script>
 

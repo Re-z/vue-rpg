@@ -6,6 +6,9 @@ Vue.use(Vuex)
 
 export default new Vuex.Store({
   state: {
+    options: {
+      dmgQuantifier: '' //based on difficulty level
+    },
     screen: 'heroChoose', //intro, heroChoose, battle
     hero: {
       // type: 'Warrior',
@@ -42,6 +45,9 @@ export default new Vuex.Store({
     changeScreen(state, screen) {
       state.screen = screen;
     },
+    setDifficulty(state, dmgQuantifier) {
+      state.options.dmgQuantifier = dmgQuantifier
+    },
     setHero(state,hero) {
       state.hero = hero;
     },
@@ -64,7 +70,7 @@ export default new Vuex.Store({
       state.popup.img = options.img;
       state.popup.text = options.text;
     },
-    resetGame(state, mutations) {
+    resetGame(state) {
       state.currentRound = 1;
       state.currentTurn.id = 1;
       state.screen = 'intro';
@@ -117,6 +123,9 @@ export default new Vuex.Store({
     },
     getPopup(state) {
       return state.popup
+    },
+    getOptions(state) {
+      return state.options
     }
   }
 })
