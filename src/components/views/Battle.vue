@@ -50,15 +50,15 @@
 		</div>
 		<!-- show log after first turn -->
 		<app-battle-log v-if="getCurrentTurn.id != 1"/>
-		
-		<app-popup v-if="getHero.currentHealth <= 0"/>
+		<p>{{getPopup.isVisible}}</p>
+		<app-popup v-if="getPopup.isVisible"/>
 	</div>
 </template>
 
 <script>
 //modules
 import monstersData from '../../js/monsters'
-
+import popupOptions from '../../js/popupOptions'
 //components
 import HealthBar from "../HealthBar.vue";
 import BattleLog from "../BattleLog.vue";
@@ -78,8 +78,15 @@ export default {
 					specialHeroAction: '',
 					specialMonsterAction: `Monster ${this.getMonster.type} defeated!`
 				});
-				this.$store.commit('increaseRound');
-				this.$store.commit("setMonster", this.monsters[this.getCurrentRound - 1]);
+				//if last monser dead - show win popup
+				if(this.getCurrentRound === this.monsters.length) {
+					this.$store.commit('setPopup', popupOptions.heroWon)
+				}
+				// else - continue battle
+				else {
+					this.$store.commit('increaseRound');
+					this.$store.commit("setMonster", this.monsters[this.getCurrentRound - 1]);
+				}
 			}
 			else {
 				this.handleMonsterAttack();
@@ -106,14 +113,23 @@ export default {
 		},
 		handleMonsterAttack() {
 			const dmgToHero = Math.ceil(this.generateDmg(this.getMonster.minDmg, this.getMonster.maxDmg));
-			this.$store.commit('setDmgToHero', dmgToHero)
+			this.$store.commit('setDmgToHero', dmgToHero);
+			if(this.getHero.currentHealth <= 0 ) {
+				this.$store.commit('setPopup', popupOptions.heroDied)
+			}
 		},
 		generateDmg(min, max) {
 			return Math.random() * (max - min) + min;
 		}
 	},
 	computed: {
-		...mapGetters(["getHero", "getMonster", "getCurrentTurn", "getCurrentRound","getPopup"])
+		...mapGetters([
+			"getHero",
+			"getMonster",
+			"getCurrentTurn",
+			"getCurrentRound",
+			"getPopup"
+		])
 	},
 
 	components: {

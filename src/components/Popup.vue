@@ -1,15 +1,16 @@
 <template>
 	<div class="overlay">
 		<div class="popup">
-			<h2>You died :(</h2>
-
-			<img src="../assets/img/skull.png" alt="">
-			<div class="popup__text">
-				bla bla bla
+			<h2>{{getPopup.title}}</h2>
+			<div class="popup__img-wrap">
+				<img :src="getPopup.img" alt="">
 			</div>
+			<div class="popup__text">
+				{{getPopup.text}}
+			</div>
+
 			<button
-				@click="resetGame"
-			>
+				@click="resetGame">
 				Start again
 			</button>
 		</div>
@@ -21,6 +22,11 @@ export default {
 	methods: {
 		resetGame() {
 			this.$store.commit('resetGame')
+		}
+	},
+	computed: {
+		getPopup() {
+			return this.$store.getters.getPopup
 		}
 	}
 }
@@ -48,7 +54,8 @@ export default {
 	background: tomato;
 	display: grid;
 	grid-gap: 20px;
-	justify-content: center
+	justify-content: center;
+	text-align: center;
 
 }
 </style>

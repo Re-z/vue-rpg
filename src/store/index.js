@@ -20,7 +20,12 @@ export default new Vuex.Store({
       //добавить объект монстра в изначальный стейт
     },
     popup: {
-      isVisible: true,
+      //data is getting from popupOptions.js
+      isVisible: false,
+      type: '',
+      title: '',
+      img: '',
+      text: ''      
     },
     currentRound: 1,
     currentTurn: {
@@ -52,13 +57,18 @@ export default new Vuex.Store({
     setMonster(state,monster) {
       state.monster = monster;
     },
-    setPopup() {
-
+    setPopup(state, options) {
+      state.popup.isVisible = options.isVisible;
+      state.popup.type = options.type;
+      state.popup.title = options.title;
+      state.popup.img = options.img;
+      state.popup.text = options.text;
     },
-    resetGame(state) {
+    resetGame(state, mutations) {
       state.currentRound = 1;
       state.currentTurn.id = 1;
-      state.screen = 'intro'
+      state.screen = 'intro';
+      state.popup.isVisible = false;
     },
     increaseTurn(state) {
       state.currentTurn.id++;
@@ -104,6 +114,9 @@ export default new Vuex.Store({
     },
     getCurrentRound(state) {
       return state.currentRound
+    },
+    getPopup(state) {
+      return state.popup
     }
   }
 })
