@@ -34,7 +34,6 @@
 					<span 
 						class="controls__btn cup"
 						@click="handleHeroHeal"
-						
 					>
 						<img :src="require('../../assets/img/potion.png')" alt="" />
 						<span>x {{getHero.healingPotions}}</span>
@@ -94,12 +93,10 @@ export default {
 			}
 		},
 		handleHeroSimpleAttack() {
-			const dmgToMonster = Math.round(
-				this.generateDmg(this.getHero.minDmg * this.getOptions.dmgQantifier, this.getHero.maxDmg * this.getOptions.dmgQantifier)
-			);
-			console.log('simple attack - ');
-			
-			
+			const generatedDmg = this.generateDmg(this.getHero.minDmg, this.getHero.maxDmg);
+			const quantifiedDmg = generatedDmg * this.getOptions.dmgQuantifier;
+			const dmgToMonster = Math.round(quantifiedDmg)
+			console.log(quantifiedDmg);
 			this.$store.commit('setDmgToMonster', dmgToMonster);
 			this.checkMonsterDeathAfterHeroAttack();
 		},
@@ -117,7 +114,7 @@ export default {
 			this.$store.commit('increaseTurn')
 		},
 		handleMonsterAttack() {
-			const dmgToHero = Math.ceil(this.generateDmg(this.getMonster.minDmg , this.getMonster.maxDmg));
+			const dmgToHero = Math.round(this.generateDmg(this.getMonster.minDmg , this.getMonster.maxDmg));
 			this.$store.commit('setDmgToHero', dmgToHero);
 			if(this.getHero.currentHealth <= 0 ) {
 				this.$store.commit('setPopup', popupOptions.heroDied)

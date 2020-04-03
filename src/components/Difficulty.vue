@@ -26,13 +26,13 @@ export default {
 			let dmgQuantifier;
 			switch(difficulty) {
 				case 'easy':
-					dmgQuantifier = 1.2;
+					dmgQuantifier = 1.3;
 					break;
 				case 'medium':
 					dmgQuantifier = 1;
 					break;
 				case 'hard':
-					dmgQuantifier = 0.4;
+					dmgQuantifier = 0.7;
 					break;
 			}
 			this.$store.commit('setDifficulty', dmgQuantifier)

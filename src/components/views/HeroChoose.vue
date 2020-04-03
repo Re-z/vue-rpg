@@ -21,11 +21,11 @@
 				</tr>
 				<tr>
 					<td>Minimal Damage</td>
-					<td>{{chosenHero.minDmg}}</td>
+					<td>{{quantifiedMinDmg}}</td>
 				</tr>
 				<tr>
 					<td>Maximum Damage</td>
-					<td>{{chosenHero.maxDmg}}</td>
+					<td>{{quantifiedMaxDmg}}</td>
 				</tr>
 				<tr>
 					<td>Health Points</td>
@@ -69,7 +69,8 @@ export default {
 					name: 'Hard',
 					quantifier: 1,
 				},
-			]
+			],
+			
 		}
 	},
 	methods: {
@@ -78,7 +79,17 @@ export default {
 			this.$store.commit('changeScreen', 'battle');
 		}
 	},
-
+	computed: {
+		dmgQuantifier() {
+			return this.$store.getters.getOptions.dmgQuantifier
+		},
+		quantifiedMinDmg() {
+			return Math.round(this.dmgQuantifier * this.chosenHero.minDmg)
+		},
+		quantifiedMaxDmg() {
+			return Math.round(this.dmgQuantifier * this.chosenHero.maxDmg)
+		}
+	},
 	mounted() {
 		//берем данные с героями, конвертим в строку и обратно.
 		//за счет этого объекты копируются, а не передаются по ссылке.
