@@ -1,6 +1,7 @@
 <template>
 	<div class="healthbar">
-		<span>{{hero.type}}:</span>
+		<span v-if="hero.name">{{hero.name}}:</span>
+		<span v-else>{{hero.type}}:</span>
 		<!-- hearth img based on current hero/monster health -->
 		<img 
 			class="healthbar__img" 

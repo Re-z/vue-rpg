@@ -95,8 +95,8 @@ export default {
 		handleHeroSimpleAttack() {
 			const generatedDmg = this.generateDmg(this.getHero.minDmg, this.getHero.maxDmg);
 			const quantifiedDmg = generatedDmg * this.getOptions.dmgQuantifier;
-			const dmgToMonster = Math.round(quantifiedDmg)
-			console.log(quantifiedDmg);
+			const dmgToMonster = Math.round(quantifiedDmg);
+
 			this.$store.commit('setDmgToMonster', dmgToMonster);
 			this.checkMonsterDeathAfterHeroAttack();
 		},

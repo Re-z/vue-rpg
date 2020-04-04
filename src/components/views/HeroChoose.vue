@@ -40,6 +40,27 @@
 
 		<app-difficulty />
 
+		<div class="heroChoose__name-wrap">
+			<input
+				v-model.trim="chosenHero.name"
+				placeholder="Type hero name, please"
+			>
+		</div>
+		<div class="heroChoose__results">
+			<div class="heroChoose__results-item heroChoose__results-item_img-wrap">
+				<img :src="chosenHero.avatar" alt="">
+			</div>
+			<div class="heroChoose__results-item">
+				Name: {{chosenHero.name}}
+			</div>
+			<div class="heroChoose__results-item">
+				Class: {{chosenHero.type}}
+			</div>
+			<div class="heroChoose__results-item">
+				Damage quantifier: {{dmgQuantifier}} (based on difficulty level)
+			</div>
+		</div>
+
 		<div class="heroChoose__btn-wrap">
 			<button @click="startBattle">Start Battles</button>
 		</div>
@@ -56,21 +77,6 @@ export default {
 		return {
 			heroes: [], //here will be stored cloned array of heroes (is cloned in mounted)
 			chosenHero: {},
-			difficulties: [
-				{
-					name: 'Easy',
-					quantifier: 1,
-				},
-				{
-					name: 'Medium',
-					quantifier: 1,
-				},
-				{
-					name: 'Hard',
-					quantifier: 1,
-				},
-			],
-			
 		}
 	},
 	methods: {
@@ -145,6 +151,21 @@ $sectionMargin: 20px;
 		}
 		&__btn-wrap {
 			text-align: center;
+		}
+		&__name-wrap {
+			margin: 20px 0;
+		}
+		&__results {
+			margin: 20px 0;
+			background: lightgoldenrodyellow;
+			display: grid;
+			grid-template-columns: 1fr 5fr;
+		}
+		&__results-item {
+			// border: 1px solid red;
+			&_img-wrap {
+				grid-row: 1/4
+			}
 		}
 	}
 	.chosen {

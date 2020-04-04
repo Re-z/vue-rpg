@@ -4,6 +4,7 @@ import wizzardImg from '../assets/img/wizzard.png';
 
 const heroes = [
 	{
+		name: '',
 		type: 'Warrior',
 		avatar: warriorImg,
 		minDmg: 5,
@@ -13,6 +14,7 @@ const heroes = [
 		currentHealth: 100
 	},
 	{
+		name: '',
 		type: 'Archer',
 		avatar: archerImg,
 		minDmg: 3,
@@ -22,6 +24,7 @@ const heroes = [
 		currentHealth: 90
 	},
 	{
+		name: '',
 		type: 'Wizzard',
 		avatar: wizzardImg,
 		minDmg: 1,
