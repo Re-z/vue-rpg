@@ -1,5 +1,9 @@
 <template>
 	<div class="main-wrap">
+		<div class="main-wrap__bg"
+			:style="{backgroundImage: backgroundImg}"
+		></div>
+
 		<div class="container">
 			<app-intro v-if="getCurrentScreen === 'intro'"></app-intro>
 			<app-hero-choose v-if="getCurrentScreen === 'heroChoose'"></app-hero-choose>
@@ -10,9 +14,19 @@
 
 <script>
 import { mapGetters } from "vuex";
+import defaultBg from './assets/img/bg/bg.jpg';
+
 export default {
 	computed: {
-		...mapGetters(["getCurrentScreen"])
+		...mapGetters(["getCurrentScreen", "getMonster"]),
+		backgroundImg() {
+			if(this.getMonster.backgroundImg) {
+				return `url(${this.getMonster.backgroundImg})`
+			}
+			else {
+				return `url(${defaultBg})`
+			}
+		}
 	}
 };
 </script>
@@ -24,15 +38,18 @@ export default {
 	box-sizing: border-box;
 	font-family: "Roboto", sans-serif;
 }
+body {
+	background: black;
+}
 .main-wrap {
 	position: relative;
 	z-index: 10;
-	&::before {
-		background: url('./assets/img/bg.jpg') center center no-repeat;
+	&__bg {
+		background-repeat: no-repeat;
+		background-position: center center;
 		background-size: cover;
 		height: 100vh;
 		display: block;
-		content: "";
 		z-index: 1;
 		position: fixed;
 		left: 0;

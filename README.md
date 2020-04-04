@@ -1,13 +1,19 @@
 # vue-rpg
 ## Ideas
-- Easy/Medium/Hard difficulty level
 - HitChance, DodgeChance
 - Monsters Random Generation
-- Dynamic bg
 - Sound after hit
-- Monster speeking
+- Monster speaking
+
+## Bugs
+- When defeat monster - not increase round
+- When small hp and drink potion - you can die
+
+
 ## Project setup
 ```
+
+
 npm install
 ```
 

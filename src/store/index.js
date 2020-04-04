@@ -7,7 +7,7 @@ Vue.use(Vuex)
 export default new Vuex.Store({
   state: {
     options: {
-      dmgQuantifier: '' //based on difficulty level
+      dmgQuantifier: '',//based on difficulty level
     },
     screen: 'heroChoose', //intro, heroChoose, battle
     hero: {
@@ -17,7 +17,7 @@ export default new Vuex.Store({
       // maxDmg: 15,
       // healthPoints: 100,
       // healingPotions: 1,
-      // currentHealth: 100
+      // currentHealth: 100,
     },
     monster: {
       //добавить объект монстра в изначальный стейт
@@ -70,7 +70,7 @@ export default new Vuex.Store({
       state.popup.img = options.img;
       state.popup.text = options.text;
     },
-    resetGame(state) {
+    resetGameSettings(state) {
       state.currentRound = 1;
       state.currentTurn.id = 1;
       state.screen = 'intro';
@@ -99,6 +99,11 @@ export default new Vuex.Store({
 
   },
   actions: {
+    resetGame({commit}) {
+      commit('resetGameSettings');
+      commit('setMonster', {});
+      commit('setHero', {});
+    }
   },
   modules: {
   },

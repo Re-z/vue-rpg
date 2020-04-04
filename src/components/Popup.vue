@@ -21,7 +21,7 @@
 export default {
 	methods: {
 		resetGame() {
-			this.$store.commit('resetGame')
+			this.$store.dispatch('resetGame')
 		}
 	},
 	computed: {
