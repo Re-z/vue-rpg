@@ -49,7 +49,6 @@
 		</div>
 		<!-- show log after first turn -->
 		<app-battle-log v-if="getCurrentTurn.id != 1"/>
-		<p>{{getPopup.isVisible}}</p>
 		<app-popup v-if="getPopup.isVisible"/>
 	</div>
 </template>
@@ -86,6 +85,7 @@ export default {
 					this.$store.commit('increaseRound');
 					this.$store.commit("setMonster", this.monsters[this.getCurrentRound - 1]);
 				}
+				this.$store.commit('increaseTurn')
 			}
 			else {
 				this.handleMonsterAttack();
@@ -109,8 +109,10 @@ export default {
 				specialHeroAction: 'Player used healing potion',
 				specialMonsterAction: ''
 			});
-			this.handleMonsterAttack();
 			this.$store.commit('setHeroHealth', 100)
+			this.handleMonsterAttack();
+
+
 			this.$store.commit('increaseTurn')
 		},
 		handleMonsterAttack() {

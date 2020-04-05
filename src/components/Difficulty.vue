@@ -17,7 +17,7 @@ export default {
 	data() {
 		return {
 			difficulties: ['easy', 'medium', 'hard'],
-			choosenDifficulty: 'medium' //medium difficulty is default option
+			choosenDifficulty: 'easy' //medium difficulty is default option
 		}
 	},
 	methods: {

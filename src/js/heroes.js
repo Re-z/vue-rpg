@@ -6,6 +6,7 @@ const heroes = [
 	{
 		name: '',
 		type: 'Warrior',
+		descr: 'This hero is best bla bla, choose this hero!',
 		avatar: warriorImg,
 		minDmg: 5,
 		maxDmg: 15,
@@ -16,6 +17,7 @@ const heroes = [
 	{
 		name: '',
 		type: 'Archer',
+		descr: 'This hero is best bla bla, choose this hero!',
 		avatar: archerImg,
 		minDmg: 3,
 		maxDmg: 20,
@@ -26,6 +28,7 @@ const heroes = [
 	{
 		name: '',
 		type: 'Wizzard',
+		descr: 'This hero is best bla bla, choose this hero!',
 		avatar: wizzardImg,
 		minDmg: 1,
 		maxDmg: 25,

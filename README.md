@@ -4,9 +4,10 @@
 - Monsters Random Generation
 - Sound after hit
 - Monster speaking
+- Different special attacks
+- Drop
 
 ## Bugs
-- When defeat monster - not increase round
 - When small hp and drink potion - you can die
 
 
