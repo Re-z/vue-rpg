@@ -16,7 +16,7 @@
 						@click="handleHeroSimpleAttack"
 						class="controls__btn cup"
 					>
-						<img :src="require('../..//assets/img/simple-attack.png')" alt="" />
+						<img :src="getHero.simpleAttack.img" alt="" />
 					</span>
 					<!-- special attack appears each 3th turn -->
 					<span
@@ -24,7 +24,7 @@
 						class="controls__btn cup"
 						@click="handleHeroSpecialAttack"
 					>
-						<img :src="require('../..//assets/img/super-attack.png')" alt="" />
+						<img :src="getHero.specialAttack.img" alt="" />
 					</span>
 
 				</div>
@@ -93,7 +93,7 @@ export default {
 			}
 		},
 		handleHeroSimpleAttack() {
-			const generatedDmg = this.generateDmg(this.getHero.minDmg, this.getHero.maxDmg);
+			const generatedDmg = this.generateDmg(this.getHero.simpleAttack.minDmg, this.getHero.simpleAttack.maxDmg);
 			const quantifiedDmg = generatedDmg * this.getOptions.dmgQuantifier;
 			const dmgToMonster = Math.round(quantifiedDmg);
 
@@ -101,7 +101,11 @@ export default {
 			this.checkMonsterDeathAfterHeroAttack();
 		},
 		handleHeroSpecialAttack() {
-			this.$store.commit('setDmgToMonster', 20);
+			const generatedDmg = this.generateDmg(this.getHero.specialAttack.minDmg, this.getHero.specialAttack.maxDmg);
+			const quantifiedDmg = generatedDmg * this.getOptions.dmgQuantifier;
+			const dmgToMonster = Math.round(quantifiedDmg);
+
+			this.$store.commit('setDmgToMonster', dmgToMonster);
 			this.checkMonsterDeathAfterHeroAttack();
 		},
 		handleHeroHeal() {

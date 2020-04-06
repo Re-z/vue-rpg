@@ -90,10 +90,10 @@ export default {
 			return this.$store.getters.getOptions.dmgQuantifier
 		},
 		quantifiedMinDmg() {
-			return Math.round(this.dmgQuantifier * this.chosenHero.minDmg)
+			return Math.round(this.dmgQuantifier * this.chosenHero.simpleAttack.minDmg)
 		},
 		quantifiedMaxDmg() {
-			return Math.round(this.dmgQuantifier * this.chosenHero.maxDmg)
+			return Math.round(this.dmgQuantifier * this.chosenHero.simpleAttack.maxDmg)
 		}
 	},
 	mounted() {

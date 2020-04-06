@@ -4,12 +4,10 @@
 - Monsters Random Generation
 - Sound after hit
 - Monster speaking
-- Different special attacks
 - Drop
 
 ## Bugs
-- When small hp and drink potion - you can die
-
+- Fixed all
 
 ## Project setup
 ```
