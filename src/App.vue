@@ -5,10 +5,14 @@
 		></div>
 
 		<div class="container">
+			<app-sound/>
+
 			<app-intro v-if="getCurrentScreen === 'intro'"></app-intro>
 			<app-hero-choose v-if="getCurrentScreen === 'heroChoose'"></app-hero-choose>
 			<app-battle v-if="getCurrentScreen === 'battle'"></app-battle>
 		</div>
+
+
 	</div>
 </template>
 
@@ -27,7 +31,10 @@ export default {
 				return `url(${defaultBg})`
 			}
 		}
-	}
+	},
+	
+	
+	
 };
 </script>
 

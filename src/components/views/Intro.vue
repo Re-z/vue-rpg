@@ -13,6 +13,9 @@ export default {
 		changeScreenToNext() {
 			this.$store.commit('changeScreen', 'heroChoose')
 		}
+	},
+	mounted() {
+		
 	}
 }
 </script>

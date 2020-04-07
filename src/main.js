@@ -8,10 +8,13 @@ import HeroChoose from './components/views/HeroChoose'
 import Battle from './components/views/Battle'
 
 import Popup from './components/Popup'
+import Sound from './components/Sound'
+
 
 Vue.component('app-intro', Intro)
 Vue.component('app-hero-choose', HeroChoose)
 Vue.component('app-battle', Battle)
+Vue.component('app-sound', Sound)
 
 Vue.component('app-popup', Popup)
 

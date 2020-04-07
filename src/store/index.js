@@ -1,7 +1,6 @@
 import Vue from 'vue'
 import Vuex from 'vuex'
 
-// import './popup';
 Vue.use(Vuex)
 
 export default new Vuex.Store({
@@ -9,7 +8,7 @@ export default new Vuex.Store({
     options: {
       dmgQuantifier: '',//based on difficulty level
     },
-    screen: 'heroChoose', //intro, heroChoose, battle
+    screen: 'intro', //intro, heroChoose, battle
     hero: {
       // type: 'Warrior',
       // avatar: warriorImg,
@@ -107,6 +106,8 @@ export default new Vuex.Store({
   },
   modules: {
   },
+
+  //think about changing map getters to map state
   getters: {
     getCurrentScreen(state) {
       return state.screen
