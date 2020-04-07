@@ -17,7 +17,7 @@ const heroes = [
 	{
 		name: '',
 		type: 'Warrior',
-		descr: 'This hero is best bla bla, choose this hero!',
+		descr: 'He has 3 axes. Two in his hands and one in his pocket. That\'s why he is so attractive. Girls like good smelling warriors. He uses his axe deodorant as special weapon against dirty monsters',
 		avatar: warriorImg,
 		healthPoints: 100,
 		healingPotions: 1,

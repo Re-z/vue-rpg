@@ -3,7 +3,6 @@
 - HitChance, DodgeChance
 - Monsters Random Generation
 - Sound after hit
-- Monster speaking
 - Drop
 
 ## Bugs

@@ -17,6 +17,11 @@ const monsters = [
 		healthPoints: 100,
 		currentHealth: 100,
 		backgroundImg: burningCastle,
+		phrases: [
+			'fat 1',
+			'fat 2',
+			'fat 3',
+		]
 	},
 	{
 		type: "Cursed Doll",
@@ -26,6 +31,11 @@ const monsters = [
 		healthPoints: 60,
 		currentHealth: 60,
 		backgroundImg: necroCastle,
+		phrases: [
+			'doll 1',
+			'doll 2',
+			'doll 3',
+		]
 
 	},
 	{
@@ -35,7 +45,12 @@ const monsters = [
 		maxDmg: 10,
 		healthPoints: 90,
 		currentHealth: 90,
-		backgroundImg: gladiatorArena
+		backgroundImg: gladiatorArena,
+		phrases: [
+			'glad 1',
+			'glad 2',
+			'glad 3',
+		]
 	}
 ]
 export default monsters;

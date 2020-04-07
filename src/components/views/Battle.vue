@@ -46,6 +46,7 @@
 			<!-- monster healthbar -->
 			<app-health-bar :hero="getMonster" />
 			<img class="battle__hero-img" :src="getMonster.avatar" alt="" />
+			<app-phrases v-if="getCurrentTurn.id % 3 === 0"/>
 		</div>
 		<!-- show log after first turn -->
 		<app-battle-log v-if="getCurrentTurn.id != 1"/>
@@ -57,9 +58,11 @@
 //modules
 import monstersData from '../../js/monsters'
 import popupOptions from '../../js/popupOptions'
+
 //components
 import HealthBar from "../HealthBar.vue";
 import BattleLog from "../BattleLog.vue";
+import Phrases from "../Phrases.vue";
 
 import { mapGetters } from "vuex";
 
@@ -143,7 +146,8 @@ export default {
 
 	components: {
 		"app-health-bar": HealthBar,
-		"app-battle-log": BattleLog
+		"app-battle-log": BattleLog,
+		"app-phrases": Phrases
 	},
 	mounted() {
 		//берем данные с монстрами, конвертим в строку и обратно.

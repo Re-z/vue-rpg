@@ -13,7 +13,10 @@
 				<img :src="hero.avatar" alt="">
 			</div>
 		</div>
-		<div class="heroChoose__hero-description" v-if="chosenHero">
+		<!-- show stats only when data has come from vuex -->
+		<div class="heroChoose__hero-description" 
+			v-if="chosenHero && dmgQuantifier"
+		>
 			<table class="heroChoose__stats">
 				<tr>
 					<td>Hero class</td>
