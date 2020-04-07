@@ -2,7 +2,7 @@
 ## Ideas
 - HitChance, DodgeChance
 - Monsters Random Generation
-- Sound after hit
+- Dynamic sounds of hits, super hits, potions
 - Drop
 
 ## Bugs
