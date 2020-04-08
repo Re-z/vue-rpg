@@ -11,6 +11,14 @@ import rifle from '../assets/img/rifle.png';
 import lightning from '../assets/img/lightning.png';
 import fireball from '../assets/img/fireball.png';
 
+import warriorSimpleSound from '../assets/heroes/warrior/hit.mp3'
+import warriorSpecialSound from '../assets/heroes/warrior/spray.mp3'
+
+import archerSimpleSound from '../assets/heroes/archer/arrow.mp3'
+import archerSpecialSound from '../assets/heroes/archer/gun.mp3'
+
+import wizzardSimpleSound from '../assets/heroes/wizzard/lightning.mp3'
+import wizzardSpecialSound from '../assets/heroes/wizzard/fireball.mp3'
 
 
 const heroes = [
@@ -26,12 +34,14 @@ const heroes = [
 			img: axe,
 			minDmg: 5,
 			maxDmg: 15,
+			sound: warriorSimpleSound
 		},
 		specialAttack: {
 			img: deodorant,
 			minDmg: 15,
 			maxDmg: 20,
-			descr: ''
+			descr: '',
+			sound: warriorSpecialSound
 		}
 	},
 	{
@@ -46,12 +56,14 @@ const heroes = [
 			img: bow,
 			minDmg: 3,
 			maxDmg: 20,
+			sound: archerSimpleSound
 		},
 		specialAttack: {
 			img: rifle,
 			minDmg: 10,
 			maxDmg: 5,
-			descr: ''
+			descr: '',
+			sound: archerSpecialSound
 		}
 	},
 	{
@@ -66,12 +78,14 @@ const heroes = [
 			img: lightning,
 			minDmg: 1,
 			maxDmg: 25,
+			sound: wizzardSimpleSound
 		},
 		specialAttack: {
 			img: fireball,
 			minDmg: 20,
 			maxDmg: 20,
-			descr: ''
+			descr: '',
+			sound: wizzardSpecialSound
 		}
 	}
 ]

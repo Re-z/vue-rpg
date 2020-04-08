@@ -4,14 +4,15 @@
 - Monsters Random Generation
 - Dynamic sounds of hits, super hits, potions
 - Drop
+- Attack reload
+- Refactor folder structure
+- Monstropedia
 
 ## Bugs
 - Fixed all
 
 ## Project setup
 ```
-
-
 npm install
 ```
 
@@ -25,5 +26,3 @@ npm run serve
 npm run build
 ```
 
-### Customize configuration
-See [Configuration Reference](https://cli.vuejs.org/config/).

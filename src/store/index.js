@@ -8,6 +8,7 @@ export default new Vuex.Store({
     options: {
       dmgQuantifier: '',//based on difficulty level
     },
+    soundToPlay: '@/assets/heroes/warrior/hit.mp3',
     screen: 'intro', //intro, heroChoose, battle
     hero: {
       // type: 'Warrior',
@@ -132,6 +133,9 @@ export default new Vuex.Store({
     },
     getOptions(state) {
       return state.options
+    },
+    getSoundToPlay(state) {
+      return state.soundToPlay;
     }
   }
 })

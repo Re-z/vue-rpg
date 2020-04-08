@@ -15,7 +15,7 @@
 			<button @click="toggleSound"> {{soundBtnText}} </button>
 			<audio
 				ref="sound"
-				src="../assets/sound/hit.mp3" 
+				:src="getSoundToPlay" 
 				type="audio/mp3"
 			>
 			</audio>
@@ -42,6 +42,7 @@ export default {
 	computed: {
 		...mapGetters([
 			'getMonster',
+			'getSoundToPlay',
 			'getCurrentScreen',
 			'getCurrentTurn'
 		])
