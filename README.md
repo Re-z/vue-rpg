@@ -2,9 +2,7 @@
 ## Ideas
 - HitChance, DodgeChance
 - Monsters Random Generation
-- Dynamic sounds of hits, super hits, potions
 - Drop
-- Attack reload
 - Refactor folder structure
 - Monstropedia
 

@@ -6,7 +6,6 @@
 				ref="music" 
 				src="../assets/sound/bg.mp3" 
 				type="audio/mp3" 
-				autoplay 
 				loop
 			>
 			</audio>
@@ -37,7 +36,11 @@ export default {
 	mounted() {
 		this.$refs.music.volume = 0.01;
 		this.$refs.sound.volume = 0.04;
-		this.$refs.music.play();
+		//fix for avoid autoplay blocking in browsers
+		document.body.addEventListener('mousemove', () => {
+			this.$refs.music.play();
+		}, {once: true})
+		
 	},
 	computed: {
 		...mapGetters([
@@ -49,6 +52,7 @@ export default {
 		])
 	},
 	methods: {
+		
 		toggleMusic() {
 			if(this.$refs.music.muted === false) {
 				this.$refs.music.muted = true;
