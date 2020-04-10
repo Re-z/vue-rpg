@@ -30,7 +30,7 @@ export default {
 	computed: {
 		healthItems() {
 			//10 poinst of health === one hearth img
-			return Math.round(this.hero.currentHealth/10)
+			return Math.ceil(this.hero.currentHealth/10)
 		}
 	},
 }

@@ -12,31 +12,38 @@
 			<div class="controls">
 				<div class="controls__section">
 					<p class="controls__section-title">Attacks:</p>
+					
 					<span 
 						@click="handleHeroSimpleAttack"
 						class="controls__btn cup"
 					>
-						<img :src="getHero.simpleAttack.img" alt="" />
+						<span class="controls__img-wrap">
+							<img :src="getHero.simpleAttack.img" alt="" />
+						</span>
 					</span>
+
 					<!-- special attack appears each 3th turn -->
 					<span
-						v-if="getCurrentTurn.id % 3 === 0" 
+						v-show="getCurrentTurn.id % 3 === 0" 
 						class="controls__btn cup"
 						@click="handleHeroSpecialAttack"
 					>
-						<img :src="getHero.specialAttack.img" alt="" />
+						<span class="controls__img-wrap">
+							<img :src="getHero.specialAttack.img" alt="" />
+						</span>
+
 					</span>
 
 				</div>
 
-				<div class="controls__section" v-if="getHero.healingPotions">
+				<div class="controls__section" v-if="getHero.heal.potions">
 					<p class="controls__section-title">Potions:</p>
 					<span 
 						class="controls__btn cup"
 						@click="handleHeroHeal"
 					>
 						<img :src="require('../../assets/img/potion.png')" alt="" />
-						<span>x {{getHero.healingPotions}}</span>
+						<span>x {{getHero.heal.potions}}</span>
 
 					</span>
 				</div>
@@ -95,32 +102,70 @@ export default {
 				this.$store.commit('increaseTurn')
 			}
 		},
-		handleHeroSimpleAttack() {
-		
+		turnInProgress(ev) {
+			// prevents multiclicks on attack btns
+			const btns = ev.target.closest('.controls__section').querySelectorAll('.controls__img-wrap')
+			function hasActiveClass(el) {
+				return el.classList.contains('active');
+			}
+			//if one of btns have active class - return
+			if([...btns].some(hasActiveClass) === true) {
+				return true
+			}
+
+			btns.forEach(btn => {
+				btn.classList.add('active');
+				setTimeout(() => {
+					btn.classList.remove('active');
+				}, 1500)
+			})
+			
+		},
+		handleHeroSimpleAttack(ev) {
+			if(this.turnInProgress(ev) === true) {
+				return;
+			}
 			const generatedDmg = this.generateDmg(this.getHero.simpleAttack.minDmg, this.getHero.simpleAttack.maxDmg);
 			const quantifiedDmg = generatedDmg * this.getOptions.dmgQuantifier;
 			const dmgToMonster = Math.round(quantifiedDmg);
-			this.$store.commit('setDmgToMonster', dmgToMonster);
-			this.checkMonsterDeathAfterHeroAttack();
+			
+			this.$store.commit('setSoundToPlay', this.getHero.simpleAttack.sound);
+			// bug with music without settimeout
+			setTimeout(() => {
+				this.$store.commit('setDmgToMonster', dmgToMonster);
+				this.checkMonsterDeathAfterHeroAttack();
+				
+			},0)
 		},
-		handleHeroSpecialAttack() {
+		handleHeroSpecialAttack(ev) {
+			
+			if(this.turnInProgress(ev) === true) {
+				return;
+			}
+
 			const generatedDmg = this.generateDmg(this.getHero.specialAttack.minDmg, this.getHero.specialAttack.maxDmg);
 			const quantifiedDmg = generatedDmg * this.getOptions.dmgQuantifier;
 			const dmgToMonster = Math.round(quantifiedDmg);
+			this.$store.commit('setSoundToPlay', this.getHero.specialAttack.sound)
+			// bug with music without settimeout
+			setTimeout(() => {
+				this.$store.commit('setDmgToMonster', dmgToMonster);
+				this.checkMonsterDeathAfterHeroAttack();
+			},0)
 
-			this.$store.commit('setDmgToMonster', dmgToMonster);
-			this.checkMonsterDeathAfterHeroAttack();
 		},
 		handleHeroHeal() {
 			this.$store.commit('setSpecialTurnLog', {
 				specialHeroAction: 'Player used healing potion',
 				specialMonsterAction: ''
 			});
-			this.$store.commit('setHeroHealth', 100)
-			this.handleMonsterAttack();
-
-
-			this.$store.commit('increaseTurn')
+			this.$store.commit('setSoundToPlay', this.getHero.heal.sound);
+			setTimeout(() => {
+				this.$store.commit('setHeroHealth', 100)
+				this.handleMonsterAttack();
+				this.$store.commit('increaseTurn');
+			}, 0)
+			
 		},
 		handleMonsterAttack() {
 			const dmgToHero = Math.round(this.generateDmg(this.getMonster.minDmg , this.getMonster.maxDmg));
@@ -190,6 +235,26 @@ export default {
 .controls {
 	&__btn {
 		margin-right: 10px;
+	}
+	&__img-wrap {
+		display: inline-block;
+		position: relative;
+		&.active:after {
+			display: inline-block;
+			content: '';
+			position: absolute;
+			width: 100%;
+			height: 100%;
+			left: 0;
+			top: 0;
+			right: 0;
+			bottom: 0;
+			background: rgba(0,0,0, .5);
+			z-index: 10;
+		}
+		// &.active {
+		// 	background: red;
+		// }
 	}
 	&__section {
 		margin-bottom: 10px;

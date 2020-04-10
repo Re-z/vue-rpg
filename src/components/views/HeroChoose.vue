@@ -84,7 +84,8 @@ export default {
 	},
 	methods: {
 		startBattle() {
-			this.$store.commit('setHero', this.chosenHero)
+			this.$store.commit('setHero', this.chosenHero);
+			this.$store.commit('increaseTurn')
 			this.$store.commit('changeScreen', 'battle');
 		}
 	},

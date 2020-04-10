@@ -35,13 +35,14 @@ export default {
 		}
 	},
 	mounted() {
-		this.$refs.music.volume = 0.00;
-		this.$refs.sound.volume = 0.01;
+		this.$refs.music.volume = 0.01;
+		this.$refs.sound.volume = 0.04;
 		this.$refs.music.play();
 	},
 	computed: {
 		...mapGetters([
 			'getMonster',
+			'getHero',
 			'getSoundToPlay',
 			'getCurrentScreen',
 			'getCurrentTurn'
@@ -68,13 +69,14 @@ export default {
 		}
 	},
 	watch: {
-		//watching vuex monster health state,
-		//if it changing - play hit sound
-		'getMonster.currentHealth': function() {
-			if(this.soundEnabled && this.getCurrentScreen === 'battle' && this.getCurrentTurn.id != 1) {
+		//watching vuex turn change
+		// each turn - play sound
+		'getCurrentTurn.id': function() {
+			if(this.soundEnabled && this.getCurrentScreen === 'battle') {
 				this.$refs.sound.play()
 			}
-		}
+		},
+		
 	}
 }
 </script>

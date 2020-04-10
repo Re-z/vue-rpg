@@ -44,6 +44,7 @@ export default {
 	padding: 0;
 	box-sizing: border-box;
 	font-family: "Roboto", sans-serif;
+	user-select: none
 }
 body {
 	background: black;

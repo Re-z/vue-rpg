@@ -8,8 +8,9 @@
 - Refactor folder structure
 - Monstropedia
 
-## Bugs
-- Fixed all
+## To do refactor
+- sound generating (try to remove setTimeout 0 in Battle.vue)
+- prevent multiclick on heal btns
 
 ## Project setup
 ```

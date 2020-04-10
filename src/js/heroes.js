@@ -20,6 +20,7 @@ import archerSpecialSound from '../assets/heroes/archer/gun.mp3'
 import wizzardSimpleSound from '../assets/heroes/wizzard/lightning.mp3'
 import wizzardSpecialSound from '../assets/heroes/wizzard/fireball.mp3'
 
+import heal from '../assets/sound/heal.mp3'
 
 const heroes = [
 	{
@@ -28,12 +29,15 @@ const heroes = [
 		descr: 'He has 3 axes. Two in his hands and one in his pocket. That\'s why he is so attractive. Girls like good smelling warriors. He uses his axe deodorant as special weapon against dirty monsters',
 		avatar: warriorImg,
 		healthPoints: 100,
-		healingPotions: 1,
+		heal: {
+			potions: 1,
+			sound: heal
+		},
 		currentHealth: 100,
 		simpleAttack: {
 			img: axe,
-			minDmg: 5,
-			maxDmg: 15,
+			minDmg: 40,
+			maxDmg: 50,
 			sound: warriorSimpleSound
 		},
 		specialAttack: {
@@ -50,7 +54,10 @@ const heroes = [
 		descr: 'This hero is best bla bla, choose this hero!',
 		avatar: archerImg,
 		healthPoints: 90,
-		healingPotions: 1,
+		heal: {
+			potions: 1,
+			sound: heal
+		},
 		currentHealth: 90,
 		simpleAttack: {
 			img: bow,
@@ -61,7 +68,7 @@ const heroes = [
 		specialAttack: {
 			img: rifle,
 			minDmg: 10,
-			maxDmg: 5,
+			maxDmg: 25,
 			descr: '',
 			sound: archerSpecialSound
 		}
@@ -72,7 +79,10 @@ const heroes = [
 		descr: 'This hero is best bla bla, choose this hero!',
 		avatar: wizzardImg,
 		healthPoints: 70,
-		healingPotions: 2,
+		heal: {
+			potions: 2,
+			sound: heal
+		},
 		currentHealth: 70,
 		simpleAttack: {
 			img: lightning,

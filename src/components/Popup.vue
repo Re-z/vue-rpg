@@ -44,6 +44,7 @@ export default {
 	background: rgba(0,0,0,.7);
 	height: 100vh;
 	padding: 200px 0;
+	z-index: 1000;
 }
 .popup {
 	width: 100%;

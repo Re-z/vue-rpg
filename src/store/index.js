@@ -1,6 +1,9 @@
 import Vue from 'vue'
 import Vuex from 'vuex'
 
+import startBattleSound from '../assets/sound/roundone.mp3'
+
+
 Vue.use(Vuex)
 
 export default new Vuex.Store({
@@ -8,7 +11,7 @@ export default new Vuex.Store({
     options: {
       dmgQuantifier: '',//based on difficulty level
     },
-    soundToPlay: '@/assets/heroes/warrior/hit.mp3',
+    soundToPlay: startBattleSound,
     screen: 'intro', //intro, heroChoose, battle
     hero: {
       // type: 'Warrior',
@@ -32,7 +35,7 @@ export default new Vuex.Store({
     },
     currentRound: 1,
     currentTurn: {
-      id: 1,
+      id: 0,
       dmgToHero: '',
       dmgToMonster: '',
       //is using for loggin speial actions like healing, monster die, etc
@@ -53,7 +56,7 @@ export default new Vuex.Store({
     },
     setHeroHealth(state, health) {
       state.hero.currentHealth += health;
-      state.hero.healingPotions -= 1; //remove used potion
+      state.hero.heal.potions -= 1; //remove used potion
       //after healing, if current health is more then heroe`s maximum,
 			//set health to maximum
       if (state.hero.currentHealth > state.hero.healthPoints) {
@@ -95,6 +98,9 @@ export default new Vuex.Store({
     setSpecialTurnLog(state, specialLog) {
       state.currentTurn.specialHeroAction = specialLog.specialHeroAction;
       state.currentTurn.specialMonsterAction = specialLog.specialMonsterAction;
+    },
+    setSoundToPlay(state,sound) {
+      state.soundToPlay = sound
     }
 
   },
@@ -103,6 +109,7 @@ export default new Vuex.Store({
       commit('resetGameSettings');
       commit('setMonster', {});
       commit('setHero', {});
+      commit('setSoundToPlay', startBattleSound);
     }
   },
   modules: {
