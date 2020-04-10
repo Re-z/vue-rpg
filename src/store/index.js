@@ -13,18 +13,8 @@ export default new Vuex.Store({
     },
     soundToPlay: startBattleSound,
     screen: 'intro', //intro, heroChoose, battle
-    hero: {
-      // type: 'Warrior',
-      // avatar: warriorImg,
-      // minDmg: 5,
-      // maxDmg: 15,
-      // healthPoints: 100,
-      // healingPotions: 1,
-      // currentHealth: 100,
-    },
-    monster: {
-      //добавить объект монстра в изначальный стейт
-    },
+    hero: {},
+    monster: {},
     popup: {
       //data is getting from popupOptions.js
       isVisible: false,

@@ -121,14 +121,24 @@ export default {
 			})
 			
 		},
+		isCriticalDmg(critChance) {
+			const randomFrom0to100 = Math.ceil(Math.random() * 100);
+			return randomFrom0to100 <= critChance;
+		},
 		handleHeroSimpleAttack(ev) {
 			if(this.turnInProgress(ev) === true) {
 				return;
 			}
 			const generatedDmg = this.generateDmg(this.getHero.simpleAttack.minDmg, this.getHero.simpleAttack.maxDmg);
 			const quantifiedDmg = generatedDmg * this.getOptions.dmgQuantifier;
-			const dmgToMonster = Math.round(quantifiedDmg);
+			let dmgToMonster = Math.round(quantifiedDmg);
+
+			if(this.isCriticalDmg(this.getHero.critChance)) {
+				dmgToMonster = dmgToMonster * 2;
+			}
 			
+
+
 			this.$store.commit('setSoundToPlay', this.getHero.simpleAttack.sound);
 			// bug with music without settimeout
 			setTimeout(() => {
@@ -138,7 +148,6 @@ export default {
 			},0)
 		},
 		handleHeroSpecialAttack(ev) {
-			
 			if(this.turnInProgress(ev) === true) {
 				return;
 			}

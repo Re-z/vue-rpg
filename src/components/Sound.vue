@@ -34,7 +34,7 @@ export default {
 		}
 	},
 	mounted() {
-		this.$refs.music.volume = 0.01;
+		this.$refs.music.volume = 0.00;
 		this.$refs.sound.volume = 0.04;
 		//fix for avoid autoplay blocking in browsers
 		document.body.addEventListener('mousemove', () => {

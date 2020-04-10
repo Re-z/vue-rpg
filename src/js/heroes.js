@@ -29,6 +29,7 @@ const heroes = [
 		descr: 'He has 3 axes. Two in his hands and one in his pocket. That\'s why he is so attractive. Girls like good smelling warriors. He uses his axe deodorant as special weapon against dirty monsters',
 		avatar: warriorImg,
 		healthPoints: 100,
+		critChance: 5,
 		heal: {
 			potions: 1,
 			sound: heal
@@ -54,6 +55,7 @@ const heroes = [
 		descr: 'This hero is best bla bla, choose this hero!',
 		avatar: archerImg,
 		healthPoints: 90,
+		critChance: 50,
 		heal: {
 			potions: 1,
 			sound: heal
@@ -79,6 +81,7 @@ const heroes = [
 		descr: 'This hero is best bla bla, choose this hero!',
 		avatar: wizzardImg,
 		healthPoints: 70,
+		critChance: 5,
 		heal: {
 			potions: 2,
 			sound: heal
