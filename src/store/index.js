@@ -11,6 +11,10 @@ export default new Vuex.Store({
     options: {
       dmgQuantifier: '',//based on difficulty level
     },
+    log: {
+      player: '',
+      monster: '',
+    },
     soundToPlay: startBattleSound,
     screen: 'intro', //intro, heroChoose, battle
     hero: {},
@@ -28,9 +32,6 @@ export default new Vuex.Store({
       id: 0,
       dmgToHero: '',
       dmgToMonster: '',
-      //is using for loggin speial actions like healing, monster die, etc
-      specialHeroAction: '', 
-      specialMonsterAction: ''
     }
     // currentMonsterIndex: 0
   },
@@ -85,12 +86,15 @@ export default new Vuex.Store({
       state.currentTurn.specialHeroAction = ''; //hero havent done anything special at this turn
       state.monster.currentHealth -= dmg;
     },
-    setSpecialTurnLog(state, specialLog) {
-      state.currentTurn.specialHeroAction = specialLog.specialHeroAction;
-      state.currentTurn.specialMonsterAction = specialLog.specialMonsterAction;
-    },
+  
     setSoundToPlay(state,sound) {
       state.soundToPlay = sound
+    },
+    setPlayerLog(state, logMsg) {
+      state.log.player = logMsg;
+    },
+    setMonsterLog(state, logMsg) {
+      state.log.monster = logMsg;
     }
 
   },
@@ -133,6 +137,9 @@ export default new Vuex.Store({
     },
     getSoundToPlay(state) {
       return state.soundToPlay;
+    },
+    getLog(state) {
+      return state.log
     }
   }
 })

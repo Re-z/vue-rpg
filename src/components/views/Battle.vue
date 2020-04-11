@@ -71,6 +71,8 @@ import HealthBar from "../HealthBar.vue";
 import BattleLog from "../BattleLog.vue";
 import Phrases from "../Phrases.vue";
 
+import missSound from "../../assets/sound/miss.mp3"
+
 import { mapGetters } from "vuex";
 
 export default {
@@ -82,10 +84,7 @@ export default {
 	methods: {
 		checkMonsterDeathAfterHeroAttack() {
 			if(this.getMonster.currentHealth <= 0) {
-				this.$store.commit('setSpecialTurnLog', {
-					specialHeroAction: '',
-					specialMonsterAction: `Monster ${this.getMonster.type} defeated!`
-				});
+				this.$store.commit('setMonsterLog', `Monster ${this.getMonster.type} defeated`);
 				//if last monser dead - show win popup
 				if(this.getCurrentRound === this.monsters.length) {
 					this.$store.commit('setPopup', popupOptions.heroWon)
@@ -125,6 +124,10 @@ export default {
 			const randomFrom0to100 = Math.ceil(Math.random() * 100);
 			return randomFrom0to100 <= critChance;
 		},
+		monsterDodge(dodgeChance) {
+			const randomFrom0to100 = Math.ceil(Math.random() * 100);
+			return randomFrom0to100 <= dodgeChance;
+		},
 		handleHeroSimpleAttack(ev) {
 			if(this.turnInProgress(ev) === true) {
 				return;
@@ -132,19 +135,30 @@ export default {
 			const generatedDmg = this.generateDmg(this.getHero.simpleAttack.minDmg, this.getHero.simpleAttack.maxDmg);
 			const quantifiedDmg = generatedDmg * this.getOptions.dmgQuantifier;
 			let dmgToMonster = Math.round(quantifiedDmg);
-
+			let playerLogMsg = `Player hit monster with ${dmgToMonster} hp`;
+			
 			if(this.isCriticalDmg(this.getHero.critChance)) {
 				dmgToMonster = dmgToMonster * 2;
+				playerLogMsg = `Player made a critical hit and deal ${dmgToMonster} damage to mosnter!`
 			}
-			
+
+			if(this.monsterDodge(this.getMonster.dodgeChance)) {
+				this.$store.commit('setSoundToPlay', missSound);
+				playerLogMsg = `Player tried to deal ${dmgToMonster} damage to monster, but ${this.getMonster.type} dodged this attack`
+				this.$store.commit('setPlayerLog', playerLogMsg);
+				setTimeout(() => {
+					this.checkMonsterDeathAfterHeroAttack();
+				},0)
+				return;
+			}
 
 
 			this.$store.commit('setSoundToPlay', this.getHero.simpleAttack.sound);
 			// bug with music without settimeout
 			setTimeout(() => {
 				this.$store.commit('setDmgToMonster', dmgToMonster);
+				this.$store.commit('setPlayerLog', playerLogMsg);
 				this.checkMonsterDeathAfterHeroAttack();
-				
 			},0)
 		},
 		handleHeroSpecialAttack(ev) {
@@ -155,30 +169,43 @@ export default {
 			const generatedDmg = this.generateDmg(this.getHero.specialAttack.minDmg, this.getHero.specialAttack.maxDmg);
 			const quantifiedDmg = generatedDmg * this.getOptions.dmgQuantifier;
 			const dmgToMonster = Math.round(quantifiedDmg);
+			
+			//if monster dodged players attack - play miss sound, 
+			// add log, and call a function that increases turn
+			if(this.monsterDodge(this.getMonster.dodgeChance)) {
+				this.$store.commit('setSoundToPlay', missSound);
+				let playerLogMsg = `Player tried to deal ${dmgToMonster} damage to monster, but ${this.getMonster.type} dodged this attack`
+				this.$store.commit('setPlayerLog', playerLogMsg);
+				setTimeout(() => {
+					this.checkMonsterDeathAfterHeroAttack();
+				},0)
+				return;
+			}
+
+
 			this.$store.commit('setSoundToPlay', this.getHero.specialAttack.sound)
 			// bug with music without settimeout
 			setTimeout(() => {
 				this.$store.commit('setDmgToMonster', dmgToMonster);
+				this.$store.commit('setPlayerLog', `Player use special attack and hit monster with ${dmgToMonster} hp`);
 				this.checkMonsterDeathAfterHeroAttack();
 			},0)
 
 		},
 		handleHeroHeal() {
-			this.$store.commit('setSpecialTurnLog', {
-				specialHeroAction: 'Player used healing potion',
-				specialMonsterAction: ''
-			});
+			this.$store.commit('setPlayerLog', 'Player use healing potion')
 			this.$store.commit('setSoundToPlay', this.getHero.heal.sound);
 			setTimeout(() => {
 				this.$store.commit('setHeroHealth', 100)
 				this.handleMonsterAttack();
 				this.$store.commit('increaseTurn');
 			}, 0)
-			
 		},
 		handleMonsterAttack() {
 			const dmgToHero = Math.round(this.generateDmg(this.getMonster.minDmg , this.getMonster.maxDmg));
 			this.$store.commit('setDmgToHero', dmgToHero);
+			this.$store.commit('setMonsterLog', `Monster hit player with ${dmgToHero} hp`);
+
 			if(this.getHero.currentHealth <= 0 ) {
 				this.$store.commit('setPopup', popupOptions.heroDied)
 			}

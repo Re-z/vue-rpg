@@ -3,18 +3,14 @@
 		<p>Turn №{{getCurrentTurn.id -1}} Results:</p>
 
 		<!-- player log -->
-		<p v-if="getCurrentTurn.specialHeroAction">
+		<!-- <p v-if="getCurrentTurn.specialHeroAction">
 			{{getCurrentTurn.specialHeroAction}}
-		</p>
-		<p v-else>
-			dmg to Monster: {{getCurrentTurn.dmgToMonster}}
+		</p> -->
+		<p>
+			{{getLog.player}}
 		</p>
 
-		<!-- monster log -->
-		<p v-if="getCurrentTurn.specialMonsterAction">
-			{{getCurrentTurn.specialMonsterAction}}
-		</p>
-		<p v-else>dmg to player: {{getCurrentTurn.dmgToHero}}</p>
+		<p>			{{getLog.monster}}</p>
 	</div>
 	
 </template>
@@ -24,7 +20,7 @@ import {mapGetters} from 'vuex'
 import heroes from '../js/heroes';
 export default {
 	computed: {
-		...mapGetters(["getCurrentTurn"])
+		...mapGetters(["getCurrentTurn", "getLog"])
 	},
 	
 }

@@ -40,7 +40,6 @@ export default {
 		document.body.addEventListener('mousemove', () => {
 			this.$refs.music.play();
 		}, {once: true})
-		
 	},
 	computed: {
 		...mapGetters([

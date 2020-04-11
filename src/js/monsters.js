@@ -17,6 +17,7 @@ const monsters = [
 		healthPoints: 100,
 		currentHealth: 100,
 		backgroundImg: burningCastle,
+		dodgeChance: 50,
 		phrases: [
 			'fat 1',
 			'fat 2',
@@ -31,6 +32,7 @@ const monsters = [
 		healthPoints: 60,
 		currentHealth: 60,
 		backgroundImg: necroCastle,
+		dodgeChance: 15,
 		phrases: [
 			'doll 1',
 			'doll 2',
@@ -46,6 +48,7 @@ const monsters = [
 		healthPoints: 90,
 		currentHealth: 90,
 		backgroundImg: gladiatorArena,
+		dodgeChance: 10,
 		phrases: [
 			'glad 1',
 			'glad 2',
