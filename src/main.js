@@ -11,6 +11,8 @@ import Popup from './components/Popup'
 import Sound from './components/Sound'
 
 
+import './assets/scss/global.scss'
+
 Vue.component('app-intro', Intro)
 Vue.component('app-hero-choose', HeroChoose)
 Vue.component('app-battle', Battle)

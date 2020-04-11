@@ -1,13 +1,20 @@
 <template>
 	<div class="intro">
-		<p class="intro__text">Lorem ipsumLorem ipsum	Lorem ipsum	 Lorem ipsum	 Lorem ipsum	Lorem ipsum	Lorem ipsum	Lorem ipsum	Lorem ipsum		</p>
-		<div class="intro__btn-wrap">
+		<div class="intro__titles">
+			<p class="intro__title">VUE</p>
+			<p class="intro__subtitle">RPG</p>
+		</div>
+		<img class="intro__main-img" src="../../assets/img/orc.png" alt="">
+		<div class="intro__btns-wrap">
 			<button @click="changeScreenToNext">Start Game</button>
+			<button>How to play (not available yet)</button>
+			<button>Monstropedia (not available yet)</button>
 		</div>
 	</div>
 </template>
 
 <script>
+// import mainImg from ""
 export default {
 	methods: {
 		changeScreenToNext() {
@@ -21,14 +28,5 @@ export default {
 </script>
 
 <style lang="scss">
-	.intro {
-		&__text {
-			font-size: 24px;
-			text-align: center;
-		}
-		&__btn-wrap {
-			margin-top: 60px;
-			text-align: center;
-		}
-	}
+	
 </style>

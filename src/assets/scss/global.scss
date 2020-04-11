@@ -1,0 +1,99 @@
+
+@import "https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap";
+@import "https://cdnjs.cloudflare.com/ajax/libs/normalize/8.0.1/normalize.min.css";
+@import "./helpers/variables.scss";
+
+@mixin text-shadow {
+	text-shadow: 2px 2px 2px black;
+}
+
+* {
+	margin: 0;
+	padding: 0;
+	box-sizing: border-box;
+}
+body,html {
+	font-family: 'Press Start 2P', cursive;
+	font-size: $font-m;
+	user-select: none;
+	background: black;
+	color: $darkteal
+}
+button {
+	border: none;
+	background: none;
+	cursor: pointer;
+	outline: none;
+	color: $darkteal;
+}
+p:not(:last-of-type) {
+	margin-bottom: 5px;
+}
+.container {
+	max-width: 800px;
+	display: block;
+	margin: 0 auto;
+	padding: 40px 20px 10px;
+	border: 2px solid red;
+	border-radius: 20px;
+	background: $beige;
+	overflow: hidden;
+}
+.font-s {
+	font-size: $font-s;
+}
+.pointer {
+	cursor: pointer;
+}
+.text-simple {
+	font-size: $font-m;
+	color: white;
+	@include text-shadow;
+}
+.footer {
+	margin-top: 120px;
+	display: flex;
+	align-items: center;
+	justify-content: space-between;
+}
+.intro {
+	&__title, &__subtitle {
+		color: $lightteal;
+		@include text-shadow;
+		font-size: 70px;
+		text-align: center;
+		font-weight: bold;
+	}
+	&__subtitle {
+		color: $darkteal;
+		font-size: 40px;
+		margin-top: 10px;
+	}
+	&__main-img {
+		display: block;
+		margin: 40px auto 80px auto;
+	}
+	&__btns-wrap {
+		display: flex;
+		flex-direction: column;
+		align-items: center;;
+		button {
+			margin: 5px 0;
+			position: relative;
+			&:before {
+				display: none;
+				content: "";
+				width: 10px;
+				height: 10px;
+				background: $darkteal;
+				margin-right: 10px;
+				position: absolute;
+				left: -25px;
+				top: 5px;
+			}
+			&:hover:before {
+				display: inline-block;
+			}
+		}
+	}
+}

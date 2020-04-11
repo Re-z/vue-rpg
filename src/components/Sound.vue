@@ -1,7 +1,9 @@
 <template>
 	<div class="sound-options">
 		<div class="sound-options__music">
-			<button @click="toggleMusic"> {{musicBtnText}} </button>
+			<button class="font-s" @click="toggleMusic">
+				 Music: {{musicStatus}} 
+				</button>
 			<audio 
 				ref="music" 
 				src="../assets/sound/bg.mp3" 
@@ -11,7 +13,9 @@
 			</audio>
 		</div>
 		<div class="sound-options__sound">
-			<button @click="toggleSound"> {{soundBtnText}} </button>
+			<button class="font-s" @click="toggleSound"> 
+				Sound: {{soundStatus}}
+			</button>
 			<audio
 				ref="sound"
 				:src="getSoundToPlay" 
@@ -28,8 +32,8 @@ import {mapGetters} from 'vuex'
 export default {
 	data() {
 		return {
-			musicBtnText: 'Disable music', //Disable/enable music,
-			soundBtnText: 'Disable sound',
+			musicStatus: 'ON', //Disable/enable music,
+			soundStatus: 'ON',
 			soundEnabled: true,
 		}
 	},
@@ -55,19 +59,19 @@ export default {
 		toggleMusic() {
 			if(this.$refs.music.muted === false) {
 				this.$refs.music.muted = true;
-				this.musicBtnText = "Enable music"
+				this.musicStatus = "OFF"
 			} else {
 				this.$refs.music.muted = false;
-				this.musicBtnText = "Disable music"
+				this.musicStatus = "ON"
 			}
 		},
 		toggleSound() {
 			if(this.soundEnabled === false) {
 				this.soundEnabled = true;
-				this.soundBtnText = "Disable sound"
+				this.soundStatus = "ON"
 			} else {
 				this.soundEnabled = false;
-				this.soundBtnText = "Enable sound"
+				this.soundStatus = "OFF"
 			}
 		}
 	},

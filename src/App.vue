@@ -5,11 +5,19 @@
 		></div>
 
 		<div class="container">
-			<app-sound/>
 
 			<app-intro v-if="getCurrentScreen === 'intro'"></app-intro>
 			<app-hero-choose v-if="getCurrentScreen === 'heroChoose'"></app-hero-choose>
 			<app-battle v-if="getCurrentScreen === 'battle'"></app-battle>
+			<div class="footer">
+				<div class="footer__copy">
+					<p class="font-s">Made by Anton incorporated,</p>
+					<p class="font-s">2020 year.</p>
+				</div>
+				<app-sound/>
+
+			</div>
+
 		</div>
 
 
@@ -39,16 +47,7 @@ export default {
 </script>
 
 <style lang="scss">
-* {
-	margin: 0;
-	padding: 0;
-	box-sizing: border-box;
-	font-family: "Roboto", sans-serif;
-	user-select: none
-}
-body {
-	background: black;
-}
+
 .main-wrap {
 	position: relative;
 	z-index: 10;
@@ -65,17 +64,8 @@ body {
 		bottom: 0;
 		right: 0;
 		z-index: -1;
-		filter: blur(3px)
+		filter: blur(5px)
 	}
 }
-.cup {
-	cursor: pointer;
-}
-.container {
-	padding: 200px 20px;
-	max-width: 800px;
-	display: block;
-	margin: 0 auto;
-	outline: 1px solid red;
-}
+
 </style>
