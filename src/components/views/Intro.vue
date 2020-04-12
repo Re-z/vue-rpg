@@ -2,7 +2,7 @@
 	<div class="intro">
 		<div class="intro__titles">
 			<p class="intro__title">VUE</p>
-			<p class="intro__subtitle">RPG</p>
+			<p class="intro__subtitle">Turn based RPG</p>
 		</div>
 		<img class="intro__main-img" src="../../assets/img/orc.png" alt="">
 		<div class="intro__btns-wrap">

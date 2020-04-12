@@ -26,7 +26,7 @@ const heroes = [
 	{
 		name: '',
 		type: 'Warrior',
-		descr: 'He has 3 axes. Two in his hands and one in his pocket. That\'s why he is so attractive. Girls like good smelling warriors. He uses his axe deodorant as special weapon against dirty monsters',
+		descr: 'He has 3 axes: two in his hands and one in his pocket. That\'s why he is so attractive. He uses this third axe as special weapon against dirty monsters.',
 		avatar: warriorImg,
 		healthPoints: 100,
 		critChance: 5,
@@ -36,6 +36,7 @@ const heroes = [
 		},
 		currentHealth: 100,
 		simpleAttack: {
+			descr: 'Two axes',
 			img: axe,
 			minDmg: 40,
 			maxDmg: 50,
@@ -45,14 +46,14 @@ const heroes = [
 			img: deodorant,
 			minDmg: 15,
 			maxDmg: 20,
-			descr: '',
+			descr: 'Axe effect',
 			sound: warriorSpecialSound
 		}
 	},
 	{
 		name: '',
 		type: 'Archer',
-		descr: 'This hero is best bla bla, choose this hero!',
+		descr: 'When he was young, he liked to shot birds with slingshot. When he turned 18, his mamma bought him a bow. Since that time, it became his favorite weapon.',
 		avatar: archerImg,
 		healthPoints: 90,
 		critChance: 50,
@@ -62,6 +63,7 @@ const heroes = [
 		},
 		currentHealth: 90,
 		simpleAttack: {
+			descr: 'Bow',
 			img: bow,
 			minDmg: 3,
 			maxDmg: 20,
@@ -71,14 +73,14 @@ const heroes = [
 			img: rifle,
 			minDmg: 10,
 			maxDmg: 25,
-			descr: '',
+			descr: 'Sniper rifle',
 			sound: archerSpecialSound
 		}
 	},
 	{
 		name: '',
 		type: 'Wizzard',
-		descr: 'This hero is best bla bla, choose this hero!',
+		descr: 'Unfortunately, he cannot turn water into wine, like Jesus. But definitely can burn your ass with another magic.',
 		avatar: wizzardImg,
 		healthPoints: 70,
 		critChance: 5,
@@ -88,6 +90,7 @@ const heroes = [
 		},
 		currentHealth: 70,
 		simpleAttack: {
+			descr: 'Lightning spell',
 			img: lightning,
 			minDmg: 1,
 			maxDmg: 25,
@@ -97,7 +100,7 @@ const heroes = [
 			img: fireball,
 			minDmg: 20,
 			maxDmg: 20,
-			descr: '',
+			descr: 'Fireball spell',
 			sound: wizzardSpecialSound
 		}
 	}

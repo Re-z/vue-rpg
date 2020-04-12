@@ -51,6 +51,9 @@ export default {
 .main-wrap {
 	position: relative;
 	z-index: 10;
+	display: flex;
+	align-items: center;
+	height: 100vh;
 	&__bg {
 		background-repeat: no-repeat;
 		background-position: center center;

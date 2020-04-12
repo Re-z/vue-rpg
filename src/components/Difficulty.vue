@@ -1,23 +1,27 @@
 <template>
 	<div class="difficulty">
-			<p
-				class="difficulty__item cup"
+		<p class="difficulty__title">Choose difficulty:</p>
+		<div class="difficulty__items-wrap">
+			<button
+				class="difficulty__item pointer"
 				:class="{'active': difficulty === choosenDifficulty}"
 				v-for="difficulty in difficulties"
 				:key="difficulty"
 				@click="chooseDifficulty(difficulty)"
 			>
 				{{difficulty}}
-			</p>
+			</button>
 		</div>
+			
+	</div>
 </template>
 
 <script>
 export default {
 	data() {
 		return {
-			difficulties: ['easy', 'medium', 'hard'],
-			choosenDifficulty: 'easy' //medium difficulty is default option
+			difficulties: ['Easy', 'Medium', 'Hard'],
+			choosenDifficulty: 'Easy' //Medium difficulty is default option
 		}
 	},
 	methods: {
@@ -25,13 +29,13 @@ export default {
 			this.choosenDifficulty = difficulty;
 			let dmgQuantifier;
 			switch(difficulty) {
-				case 'easy':
+				case 'Easy':
 					dmgQuantifier = 1.3;
 					break;
-				case 'medium':
+				case 'Medium':
 					dmgQuantifier = 1;
 					break;
-				case 'hard':
+				case 'Hard':
 					dmgQuantifier = 0.7;
 					break;
 			}
@@ -43,22 +47,3 @@ export default {
 	}
 }
 </script>
-
-<style lang="scss" scoped>
-.difficulty {
-	display: grid;
-	grid-template-columns: repeat(3, 1fr);
-	justify-content: center;
-	grid-column-gap: 70px;
-	background: lightgray;
-	&__item {
-		width: 30%;
-		text-align: center;
-		width: 100%;
-		background: tomato;
-		&.active {
-			background: blue;
-		}
-	}
-}
-</style>

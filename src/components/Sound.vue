@@ -83,7 +83,6 @@ export default {
 				this.$refs.sound.play()
 			}
 		},
-		
 	}
 }
 </script>

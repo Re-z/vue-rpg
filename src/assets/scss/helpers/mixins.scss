@@ -1,0 +1,6 @@
+@mixin gradientBorder($size, $color1, $color2) {
+	border: $size solid;
+	border-image-slice: 1;
+	border-width: $size;
+    border-image-source: linear-gradient(to left, $color1, $color2);
+}
