@@ -17,7 +17,7 @@ const monsters = [
 		healthPoints: 100,
 		currentHealth: 100,
 		backgroundImg: burningCastle,
-		dodgeChance: 50,
+		dodgeChance: 10,
 		phrases: [
 			'fat 1',
 			'fat 2',

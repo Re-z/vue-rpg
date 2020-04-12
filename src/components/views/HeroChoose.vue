@@ -16,25 +16,21 @@
 
 		<div class="heroChoose__table-wrap">
 			<p class="heroChoose__table-descr">{{chosenHero.descr}}</p>
-			<!-- <div class="heroChoose__results-item heroChoose__results-item_img-wrap">
-				<img :src="chosenHero.avatar" alt="">
-			</div> -->
-			<!-- <p>Stats:</p> -->
-			<!-- show stats only when data has come from vuex -->
 
 			<table
 				class="heroChoose__table"
 				v-if="chosenHero && dmgQuantifier"
 			>
-				<tr>
-					<td>Class: </td>
-					<td> {{chosenHero.type}}</td>
-				</tr>
-
 				<tr v-if="chosenHero.name">
 					<td>Name: </td>
 					<td> {{chosenHero.name}}</td>
 				</tr>
+				<tr v-else>
+					<td>Class: </td>
+					<td> {{chosenHero.type}}</td>
+				</tr>
+
+				
 				<tr>
 					<td>Max. health: </td>
 					<td> {{chosenHero.healthPoints}}</td>
@@ -45,19 +41,19 @@
 				</tr>
 				<tr>
 					<td>Simple attack: </td>
-					<td>
+					<td class="no-padding">
 						<table>
-							<tr><td>{{chosenHero.simpleAttack.descr}}</td></tr>
-							<tr><td>Damage: {{simpleQuantifiedMinDmg}} - {{simpleQuantifiedMaxDmg}}</td></tr>
+							<tr class="no-border"><td>{{chosenHero.simpleAttack.descr}}</td></tr>
+							<tr class="no-border"><td>Damage: {{simpleQuantifiedMinDmg}} - {{simpleQuantifiedMaxDmg}}</td></tr>
 						</table>
 					</td>
 				</tr>
 				<tr>
 					<td>Special attack: </td>
-					<td>
+					<td class="no-padding">
 						<table>
-							<tr><td>{{chosenHero.specialAttack.descr}}</td></tr>
-							<tr><td>Damage: {{specialQuantifiedMinDmg}} - {{specialQuantifiedMaxDmg}}</td></tr>
+							<tr class="no-border"><td>{{chosenHero.specialAttack.descr}}</td></tr>
+							<tr class="no-border"><td>Damage: {{specialQuantifiedMinDmg}} - {{specialQuantifiedMaxDmg}}</td></tr>
 						</table>
 					</td>
 				</tr>

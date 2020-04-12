@@ -60,6 +60,9 @@ p:not(:last-of-type) {
 .text-center {
 	text-align: center;
 }
+.justify-end {
+	justify-content: flex-end;
+}
 .text-simple {
 	font-size: $font-m;
 	color: white;
@@ -78,6 +81,7 @@ p:not(:last-of-type) {
 		font-size: 70px;
 		text-align: center;
 		font-weight: bold;
+		margin: 0;
 	}
 	&__subtitle {
 		color: $darkteal;
@@ -115,7 +119,7 @@ p:not(:last-of-type) {
 .title {
 	font-size: $font-l;
 	text-align: center;
-	margin-bottom: 20px;
+	margin-bottom: 10px;
 }
 .heroChoose {
  	&__heroes {
@@ -132,7 +136,7 @@ p:not(:last-of-type) {
 		}
 	}
 	&__name-wrap {
-		margin: 20px 0;
+		margin: 30px 0;
 	}
 	&__name-input {
 		width: 400px;
@@ -143,34 +147,39 @@ p:not(:last-of-type) {
 
 	}
 	&__table-wrap {
-		margin: 20px 0;
+		margin: 10px 0 30px 0;
 	}
 	&__table-descr {
-		margin-bottom: 20px;
+		margin-bottom: 10px;
 		min-height: 72px;
 	}
 	&__table {
+		margin: 10px 0;
+		border-collapse: collapse;
 		width: 100%;
-		margin: 20px 0;
+		tr {
+			border: 1px solid $darkteal;
+			padding: 2px;
+			&.no-border {
+				border: none;
+			}
+		}
+		td {
+			padding: 4px;
+			&.no-padding {
+				padding: 0;
+			}
+			&:not(:last-of-type) {
+				border-right: 1px solid $darkteal
+			}
+		}
 	}
 	&__btn-wrap {
 		margin-top: 40px;
 		text-align: center;
 	}
 }
-table {
-	border-collapse: collapse;
-	width: 100%;
-	&>tr, &>td {
-		border: 1px solid red;
-	}
-}
-tr,td {
-}
-// tr {
-// 	background: $lightteal; //temp
-// 	padding: 5px 10px;
-// }
+
 .btn {
 	background: $lightteal;
 	padding: 10px 20px;
@@ -192,5 +201,59 @@ tr,td {
 			background: $darkteal;
 			color: $beige;
 		}
+	}
+}
+.battle {
+	&__round {
+		text-align: center;
+		margin-bottom: 20px;
+	}
+	&__title, &__subtitle {
+		@include text-shadow;
+	}
+	&__title {
+		font-size: 50px;
+		color: $lightteal;
+		text-transform: uppercase;
+	}
+	&__subtitle {
+		font-size: 30px;
+		color: $darkteal;
+		text-transform: uppercase;
+	}
+	&__box {
+		display: flex;
+		justify-content: space-between;
+		align-items: center;
+		border-bottom: 2px solid $darkteal;
+		margin-top: 40px;
+	}
+	
+	&__img-wrap {
+		min-height: 115px;
+		display: flex;
+		align-items: flex-end;
+		margin-top: 10px;
+	}
+	&__monster {
+		text-align: right;
+		max-width: 40%;
+	}
+	&__hero {
+		max-width: 40%;
+		
+		align-self: flex-end;
+	}
+}
+.healthbar {
+	&__imgs {
+		margin: 10px 0;
+	}
+	&__img {
+		display: inline-block;
+		margin-left: 5px;
+	}
+	&__numeric-health {
+		width: 100%;
 	}
 }

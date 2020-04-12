@@ -66,7 +66,7 @@ export default new Vuex.Store({
     },
     resetGameSettings(state) {
       state.currentRound = 1;
-      state.currentTurn.id = 1;
+      state.currentTurn.id = 0;
       state.screen = 'intro';
       state.popup.isVisible = false;
     },

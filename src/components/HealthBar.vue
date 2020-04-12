@@ -1,9 +1,9 @@
 <template>
 	<div class="healthbar" >
-		<span v-if="hero.name">{{hero.name}}:</span>
-		<span v-else>{{hero.type}}:</span>
+		<p v-if="hero.name">{{hero.name}}</p>
+		<p v-else>{{hero.type}}</p>
 		<!-- show helthbar only when data from prop is ready -->
-		<div v-if="hero.currentHealth">
+		<div v-if="hero.currentHealth" class="healthbar__imgs">
 		<!-- hearth img based on current hero/monster health -->
 			<img 
 				class="healthbar__img" 
@@ -14,7 +14,7 @@
 			>
 		</div>
 		
-		<p class="healthbar__numeric-health">Health: {{hero.currentHealth}} / {{hero.healthPoints}}</p>
+		<p class="healthbar__numeric-health">HP: {{hero.currentHealth}} / {{hero.healthPoints}}</p>
 	</div>
 </template>
 <script>
@@ -35,17 +35,3 @@ export default {
 	},
 }
 </script>
-<style lang="scss" scoped>
-.healthbar {
-	display: flex;
-	flex-wrap: wrap;
-	align-items: center;
-	&__img {
-		display: inline-block;
-		margin-left: 5px;
-	}
-	&__numeric-health {
-		width: 100%;
-	}
-}
-</style>

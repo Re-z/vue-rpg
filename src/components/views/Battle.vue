@@ -1,60 +1,71 @@
 <template>
 	<div class="battle">
 		<div class="battle__round">
-			<span>Round {{getCurrentRound}} , turn {{getCurrentTurn.id}}</span>
+			<p class="battle__title">Round {{getCurrentRound}}</p>
+			<p class="battle__subtitle">Turn {{getCurrentTurn.id}}</p>
 		</div>
-		<div class="battle__hero">
-			<!-- hero healthbar -->
-			<app-health-bar :hero="getHero" />
+		
 
-			<img class="battle__hero-img" :src="getHero.avatar" alt="" />
-
-			<div class="controls">
-				<div class="controls__section">
-					<p class="controls__section-title">Attacks:</p>
-					
-					<span 
-						@click="handleHeroSimpleAttack"
-						class="controls__btn cup"
-					>
-						<span class="controls__img-wrap">
-							<img :src="getHero.simpleAttack.img" alt="" />
-						</span>
-					</span>
-
-					<!-- special attack appears each 3th turn -->
-					<span
-						v-show="getCurrentTurn.id % 3 === 0" 
-						class="controls__btn cup"
-						@click="handleHeroSpecialAttack"
-					>
-						<span class="controls__img-wrap">
-							<img :src="getHero.specialAttack.img" alt="" />
-						</span>
-
-					</span>
-
+		<div class="battle__box">
+			<div class="battle__hero">
+				<!-- hero healthbar -->
+				<app-health-bar :hero="getHero" />
+				<div class="battle__img-wrap">
+					<img class="battle__hero-img" :src="getHero.avatar" alt="" />
 				</div>
 
-				<div class="controls__section" v-if="getHero.heal.potions">
-					<p class="controls__section-title">Potions:</p>
-					<span 
-						class="controls__btn cup"
-						@click="handleHeroHeal"
-					>
-						<img :src="require('../../assets/img/potion.png')" alt="" />
-						<span>x {{getHero.heal.potions}}</span>
-
-					</span>
+				
+			</div>
+			<span class="battle__box-vs">VS</span>
+			<div class="battle__monster">
+				<!-- monster healthbar -->
+				<app-health-bar :hero="getMonster" />
+				<div class="battle__img-wrap justify-end">
+					<img class="battle__hero-img" :src="getMonster.avatar" alt="" />
 				</div>
+
+				<app-phrases v-if="getCurrentTurn.id % 3 === 0"/>
 			</div>
 		</div>
-		<div class="battle__monster">
-			<!-- monster healthbar -->
-			<app-health-bar :hero="getMonster" />
-			<img class="battle__hero-img" :src="getMonster.avatar" alt="" />
-			<app-phrases v-if="getCurrentTurn.id % 3 === 0"/>
+		<div class="controls">
+			<div class="controls__section">
+				<p class="controls__section-title">Attacks:</p>
+				
+				<span 
+					@click="handleHeroSimpleAttack"
+					class="controls__btn cup"
+				>
+					<span class="controls__img-wrap">
+						<img :src="getHero.simpleAttack.img" alt="" />
+					</span>
+				</span>
+
+				<!-- special attack appears each 3th turn -->
+				<span
+					v-show="getCurrentTurn.id % 3 === 0" 
+					class="controls__btn cup"
+					@click="handleHeroSpecialAttack"
+				>
+					<span class="controls__img-wrap">
+						<img :src="getHero.specialAttack.img" alt="" />
+					</span>
+
+				</span>
+			</div>
+
+			<div class="controls__section" v-if="getHero.heal.potions">
+				<p class="controls__section-title">Potions:</p>
+				<span 
+					class="controls__btn cup"
+					@click="handleHeroHeal"
+				>
+					<img :src="require('../../assets/img/potion.png')" alt="" />
+					<span>x {{getHero.heal.potions}}</span>
+
+				</span>
+			</div>
 		</div>
+		
 		<!-- show log after first turn -->
 		<app-battle-log v-if="getCurrentTurn.id != 1"/>
 		<app-popup v-if="getPopup.isVisible"/>
@@ -243,61 +254,62 @@ export default {
 </script>
 
 <style lang="scss">
-.battle {
-	display: grid;
-	grid-template-columns: repeat(2, 1fr);
-	grid-gap: 40px;
-	&__round {
-		grid-column: 1/3;
-		grid-row: 1/2;
-		background: red;
-		text-align: center;
-	}
-	&__hero {
-		grid-column: 1/2;
-		grid-row: 2/3;
-		background: lightgray;
-	}
-	&__hero-img {
-		display: block;
-		margin: 0 auto;
-	}
-	&__monster {
-		grid-column: 2/3;
-		grid-row: 2/3;
-		background: skyblue;
-	}
-}
-.controls {
-	&__btn {
-		margin-right: 10px;
-	}
-	&__img-wrap {
-		display: inline-block;
-		position: relative;
-		&.active:after {
-			display: inline-block;
-			content: '';
-			position: absolute;
-			width: 100%;
-			height: 100%;
-			left: 0;
-			top: 0;
-			right: 0;
-			bottom: 0;
-			background: rgba(0,0,0, .5);
-			z-index: 10;
-		}
-		// &.active {
-		// 	background: red;
-		// }
-	}
-	&__section {
-		margin-bottom: 10px;
+
+// .battle {
+// 	display: grid;
+// 	grid-template-columns: repeat(2, 1fr);
+// 	grid-gap: 40px;
+// 	&__round {
+// 		grid-column: 1/3;
+// 		grid-row: 1/2;
+// 		background: red;
+// 		text-align: center;
+// 	}
+// 	&__hero {
+// 		grid-column: 1/2;
+// 		grid-row: 2/3;
+// 		background: lightgray;
+// 	}
+// 	&__hero-img {
+// 		display: block;
+// 		margin: 0 auto;
+// 	}
+// 	&__monster {
+// 		grid-column: 2/3;
+// 		grid-row: 2/3;
+// 		background: skyblue;
+// 	}
+// }
+// .controls {
+// 	&__btn {
+// 		margin-right: 10px;
+// 	}
+// 	&__img-wrap {
+// 		display: inline-block;
+// 		position: relative;
+// 		&.active:after {
+// 			display: inline-block;
+// 			content: '';
+// 			position: absolute;
+// 			width: 100%;
+// 			height: 100%;
+// 			left: 0;
+// 			top: 0;
+// 			right: 0;
+// 			bottom: 0;
+// 			background: rgba(0,0,0, .5);
+// 			z-index: 10;
+// 		}
+// 		// &.active {
+// 		// 	background: red;
+// 		// }
+// 	}
+// 	&__section {
+// 		margin-bottom: 10px;
 		
-	}
-	&__section-title {
-		margin-bottom: 5px;
-	}
-}
+// 	}
+// 	&__section-title {
+// 		margin-bottom: 5px;
+// 	}
+// }
 </style>
