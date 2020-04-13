@@ -1,24 +1,24 @@
-import warriorImg from '../assets/img/warrior.png';
-import archerImg from '../assets/img/archer.png';
-import wizzardImg from '../assets/img/wizzard.png';
-
-import axe from '../assets/img/axe.png';
-import deodorant from '../assets/img/deodorant.png';
-
-import bow from '../assets/img/bow.png';
-import rifle from '../assets/img/rifle.png';
-
-import lightning from '../assets/img/lightning.png';
-import fireball from '../assets/img/fireball.png';
-
+//archer
+import archerImg from '../assets/heroes/archer/archer.png';
+import bow from '../assets/heroes/archer/bow.png';
+import rifle from '../assets/heroes/archer/rifle.png';
+import archerSimpleSound from '../assets/heroes/archer/arrow.mp3'
+import archerSpecialSound from '../assets/heroes/archer/gun.mp3'
+//wizzard
+import wizzardImg from '../assets/heroes/wizzard/wizzard.png';
+import lightning from '../assets/heroes/wizzard/lightning.png';
+import fireball from '../assets/heroes/wizzard/fireball.png';
+import wizzardSimpleSound from '../assets/heroes/wizzard/lightning.mp3'
+import wizzardSpecialSound from '../assets/heroes/wizzard/fireball.mp3'
+//warrior
+import warriorImg from '../assets/heroes/warrior/warrior.png';
+import axe from '../assets/heroes/warrior/axe.png';
+import deodorant from '../assets/heroes/warrior/deodorant.png';
 import warriorSimpleSound from '../assets/heroes/warrior/hit.mp3'
 import warriorSpecialSound from '../assets/heroes/warrior/spray.mp3'
 
-import archerSimpleSound from '../assets/heroes/archer/arrow.mp3'
-import archerSpecialSound from '../assets/heroes/archer/gun.mp3'
 
-import wizzardSimpleSound from '../assets/heroes/wizzard/lightning.mp3'
-import wizzardSpecialSound from '../assets/heroes/wizzard/fireball.mp3'
+
 
 import heal from '../assets/sound/heal.mp3'
 
@@ -32,7 +32,6 @@ const heroes = [
 		critChance: 5,
 		heal: {
 			potions: 1,
-			sound: heal
 		},
 		currentHealth: 100,
 		simpleAttack: {
@@ -59,7 +58,6 @@ const heroes = [
 		critChance: 50,
 		heal: {
 			potions: 1,
-			sound: heal
 		},
 		currentHealth: 90,
 		simpleAttack: {
@@ -86,7 +84,6 @@ const heroes = [
 		critChance: 5,
 		heal: {
 			potions: 2,
-			sound: heal
 		},
 		currentHealth: 70,
 		simpleAttack: {

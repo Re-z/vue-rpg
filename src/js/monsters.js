@@ -1,12 +1,12 @@
 
 // avatars
-import FatPalladinImg from "../assets/img/fat-paladin.png";
-import CursedDollImg from "../assets/img/cursed-doll.png";
-import GladiatorImg from "../assets/img/gladiator.png";
+import FatPalladinImg from "../assets/monsters/fat-paladin/fat-paladin.png";
+import CursedDollImg from "../assets/monsters/cursed-doll/cursed-doll.png";
+import GladiatorImg from "../assets/monsters/gladiator/gladiator.png";
 // backgrounds
-import burningCastle from "../assets/img/bg/burningCastle.png"
-import necroCastle from "../assets/img/bg/necroCastle.png"
-import gladiatorArena from "../assets/img/bg/gladiatorArena.jpg"
+import burningCastle from "../assets/monsters/fat-paladin/burningCastle.jpg"
+import necroCastle from "../assets/monsters/cursed-doll/necroCastle.jpg"
+import gladiatorArena from "../assets/monsters/gladiator/gladiatorArena.jpg"
 
 const monsters = [
 	{

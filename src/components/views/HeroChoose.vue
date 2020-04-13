@@ -29,13 +29,12 @@
 					<td>Class: </td>
 					<td> {{chosenHero.type}}</td>
 				</tr>
-
 				
 				<tr>
 					<td>Max. health: </td>
 					<td> {{chosenHero.healthPoints}}</td>
 				</tr>
-				<tr>
+				<tr v-if="chosenHero.heal.potions">
 					<td>Heal potions: </td>
 					<td> {{chosenHero.heal.potions}}</td>
 				</tr>
@@ -81,7 +80,6 @@
 
 		<app-difficulty />
 
-
 		<div class="heroChoose__btn-wrap">
 			<button class="btn" @click="startBattle">Start Battles</button>
 		</div>
@@ -124,13 +122,13 @@ export default {
 			return Math.round(this.dmgQuantifier * this.chosenHero.specialAttack.maxDmg)
 		},
 	},
-	mounted() {
+	created() {
 		//берем данные с героями, конвертим в строку и обратно.
 		//за счет этого объекты копируются, а не передаются по ссылке.
 		//и при рестарте игры данные не ломаются, а приходят новые
 		let heroes =  JSON.parse(JSON.stringify([...heroesData]));
 		this.heroes = heroes;
-		this.chosenHero = this.heroes[0]
+		this.chosenHero = this.heroes[0];
 	},
 	components: {
 		'app-difficulty': Difficulty

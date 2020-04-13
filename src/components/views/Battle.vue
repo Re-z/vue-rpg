@@ -43,14 +43,18 @@
 					</div>
 
 					<!-- special attack appears each 3th turn -->
-					<!-- v-show="getCurrentTurn.id % 3 === 0"  -->
-					<div
-						class="controls__btn pointer"
-						@click="handleHeroSpecialAttack"
+					<div 
+						class="controls__btn-wrap"
+						:class="{'not-ready-control-btn': this.getCurrentTurn.id % 3 != 0}"
 					>
-						<span class="controls__img-wrap">
-							<img :src="getHero.specialAttack.img" alt="" />
-						</span>
+						<div
+							class="controls__btn pointer"
+							@click="handleHeroSpecialAttack"
+						>
+							<span class="controls__img-wrap">
+								<img :src="getHero.specialAttack.img" alt="" />
+							</span>
+						</div>
 					</div>
 				</div>
 			</div>
@@ -62,8 +66,9 @@
 						class="controls__btn pointer"
 						@click="handleHeroHeal"
 					>
-						<img :src="require('../../assets/img/potion.png')" alt="" />
-
+						<span class="controls__img-wrap">
+							<img :src="require('../../assets/img/potion.png')" alt="" />
+						</span>
 					</div>
 					<span>x {{getHero.heal.potions}}</span>
 				</div>
@@ -87,6 +92,7 @@ import BattleLog from "../BattleLog.vue";
 import Phrases from "../Phrases.vue";
 
 import missSound from "../../assets/sound/miss.mp3"
+import healSound from '../../assets/sound/heal.mp3'
 
 import { mapGetters } from "vuex";
 
@@ -118,7 +124,7 @@ export default {
 		},
 		turnInProgress(ev) {
 			// prevents multiclicks on attack btns
-			const btns = ev.target.closest('.controls__section').querySelectorAll('.controls__img-wrap')
+			const btns = ev.target.closest('.controls').querySelectorAll('.controls__img-wrap')
 			function hasActiveClass(el) {
 				return el.classList.contains('active');
 			}
@@ -167,7 +173,6 @@ export default {
 				return;
 			}
 
-
 			this.$store.commit('setSoundToPlay', this.getHero.simpleAttack.sound);
 			// bug with music without settimeout
 			setTimeout(() => {
@@ -202,14 +207,18 @@ export default {
 			// bug with music without settimeout
 			setTimeout(() => {
 				this.$store.commit('setDmgToMonster', dmgToMonster);
-				this.$store.commit('setPlayerLog', `Player use special attack and hit monster with ${dmgToMonster} hp`);
+				this.$store.commit('setPlayerLog', `Player use ${this.getHero.specialAttack.descr} attack and hit monster with ${dmgToMonster} hp`);
 				this.checkMonsterDeathAfterHeroAttack();
 			},0)
 
 		},
-		handleHeroHeal() {
+		handleHeroHeal(ev) {
+			if(this.turnInProgress(ev) === true) {
+				return;
+			}
+
 			this.$store.commit('setPlayerLog', 'Player use healing potion')
-			this.$store.commit('setSoundToPlay', this.getHero.heal.sound);
+			this.$store.commit('setSoundToPlay', healSound);
 			setTimeout(() => {
 				this.$store.commit('setHeroHealth', 100)
 				this.handleMonsterAttack();
@@ -245,7 +254,7 @@ export default {
 		"app-battle-log": BattleLog,
 		"app-phrases": Phrases
 	},
-	mounted() {
+	created() {
 		//берем данные с монстрами, конвертим в строку и обратно.
 		//за счет этого объекты копируются, а не передаются по ссылке.
 		//и при рестарте игры данные не ломаются, а приходят новые
@@ -256,64 +265,3 @@ export default {
 	}
 };
 </script>
-
-<style lang="scss">
-
-// .battle {
-// 	display: grid;
-// 	grid-template-columns: repeat(2, 1fr);
-// 	grid-gap: 40px;
-// 	&__round {
-// 		grid-column: 1/3;
-// 		grid-row: 1/2;
-// 		background: red;
-// 		text-align: center;
-// 	}
-// 	&__hero {
-// 		grid-column: 1/2;
-// 		grid-row: 2/3;
-// 		background: lightgray;
-// 	}
-// 	&__hero-img {
-// 		display: block;
-// 		margin: 0 auto;
-// 	}
-// 	&__monster {
-// 		grid-column: 2/3;
-// 		grid-row: 2/3;
-// 		background: skyblue;
-// 	}
-// }
-// .controls {
-// 	&__btn {
-// 		margin-right: 10px;
-// 	}
-// 	&__img-wrap {
-// 		display: inline-block;
-// 		position: relative;
-// 		&.active:after {
-// 			display: inline-block;
-// 			content: '';
-// 			position: absolute;
-// 			width: 100%;
-// 			height: 100%;
-// 			left: 0;
-// 			top: 0;
-// 			right: 0;
-// 			bottom: 0;
-// 			background: rgba(0,0,0, .5);
-// 			z-index: 10;
-// 		}
-// 		// &.active {
-// 		// 	background: red;
-// 		// }
-// 	}
-// 	&__section {
-// 		margin-bottom: 10px;
-		
-// 	}
-// 	&__section-title {
-// 		margin-bottom: 5px;
-// 	}
-// }
-</style>

@@ -38,8 +38,8 @@ export default {
 		}
 	},
 	mounted() {
-		this.$refs.music.volume = 0.00;
-		this.$refs.sound.volume = 0.1;
+		this.$refs.music.volume = 0.01;
+		this.$refs.sound.volume = 0.05;
 		//fix for avoid autoplay blocking in browsers
 		document.body.addEventListener('mousemove', () => {
 			this.$refs.music.play();

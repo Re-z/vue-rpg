@@ -1,5 +1,5 @@
 <template>
-	<div class="healthbar" >
+	<div class="healthbar" v-if="hero">
 		<p v-if="hero.name">{{hero.name}}</p>
 		<p v-else>{{hero.type}}</p>
 		<!-- show helthbar only when data from prop is ready -->
@@ -30,7 +30,9 @@ export default {
 	computed: {
 		healthItems() {
 			//10 poinst of health === one hearth img
-			return Math.ceil(this.hero.currentHealth/10)
+			let numberOfImgs = Math.ceil(this.hero.currentHealth/10);
+			if(numberOfImgs > 0) {return numberOfImgs}
+			else {return 0} 
 		}
 	},
 }

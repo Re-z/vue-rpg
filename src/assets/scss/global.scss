@@ -211,8 +211,22 @@ p:not(:last-of-type) {
 		display: flex;
 		justify-content: space-between;
 		align-items: center;
-		border-bottom: 2px solid $darkteal;
-		margin-top: 40px;
+		margin-top: 20px;
+		background: url(../img/ground.jpg) bottom center no-repeat ;
+		background-size: 100%;
+		padding-bottom: 20px;
+		position: relative;
+		&:after {
+			width: 100%;
+			height: 30px;
+			display: inline-block;
+			content: "";
+			position: absolute;
+			top: 0;
+			left: 0;
+			background: url(https://www.pixelscrapper.com/sites/default/files/styles/456_scale_watermark_premium/public/s3fs-user-content/asset-image/user-310/node-9559/miracle-clouds-asset-other-embellishment-sky-white.png);
+		}
+
 	}
 	&__img-wrap {
 		min-height: 115px;
@@ -281,19 +295,36 @@ p:not(:last-of-type) {
 	}
 		&__img-wrap {
 		display: inline-block;
-		&.active:after {
-			display: inline-block;
-			content: '';
-			position: absolute;
-			width: 100%;
-			height: 100%;
-			left: 0;
-			top: 0;
-			right: 0;
-			bottom: 0;
-			background: rgba(0,0,0, .5);
-			z-index: 10;
+		&.active {
+			cursor: default;
+			&:after {
+				display: inline-block;
+				content: '';
+				position: absolute;
+				width: 100%;
+				height: 100%;
+				left: 0;
+				top: 0;
+				right: 0;
+				bottom: 0;
+				background: rgba(0,0,0, .5);
+				z-index: 10;
+			}
 		}
+	}
+}
+.not-ready-control-btn {
+	position: relative;
+	&:after {
+		display: inline-block;
+		content: '';
+		position: absolute;
+		width: 90px;
+		height: 90px;
+		left: 0;
+		top: 0;
+		background: rgba(0,0,0, .5);
+		z-index: 10;
 	}
 }
 .log {
