@@ -4,3 +4,7 @@
 	border-width: $size;
     border-image-source: linear-gradient(to left, $color1, $color2);
 }
+
+@mixin text-shadow {
+	text-shadow: 2px 2px 2px black;
+}

@@ -1,18 +1,11 @@
 <template>
 	<div class="log">
-		<p>Turn №{{getCurrentTurn.id -1}} Results:</p>
-
-		<!-- player log -->
-		<!-- <p v-if="getCurrentTurn.specialHeroAction">
-			{{getCurrentTurn.specialHeroAction}}
-		</p> -->
-		<p>
-			{{getLog.player}}
-		</p>
-
-		<p>			{{getLog.monster}}</p>
+		<p class="log__title">Turn {{getCurrentTurn.id -1}} Results:</p>
+		<div class="log__box">
+			<p>{{getLog.player}}</p>
+			<p>{{getLog.monster}}</p>
+		</div>
 	</div>
-	
 </template>
 
 <script>
@@ -26,8 +19,3 @@ export default {
 }
 </script>
 
-<style lang="scss">
-	.log {
-		background: lightcyan
-	}
-</style>

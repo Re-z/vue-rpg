@@ -4,10 +4,6 @@
 @import "./helpers/variables.scss";
 @import "./helpers/mixins.scss";
 
-@mixin text-shadow {
-	text-shadow: 2px 2px 2px black;
-}
-
 * {
 	margin: 0;
 	padding: 0;
@@ -43,10 +39,6 @@ p:not(:last-of-type) {
 	flex-direction: column;
 	justify-content: space-between;
 	@include gradientBorder(10px, $darkteal, $lightteal)
-	// border: 10px solid;
-	// border-image-slice: 1;
-	// border-width: 10px;
-    // border-image-source: linear-gradient(to left, $darkteal, $lightteal);
 }
 .font-s {
 	font-size: $font-s;
@@ -102,13 +94,12 @@ p:not(:last-of-type) {
 			&:before {
 				display: none;
 				content: "";
-				width: 10px;
-				height: 10px;
-				background: $red;
+				border: 7px solid transparent;
+				border-left-color: $red;
 				margin-right: 10px;
 				position: absolute;
-				left: -25px;
-				top: 5px;
+				left: -20px;
+				top: 0;
 			}
 			&:hover:before {
 				display: inline-block;
@@ -144,7 +135,6 @@ p:not(:last-of-type) {
 		border: 3px solid transparent;
 		outline: none;
 		border-color: $lightteal
-
 	}
 	&__table-wrap {
 		margin: 10px 0 30px 0;
@@ -166,12 +156,8 @@ p:not(:last-of-type) {
 		}
 		td {
 			padding: 4px;
-			&.no-padding {
-				padding: 0;
-			}
-			&:not(:last-of-type) {
-				border-right: 1px solid $darkteal
-			}
+			&.no-padding {padding: 0;}
+			&:not(:last-of-type) {border-right: 1px solid $darkteal}
 		}
 	}
 	&__btn-wrap {
@@ -228,21 +214,25 @@ p:not(:last-of-type) {
 		border-bottom: 2px solid $darkteal;
 		margin-top: 40px;
 	}
-	
 	&__img-wrap {
 		min-height: 115px;
 		display: flex;
 		align-items: flex-end;
 		margin-top: 10px;
+		position: relative;
 	}
 	&__monster {
 		text-align: right;
-		max-width: 40%;
+		width: 40%;
 	}
 	&__hero {
-		max-width: 40%;
-		
+		width: 40%;
+		overflow: hidden;
 		align-self: flex-end;
+	}
+	&__phrases-wrap {
+		align-self: center;
+		margin-right: 10px;
 	}
 }
 .healthbar {
@@ -255,5 +245,125 @@ p:not(:last-of-type) {
 	}
 	&__numeric-health {
 		width: 100%;
+	}
+}
+.controls {
+	margin: 20px 0 40px 0;
+	
+	&__attacks {
+		display: flex;
+	}
+	&__btn-wrap {
+		display: flex;
+		align-items: center;
+	}
+	&__btn {
+		display: flex;
+		justify-content: center;
+		align-items: center;
+		width: 90px;
+		height: 90px;
+		border: 3px solid $darkteal;
+		margin-right: 10px;
+		background: $lightteal;
+		position: relative;
+		img {
+			display: block;
+			max-height: 80px;
+			max-width: 80px;
+		}
+	}
+	&__section {
+		margin-bottom: 10px;
+	}
+	&__section-title {
+		margin-bottom: 10px;
+	}
+		&__img-wrap {
+		display: inline-block;
+		&.active:after {
+			display: inline-block;
+			content: '';
+			position: absolute;
+			width: 100%;
+			height: 100%;
+			left: 0;
+			top: 0;
+			right: 0;
+			bottom: 0;
+			background: rgba(0,0,0, .5);
+			z-index: 10;
+		}
+	}
+}
+.log {
+	&__title {
+		margin-bottom: 10px;
+	}
+	&__box {
+		border: 3px solid $darkteal;
+		padding: 10px 20px;
+		p:first-of-type {
+			margin-bottom: 10px;
+			padding-bottom: 10px;
+			border-bottom: 1px dotted $darkteal;
+		}
+	}
+}
+.phrases {
+	background: white;
+	border: 3px solid $darkteal;
+	padding: 10px;
+	border-radius: 15px;
+	text-align: center;
+	position: relative;
+	width: 180px;
+	&:before, &:after {
+		display: inline-block;
+		content: "";
+		border: 11px solid transparent;
+		border-left-color: white;
+		position: absolute;
+		right: -20px;
+		top: 20px;
+		z-index: 10;
+	}
+	&:after {
+		border-width: 13px;
+		border-left-color: $darkteal;
+		z-index: 9;
+		right: -26px;
+		top: 18px;
+	}
+}
+.overlay {
+	position: fixed;
+	display: grid;
+	align-items: start;
+	top: 0;
+	left: 0;
+	right: 0;
+	bottom: 0;
+	background: rgba(0,0,0,.7);
+	height: 100vh;
+	padding: 200px 0;
+	z-index: 1000;
+}
+.popup {
+	width: 100%;
+	margin: 0 auto;
+	max-width: 500px;
+	min-height: auto;
+	padding: 40px 20px;
+	background: $beige;
+	display: grid;
+	grid-gap: 40px;
+	justify-content: center;
+	text-align: center;
+	@include gradientBorder(10px, $darkteal, $lightteal);
+	&__title {
+		font-size: $font-l;
+		text-transform: uppercase;
+		color: $darkteal;
 	}
 }

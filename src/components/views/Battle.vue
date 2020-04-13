@@ -13,7 +13,6 @@
 				<div class="battle__img-wrap">
 					<img class="battle__hero-img" :src="getHero.avatar" alt="" />
 				</div>
-
 				
 			</div>
 			<span class="battle__box-vs">VS</span>
@@ -21,48 +20,53 @@
 				<!-- monster healthbar -->
 				<app-health-bar :hero="getMonster" />
 				<div class="battle__img-wrap justify-end">
+					<div class="battle__phrases-wrap">
+						<app-phrases v-if="getCurrentTurn.id % 3 === 0"/>
+					</div>
 					<img class="battle__hero-img" :src="getMonster.avatar" alt="" />
+					
 				</div>
 
-				<app-phrases v-if="getCurrentTurn.id % 3 === 0"/>
 			</div>
 		</div>
 		<div class="controls">
 			<div class="controls__section">
 				<p class="controls__section-title">Attacks:</p>
-				
-				<span 
-					@click="handleHeroSimpleAttack"
-					class="controls__btn cup"
-				>
-					<span class="controls__img-wrap">
-						<img :src="getHero.simpleAttack.img" alt="" />
-					</span>
-				</span>
+				<div class="controls__attacks">
+					<div 
+						@click="handleHeroSimpleAttack"
+						class="controls__btn pointer"
+					>
+						<span class="controls__img-wrap">
+							<img :src="getHero.simpleAttack.img" alt="" />
+						</span>
+					</div>
 
-				<!-- special attack appears each 3th turn -->
-				<span
-					v-show="getCurrentTurn.id % 3 === 0" 
-					class="controls__btn cup"
-					@click="handleHeroSpecialAttack"
-				>
-					<span class="controls__img-wrap">
-						<img :src="getHero.specialAttack.img" alt="" />
-					</span>
-
-				</span>
+					<!-- special attack appears each 3th turn -->
+					<!-- v-show="getCurrentTurn.id % 3 === 0"  -->
+					<div
+						class="controls__btn pointer"
+						@click="handleHeroSpecialAttack"
+					>
+						<span class="controls__img-wrap">
+							<img :src="getHero.specialAttack.img" alt="" />
+						</span>
+					</div>
+				</div>
 			</div>
 
 			<div class="controls__section" v-if="getHero.heal.potions">
 				<p class="controls__section-title">Potions:</p>
-				<span 
-					class="controls__btn cup"
-					@click="handleHeroHeal"
-				>
-					<img :src="require('../../assets/img/potion.png')" alt="" />
-					<span>x {{getHero.heal.potions}}</span>
+				<div class="controls__btn-wrap">
+					<div 
+						class="controls__btn pointer"
+						@click="handleHeroHeal"
+					>
+						<img :src="require('../../assets/img/potion.png')" alt="" />
 
-				</span>
+					</div>
+					<span>x {{getHero.heal.potions}}</span>
+				</div>
 			</div>
 		</div>
 		

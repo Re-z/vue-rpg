@@ -17,9 +17,3 @@ import {getRandomArrayItem} from '../js/helpers'
 	}
 </script>
 
-<style lang="scss">
-	.phrases {
-		background: lightcyan;
-		padding: 10px;
-	}
-</style>

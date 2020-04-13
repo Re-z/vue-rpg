@@ -19,9 +19,9 @@ const monsters = [
 		backgroundImg: burningCastle,
 		dodgeChance: 10,
 		phrases: [
-			'fat 1',
-			'fat 2',
-			'fat 3',
+			'I`m gonna burn your ass',
+			'Do you have something to eat?',
+			'I`m not shy about my weight',
 		]
 	},
 	{
@@ -34,9 +34,9 @@ const monsters = [
 		backgroundImg: necroCastle,
 		dodgeChance: 15,
 		phrases: [
-			'doll 1',
-			'doll 2',
-			'doll 3',
+			'Let`s play babe!',
+			'I`m barbie girl in a barbie world',
+			'Do you like my dress?',
 		]
 
 	},
@@ -50,9 +50,9 @@ const monsters = [
 		backgroundImg: gladiatorArena,
 		dodgeChance: 10,
 		phrases: [
-			'glad 1',
-			'glad 2',
-			'glad 3',
+			'I`m gonna smash your head!',
+			'Feel the power of my sword!',
+			'Ave Caesar!',
 		]
 	}
 ]
