@@ -1,10 +1,14 @@
 <template>
-	<div class="main-wrap">
+	<!-- show console on ~ btn keydown -->
+	<div class="main-wrap" 
+		tabindex="0" 
+		@keydown.192="toggleConsole"
+	>
 		<div class="main-wrap__bg"
 			:style="{backgroundImage: backgroundImg}"
 		></div>
 
-		<div class="container">
+		<div  class="container" >
 
 			<app-intro v-if="getCurrentScreen === 'intro'"></app-intro>
 			<app-hero-choose v-if="getCurrentScreen === 'heroChoose'"></app-hero-choose>
@@ -15,9 +19,7 @@
 					<p class="font-s">2020 year.</p>
 				</div>
 				<app-sound/>
-
 			</div>
-
 		</div>
 
 
@@ -30,7 +32,7 @@ import defaultBg from './assets/img/bg.jpg';
 
 export default {
 	computed: {
-		...mapGetters(["getCurrentScreen", "getMonster"]),
+		...mapGetters(["getCurrentScreen", "getMonster", "getConsole"]),
 		backgroundImg() {
 			if(this.getMonster.backgroundImg) {
 				return `url(${this.getMonster.backgroundImg})`
@@ -40,8 +42,18 @@ export default {
 			}
 		}
 	},
-	
-	
+	methods: {
+		toggleConsole($ev) {
+			if(this.getCurrentScreen === 'battle') {
+				if(this.getConsole) {
+					this.$store.commit('setConsole', false)
+				} else {
+					this.$store.commit('setConsole', true)
+				}
+			}
+			
+		}
+	},
 	
 };
 </script>

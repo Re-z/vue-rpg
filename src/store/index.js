@@ -15,6 +15,7 @@ export default new Vuex.Store({
       player: '',
       monster: '',
     },
+    consoleVisible: true,
     soundToPlay: startBattleSound,
     screen: 'intro', //intro, heroChoose, battle
     hero: {},
@@ -95,6 +96,9 @@ export default new Vuex.Store({
     },
     setMonsterLog(state, logMsg) {
       state.log.monster = logMsg;
+    },
+    setConsole(state, consoleState) {
+      state.consoleVisible = consoleState;
     }
 
   },
@@ -140,6 +144,9 @@ export default new Vuex.Store({
     },
     getLog(state) {
       return state.log
+    },
+    getConsole(state) {
+      return state.consoleVisible
     }
   }
 })

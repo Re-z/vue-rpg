@@ -1,5 +1,5 @@
 <template>
-	<div class="battle">
+	<div class="battle" >
 		<div class="battle__round">
 			<p class="battle__title">Round {{getCurrentRound}}</p>
 			<p class="battle__subtitle">Turn {{getCurrentTurn.id}}</p>
@@ -74,7 +74,7 @@
 				</div>
 			</div>
 		</div>
-		
+		<app-console v-if="getConsole" />
 		<!-- show log after first turn -->
 		<app-battle-log v-if="getCurrentTurn.id != 1"/>
 		<app-popup v-if="getPopup.isVisible"/>
@@ -90,6 +90,7 @@ import popupOptions from '../../js/popupOptions'
 import HealthBar from "../HealthBar.vue";
 import BattleLog from "../BattleLog.vue";
 import Phrases from "../Phrases.vue";
+import Console from "../Console.vue";
 
 import missSound from "../../assets/sound/miss.mp3"
 import healSound from '../../assets/sound/heal.mp3'
@@ -236,7 +237,8 @@ export default {
 		},
 		generateDmg(min, max) {
 			return Math.random() * (max - min) + min;
-		}
+		},
+		
 	},
 	computed: {
 		...mapGetters([
@@ -245,14 +247,16 @@ export default {
 			"getCurrentTurn",
 			"getCurrentRound",
 			"getPopup",
-			"getOptions"
+			"getOptions",
+			"getConsole"
 		])
 	},
 
 	components: {
 		"app-health-bar": HealthBar,
 		"app-battle-log": BattleLog,
-		"app-phrases": Phrases
+		"app-phrases": Phrases,
+		"app-console": Console
 	},
 	created() {
 		//берем данные с монстрами, конвертим в строку и обратно.
