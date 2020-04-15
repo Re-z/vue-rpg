@@ -7,6 +7,7 @@
 	
 		<input 
 			autofocus
+			ref="b"
 			v-model="inputValue"
 			class="console__input">
 	</div>
@@ -21,7 +22,11 @@ export default {
 	},
 	methods: {
 		
+	},
+	mounted() {
+		this.$refs.b.focus()
 	}
+	
 }
 </script>
 
@@ -29,7 +34,7 @@ export default {
 	.console {
 		padding: 40px 20px 0 20px;
 		background: black;
-		position: absolute;
+		position: fixed;
 		top: 0;
 		left: 0;
 		width: 100%;

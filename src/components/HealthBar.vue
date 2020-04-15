@@ -30,9 +30,8 @@ export default {
 	computed: {
 		healthItems() {
 			//10 poinst of health === one hearth img
-			let numberOfImgs = Math.ceil(this.hero.currentHealth/10);
-			if(numberOfImgs > 0) {return numberOfImgs}
-			else {return 0} 
+			const numberOfImgs = Math.ceil(this.hero.currentHealth/10);
+			return numberOfImgs || 0;
 		}
 	},
 }

@@ -1,25 +1,23 @@
 <template>
-	<!-- show console on ~ btn keydown -->
-	<div class="main-wrap" 
-		tabindex="0" 
-		@keydown.192="toggleConsole"
-	>
+
+	<div class="main-wrap">
 		<div class="main-wrap__bg"
 			:style="{backgroundImage: backgroundImg}"
 		></div>
 
 		<div  class="container" >
+			<!-- //intro, hero choose, battle -->
+			<component :is="chooseComponent"></component>
 
-			<app-intro v-if="getCurrentScreen === 'intro'"></app-intro>
-			<app-hero-choose v-if="getCurrentScreen === 'heroChoose'"></app-hero-choose>
-			<app-battle v-if="getCurrentScreen === 'battle'"></app-battle>
 			<div class="footer">
 				<div class="footer__copy">
 					<p class="font-s">Made by Anton incorporated,</p>
 					<p class="font-s">2020 year.</p>
 				</div>
+
 				<app-sound/>
 			</div>
+
 		</div>
 
 
@@ -40,11 +38,21 @@ export default {
 			else {
 				return `url(${defaultBg})`
 			}
+		},
+		chooseComponent() {
+			switch(this.getCurrentScreen) {
+				case 'intro':
+					return 'app-intro';
+				case 'heroChoose':
+					return 'app-hero-choose';
+				case 'battle':
+					return 'app-battle';
+			}
 		}
 	},
 	methods: {
 		toggleConsole($ev) {
-			if(this.getCurrentScreen === 'battle') {
+			if(this.getCurrentScreen === "battle") {
 				if(this.getConsole) {
 					this.$store.commit('setConsole', false)
 				} else {
@@ -54,6 +62,13 @@ export default {
 			
 		}
 	},
+	created() {
+        document.addEventListener('keydown', evt => {
+            if (evt.keyCode === 192) {
+                this.toggleConsole();
+            }
+        });
+    },
 	
 };
 </script>

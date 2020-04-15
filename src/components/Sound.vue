@@ -13,12 +13,13 @@
 			</audio>
 		</div>
 		<div class="sound-options__sound">
-			<button class="font-s" @click="toggleSound"> 
+			<button class="font-s"
+				@click="toggleSound"> 
 				Sound: {{soundStatus}}
 			</button>
 			<audio
 				ref="sound"
-				:src="getSoundToPlay" 
+				:src="getSoundToPlay"
 				type="audio/mp3"
 			>
 			</audio>
@@ -38,7 +39,7 @@ export default {
 		}
 	},
 	mounted() {
-		this.$refs.music.volume = 0.01;
+		this.$refs.music.volume = 0.00;
 		this.$refs.sound.volume = 0.05;
 		//fix for avoid autoplay blocking in browsers
 		document.body.addEventListener('mousemove', () => {
@@ -55,7 +56,6 @@ export default {
 		])
 	},
 	methods: {
-		
 		toggleMusic() {
 			if(this.$refs.music.muted === false) {
 				this.$refs.music.muted = true;

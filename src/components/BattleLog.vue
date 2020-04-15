@@ -10,7 +10,6 @@
 
 <script>
 import {mapGetters} from 'vuex'
-import heroes from '../js/heroes';
 export default {
 	computed: {
 		...mapGetters(["getCurrentTurn", "getLog"])

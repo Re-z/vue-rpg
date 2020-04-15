@@ -17,11 +17,6 @@ import deodorant from '../assets/heroes/warrior/deodorant.png';
 import warriorSimpleSound from '../assets/heroes/warrior/hit.mp3'
 import warriorSpecialSound from '../assets/heroes/warrior/spray.mp3'
 
-
-
-
-import heal from '../assets/sound/heal.mp3'
-
 const heroes = [
 	{
 		name: '',

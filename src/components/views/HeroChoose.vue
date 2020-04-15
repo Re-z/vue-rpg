@@ -88,8 +88,8 @@
 
 <script>
 
-import heroesData from '../../js/heroes';
-import Difficulty from '../Difficulty'
+import heroesData from '@/js/heroes';
+import Difficulty from '@/components/Difficulty'
 
 export default {
 	data() {

@@ -10,6 +10,8 @@
 			<div class="battle__hero">
 				<!-- hero healthbar -->
 				<app-health-bar :hero="getHero" />
+
+
 				<div class="battle__img-wrap">
 					<img class="battle__hero-img" :src="getHero.avatar" alt="" />
 				</div>
@@ -19,6 +21,7 @@
 			<div class="battle__monster">
 				<!-- monster healthbar -->
 				<app-health-bar :hero="getMonster" />
+
 				<div class="battle__img-wrap justify-end">
 					<div class="battle__phrases-wrap">
 						<app-phrases v-if="getCurrentTurn.id % 3 === 0"/>
@@ -67,7 +70,7 @@
 						@click="handleHeroHeal"
 					>
 						<span class="controls__img-wrap">
-							<img :src="require('../../assets/img/potion.png')" alt="" />
+							<img src="@/assets/img/potion.png" alt="" />
 						</span>
 					</div>
 					<span>x {{getHero.heal.potions}}</span>
@@ -83,8 +86,8 @@
 
 <script>
 //modules
-import monstersData from '../../js/monsters'
-import popupOptions from '../../js/popupOptions'
+import monstersData from '@/js/monsters'
+import popupOptions from '@/js/popupOptions'
 
 //components
 import HealthBar from "../HealthBar.vue";
@@ -116,7 +119,7 @@ export default {
 					this.$store.commit('increaseRound');
 					this.$store.commit("setMonster", this.monsters[this.getCurrentRound - 1]);
 				}
-				this.$store.commit('increaseTurn')
+				this.$store.commit('increaseTurn');
 			}
 			else {
 				this.handleMonsterAttack();
@@ -125,13 +128,13 @@ export default {
 		},
 		turnInProgress(ev) {
 			// prevents multiclicks on attack btns
-			const btns = ev.target.closest('.controls').querySelectorAll('.controls__img-wrap')
+			const btns = ev.target.closest('.controls').querySelectorAll('.controls__img-wrap');
 			function hasActiveClass(el) {
 				return el.classList.contains('active');
 			}
 			//if one of btns have active class - return
-			if([...btns].some(hasActiveClass) === true) {
-				return true
+			if([...btns].some(hasActiveClass)) {
+				return true;
 			}
 
 			btns.forEach(btn => {
@@ -154,6 +157,7 @@ export default {
 			if(this.turnInProgress(ev) === true) {
 				return;
 			}
+
 			const generatedDmg = this.generateDmg(this.getHero.simpleAttack.minDmg, this.getHero.simpleAttack.maxDmg);
 			const quantifiedDmg = generatedDmg * this.getOptions.dmgQuantifier;
 			let dmgToMonster = Math.round(quantifiedDmg);
@@ -202,7 +206,6 @@ export default {
 				},0)
 				return;
 			}
-
 
 			this.$store.commit('setSoundToPlay', this.getHero.specialAttack.sound)
 			// bug with music without settimeout

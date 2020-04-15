@@ -59,11 +59,7 @@ export default new Vuex.Store({
       state.monster = monster;
     },
     setPopup(state, options) {
-      state.popup.isVisible = options.isVisible;
-      state.popup.type = options.type;
-      state.popup.title = options.title;
-      state.popup.img = options.img;
-      state.popup.text = options.text;
+      state.popup = options;
     },
     resetGameSettings(state) {
       state.currentRound = 1;
@@ -79,12 +75,10 @@ export default new Vuex.Store({
     },
     setDmgToHero(state, dmg) {
       state.currentTurn.dmgToHero = dmg;
-      state.currentTurn.specialMonsterAction = '' //monster have not done anything special
       state.hero.currentHealth -= dmg;
     },
     setDmgToMonster(state, dmg) {
       state.currentTurn.dmgToMonster = dmg;
-      state.currentTurn.specialHeroAction = ''; //hero havent done anything special at this turn
       state.monster.currentHealth -= dmg;
     },
   
@@ -110,8 +104,7 @@ export default new Vuex.Store({
       commit('setSoundToPlay', startBattleSound);
     }
   },
-  modules: {
-  },
+  modules: {},
 
   //think about changing map getters to map state
   getters: {

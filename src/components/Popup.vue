@@ -14,6 +14,7 @@
 				@click="resetGame">
 				Start again
 			</button>
+
 		</div>
 	</div>
 </template>

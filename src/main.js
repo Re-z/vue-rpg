@@ -10,7 +10,6 @@ import Battle from './components/views/Battle'
 import Popup from './components/Popup'
 import Sound from './components/Sound'
 
-
 import './assets/scss/global.scss'
 
 Vue.component('app-intro', Intro)
