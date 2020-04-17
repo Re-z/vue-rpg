@@ -389,3 +389,46 @@ button {
 		color: $darkteal;
 	}
 }
+.console {
+	color: white;
+	padding: 40px 20px 0 20px;
+	background: black;
+	position: fixed;
+	top: 0;
+	left: 0;
+	width: 100%;
+	z-index: 1000;
+	//before element is used here in order to
+	//prevent clicking outside console
+	//and keep focus on input
+	&:before {
+		display: block;
+		content: "";
+		position: absolute;
+		width: 100%;
+		left: 0;
+		top: 0;
+		background: transparent;
+		height: 100vh;
+		z-index: -1;
+	}
+	&__item {
+		color: white;
+		margin-bottom: 10px;
+		&_log {
+			margin-bottom: 40px;
+		}
+	}
+	&__box {
+		margin-top: 40px;
+	}
+	&__input {
+		display: block;
+		width: 100%;
+		caret-color: white;
+		background: transparent;
+		border: 0;
+		outline: 0;
+		color: white;
+	}
+}

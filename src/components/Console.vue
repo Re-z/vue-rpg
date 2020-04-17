@@ -1,52 +1,80 @@
 <template>
-	<div class="console">
-		<p class="console__item">Lorem ipsum dolor sit amet consectetur adipisicing elit. Ipsum aut quia suscipit impedit consequatur amet ut, nobis accusantium ipsa reiciendis temporibus veniam omnis vero ad nostrum nam pariatur fugiat blanditiis totam adipisci iusto inventore delectus reprehenderit! Odit doloremque impedit assumenda exercitationem a eveniet deleniti, reprehenderit ratione consectetur quas error eligendi?</p>
-		<p class="console__item">Lorem ipsum dolor sit amet consectetur adipisicing elit. Ipsum aut quia suscipit impedit consequatur amet ut, nobis accusantium ipsa reiciendis temporibus veniam omnis vero ad nostrum nam pariatur fugiat blanditiis totam adipisci iusto inventore delectus reprehenderit! Odit doloremque impedit assumenda exercitationem a eveniet deleniti, reprehenderit ratione consectetur quas error eligendi?</p>
-		<p class="console__item">Lorem ipsum dolor sit amet consectetur adipisicing elit. Ipsum aut quia suscipit impedit consequatur amet ut, nobis accusantium ipsa reiciendis temporibus veniam omnis vero ad nostrum nam pariatur fugiat blanditiis totam adipisci iusto inventore delectus reprehenderit! Odit doloremque impedit assumenda exercitationem a eveniet deleniti, reprehenderit ratione consectetur quas error eligendi?</p>
-		<p class="console__item">Lorem ipsum dolor sit amet consectetur adipisicing elit. Ipsum aut quia suscipit impedit consequatur amet ut, nobis accusantium ipsa reiciendis temporibus veniam omnis vero ad nostrum nam pariatur fugiat blanditiis totam adipisci iusto inventore delectus reprehenderit! Odit doloremque impedit assumenda exercitationem a eveniet deleniti, reprehenderit ratione consectetur quas error eligendi?</p>
-	
-		<input 
-			autofocus
-			ref="b"
-			v-model="inputValue"
-			class="console__input">
+	<div 
+		ref="console"
+		class="console"
+		@click="focusInputField"
+		@keydown.enter="handleCheet">
+
+		<p class="console__item">Anton incorporated 2020, All rights reserved.</p>
+		<p class="console__item">Console allows you to configure game and get some benefits.</p>
+		<p class="console__item">But be aware, that cheats are bad, mkay? Karma police will find you.</p>
+		<p class="console__item">Even so you want to use cheat, just type it to console.</p>
+		<p class="console__item">Avaliable cheats:</p>
+		<div class="console__box">
+			<p
+				v-for="cheat in cheats"
+				:key="cheat.password">
+
+				<span v-colorize>{{cheat.password | toUpperCase}}</span>
+				<span> - {{cheat.description}}</span> 
+			</p>
+		</div>
+		
+		<div class="console__box">
+			<p v-if="log" class="console__item console__item_log">{{log}}</p>
+
+			<input 
+				autofocus
+				ref="input"
+				v-model="inputValue"
+				class="console__input">
+		</div>
 	</div>
 </template>
 
 <script>
+import '../js/helpers/customDirectives'
+import '../js/helpers/customFilters'
+
 export default {
 	data() {
 		return {
-			inputValue: ''
+			log: '',
+			inputValue: '',
+			cheats: [
+				{
+					password: 'iddqd',
+					description: 'Set healing potions to 100'
+				}
+			],
 		}
 	},
 	methods: {
-		
+		focusInputField() {
+			this.$refs.input.focus();
+		},
+		handleConsoleLogClear(str) {
+			this.log = str;
+			this.inputValue = ''
+		},
+		handleCheet() {
+			let inputValueLowerCase = this.inputValue.toLowerCase();
+			switch(inputValueLowerCase) {
+				case 'iddqd':
+					this.$store.commit('setHeroHealingPotions', 100);
+					this.handleConsoleLogClear('Potions cheat enabled');
+					break;
+				default:
+					this.handleConsoleLogClear('No executable scripts found');
+					break;
+			}
+		}	
 	},
 	mounted() {
-		this.$refs.b.focus()
-	}
-	
+		// is used to avoid adding ~ to input field
+		setTimeout(() => {
+			this.$refs.input.focus();
+		},0)
+	},
 }
 </script>
-
-<style lang="scss">
-	.console {
-		padding: 40px 20px 0 20px;
-		background: black;
-		position: fixed;
-		top: 0;
-		left: 0;
-		width: 100%;
-		z-index: 1000;
-		&__item {
-			color: white;
-			margin-bottom: 10px;
-		}
-		&__input {
-			margin-top: 80px;
-			width: 100%;
-			// margin-bottom: 40px;
-		}
-	}
-</style>

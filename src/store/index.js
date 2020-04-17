@@ -17,7 +17,7 @@ export default new Vuex.Store({
     },
     consoleVisible: true,
     soundToPlay: startBattleSound,
-    screen: 'intro', //intro, heroChoose, battle
+    screen: 'heroChoose', //intro, heroChoose, battle
     hero: {},
     monster: {},
     popup: {
@@ -54,6 +54,9 @@ export default new Vuex.Store({
       if (state.hero.currentHealth > state.hero.healthPoints) {
         state.hero.currentHealth = state.hero.healthPoints;
       }
+    },
+    setHeroHealingPotions(state, potionsNumber) {
+      state.hero.heal.potions = potionsNumber;
     },
     setMonster(state,monster) {
       state.monster = monster;
