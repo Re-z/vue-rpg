@@ -8,7 +8,6 @@
 		<div  class="container" >
 			<!-- //intro, hero choose, battle -->
 			<component :is="chooseComponent"></component>
-
 			<div class="footer">
 				<div class="footer__copy">
 					<p class="font-s">Made by Anton incorporated,</p>
@@ -19,8 +18,6 @@
 			</div>
 
 		</div>
-
-
 	</div>
 </template>
 
@@ -47,6 +44,8 @@ export default {
 					return 'app-hero-choose';
 				case 'battle':
 					return 'app-battle';
+				case 'monstropedia':
+					return 'app-monstropedia';
 			}
 		}
 	},
@@ -59,7 +58,6 @@ export default {
 					this.$store.commit('setConsole', true)
 				}
 			}
-			
 		}
 	},
 	created() {
@@ -69,7 +67,6 @@ export default {
             }
         });
     },
-	
 };
 </script>
 

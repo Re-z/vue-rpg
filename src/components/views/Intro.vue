@@ -6,9 +6,9 @@
 		</div>
 		<img class="intro__main-img" src="@/assets/img/orc.png" alt="">
 		<div class="intro__btns-wrap">
-			<button @click="changeScreenToNext">Start Game</button>
+			<button @click="changeScreenToNext('heroChoose')">Start Game</button>
 			<button>How to play (not available yet)</button>
-			<button>Monstropedia (not available yet)</button>
+			<button @click="changeScreenToNext('monstropedia')">Monstropedia</button>
 		</div>
 	</div>
 </template>
@@ -17,8 +17,8 @@
 
 export default {
 	methods: {
-		changeScreenToNext() {
-			this.$store.commit('changeScreen', 'heroChoose')
+		changeScreenToNext(screenName) {
+			this.$store.commit('changeScreen', screenName)
 		}
 	},
 }

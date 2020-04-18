@@ -19,7 +19,7 @@ export default new Vuex.Store({
     soundOptions: {
       soundToPlay: startBattleSound,
     },
-    screen: 'intro', //intro, heroChoose, battle
+    screen: 'intro', //intro, heroChoose, battle, monstropedia
     hero: {},
     monster: {},
     popup: {
