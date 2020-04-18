@@ -5,10 +5,11 @@
 		@click="focusInputField"
 		@keydown.enter="handleCheet">
 
-		<p class="console__item">Anton incorporated 2020, All rights reserved.</p>
+		<p v-colorize class="console__item">Anton incorporated 2020, All rights reserved.</p>
 		<p class="console__item">Console allows you to configure game and get some benefits.</p>
 		<p class="console__item">But be aware, that cheats are bad, mkay? Karma police will find you.</p>
 		<p class="console__item">Even so you want to use cheat, just type it to console.</p>
+		<p class="console__item">If you want to close console, type tilda again (~).</p>
 		<p class="console__item">Avaliable cheats:</p>
 		<div class="console__box">
 			<p
@@ -44,11 +45,11 @@ export default {
 			cheats: [
 				{
 					password: 'iddqd',
-					description: 'Set healing potions to 10'
+					description: 'Set healing potions to 10;'
 				},
 				{
 					password: 'idkfa',
-					description: 'Set damage quantifier to 5'
+					description: 'Set damage quantifier to 5;'
 				},
 			],
 		}

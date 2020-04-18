@@ -15,9 +15,11 @@ export default new Vuex.Store({
       player: '',
       monster: '',
     },
-    consoleVisible: true,
-    soundToPlay: startBattleSound,
-    screen: 'heroChoose', //intro, heroChoose, battle
+    consoleVisible: false,
+    soundOptions: {
+      soundToPlay: startBattleSound,
+    },
+    screen: 'intro', //intro, heroChoose, battle
     hero: {},
     monster: {},
     popup: {
@@ -34,7 +36,6 @@ export default new Vuex.Store({
       dmgToHero: '',
       dmgToMonster: '',
     }
-    // currentMonsterIndex: 0
   },
   mutations: {
     changeScreen(state, screen) {
@@ -86,7 +87,7 @@ export default new Vuex.Store({
     },
   
     setSoundToPlay(state,sound) {
-      state.soundToPlay = sound
+      state.soundOptions.soundToPlay = sound;
     },
     setPlayerLog(state, logMsg) {
       state.log.player = logMsg;
@@ -129,14 +130,11 @@ export default new Vuex.Store({
     getCurrentRound(state) {
       return state.currentRound
     },
-    getPopup(state) {
-      return state.popup
-    },
     getOptions(state) {
       return state.options
     },
-    getSoundToPlay(state) {
-      return state.soundToPlay;
+    getSoundOptions(state) {
+      return state.soundOptions;
     },
     getLog(state) {
       return state.log

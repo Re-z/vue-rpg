@@ -2,26 +2,24 @@
 	<div class="sound-options">
 		<div class="sound-options__music">
 			<button class="font-s" @click="toggleMusic">
-				 Music: {{musicStatus}} 
+				 Music: {{musicEnabled ? 'ON' : 'OFF'}} 
 				</button>
 			<audio 
 				ref="music" 
 				src="../assets/sound/bg.mp3" 
 				type="audio/mp3" 
-				loop
-			>
+				loop>
 			</audio>
 		</div>
 		<div class="sound-options__sound">
 			<button class="font-s"
 				@click="toggleSound"> 
-				Sound: {{soundStatus}}
+				Sound: {{soundEnabled ? "ON" : "OFF"}}
 			</button>
 			<audio
 				ref="sound"
-				:src="getSoundToPlay"
-				type="audio/mp3"
-			>
+				:src="getSoundOptions.soundToPlay"
+				type="audio/mp3">
 			</audio>
 		</div>
 	</div>
@@ -33,46 +31,32 @@ import {mapGetters} from 'vuex'
 export default {
 	data() {
 		return {
-			musicStatus: 'ON', //Disable/enable music,
-			soundStatus: 'ON',
+			musicEnabled: true,
 			soundEnabled: true,
 		}
 	},
 	mounted() {
-		this.$refs.music.volume = 0.00;
+		this.$refs.music.volume = 0.01;
 		this.$refs.sound.volume = 0.05;
 		//fix for avoid autoplay blocking in browsers
-		document.body.addEventListener('mousemove', () => {
-			this.$refs.music.play();
-		}, {once: true})
+		// document.body.addEventListener('mousemove', () => {
+		// 	this.$refs.music.play();
+		// }, {once: true})
 	},
 	computed: {
 		...mapGetters([
-			'getMonster',
-			'getHero',
-			'getSoundToPlay',
+			'getSoundOptions',
 			'getCurrentScreen',
 			'getCurrentTurn'
 		])
 	},
 	methods: {
 		toggleMusic() {
-			if(this.$refs.music.muted === false) {
-				this.$refs.music.muted = true;
-				this.musicStatus = "OFF"
-			} else {
-				this.$refs.music.muted = false;
-				this.musicStatus = "ON"
-			}
+			this.musicEnabled ? this.$refs.music.muted = true : this.$refs.music.muted = false;
+			this.musicEnabled = !this.musicEnabled;
 		},
 		toggleSound() {
-			if(this.soundEnabled === false) {
-				this.soundEnabled = true;
-				this.soundStatus = "ON"
-			} else {
-				this.soundEnabled = false;
-				this.soundStatus = "OFF"
-			}
+			this.soundEnabled = !this.soundEnabled;
 		}
 	},
 	watch: {
@@ -83,6 +67,11 @@ export default {
 				this.$refs.sound.play()
 			}
 		},
+		'getCurrentScreen': function() {
+			if(this.musicEnabled && this.getCurrentScreen != 'intro') {
+				this.$refs.music.play();
+			}
+		}
 	}
 }
 </script>
