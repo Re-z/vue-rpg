@@ -44,8 +44,12 @@ export default {
 			cheats: [
 				{
 					password: 'iddqd',
-					description: 'Set healing potions to 100'
-				}
+					description: 'Set healing potions to 10'
+				},
+				{
+					password: 'idkfa',
+					description: 'Set damage quantifier to 5'
+				},
 			],
 		}
 	},
@@ -61,8 +65,12 @@ export default {
 			let inputValueLowerCase = this.inputValue.toLowerCase();
 			switch(inputValueLowerCase) {
 				case 'iddqd':
-					this.$store.commit('setHeroHealingPotions', 100);
-					this.handleConsoleLogClear('Potions cheat enabled');
+					this.$store.commit('setHeroHealingPotions', 10);
+					this.handleConsoleLogClear('Potions cheat enabled.');
+					break;
+				case 'idkfa':
+					this.$store.commit('setDifficulty', 10);
+					this.handleConsoleLogClear('Damage quantifier set to 5. Your attacks are more powerfull now.');
 					break;
 				default:
 					this.handleConsoleLogClear('No executable scripts found');
