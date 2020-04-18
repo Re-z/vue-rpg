@@ -38,10 +38,6 @@ export default {
 	mounted() {
 		this.$refs.music.volume = 0.01;
 		this.$refs.sound.volume = 0.05;
-		//fix for avoid autoplay blocking in browsers
-		// document.body.addEventListener('mousemove', () => {
-		// 	this.$refs.music.play();
-		// }, {once: true})
 	},
 	computed: {
 		...mapGetters([
@@ -67,10 +63,9 @@ export default {
 				this.$refs.sound.play()
 			}
 		},
+		// start playing music after change screen 
 		'getCurrentScreen': function() {
-			if(this.musicEnabled && this.getCurrentScreen != 'intro') {
-				this.$refs.music.play();
-			}
+			this.$refs.music.play();
 		}
 	}
 }
