@@ -25,7 +25,7 @@
 		<p v-if="!filteredMonsterList.length">No monsters found</p>
 
 	</div>
-	
+
 	<div class="monstropedia__btn-wrap text-center">
 		<button class="btn" @click="changeScreen">Back</button>
 	</div>
@@ -51,7 +51,6 @@ export default {
 			})
 		}
 	},
-	
 	methods: {
 		changeScreen() {
 			this.$store.commit('changeScreen', 'intro')

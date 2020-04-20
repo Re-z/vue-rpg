@@ -46,6 +46,8 @@ export default {
 					return 'app-battle';
 				case 'monstropedia':
 					return 'app-monstropedia';
+				case 'how-to-play':
+					return 'app-how-to-play';
 			}
 		}
 	},

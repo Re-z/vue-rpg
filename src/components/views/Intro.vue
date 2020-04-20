@@ -7,7 +7,7 @@
 		<img class="intro__main-img" src="@/assets/img/orc.png" alt="">
 		<div class="intro__btns-wrap">
 			<button @click="changeScreenToNext('heroChoose')">Start Game</button>
-			<button>How to play (not available yet)</button>
+			<button @click="changeScreenToNext('how-to-play')">How to play</button>
 			<button @click="changeScreenToNext('monstropedia')">Monstropedia</button>
 		</div>
 	</div>

@@ -447,13 +447,13 @@ button {
 		display: grid;
 		grid-template-columns: 200px 1fr;
 		grid-template-rows: repeat(4,1fr);
-		border: 2px solid $darkteal;
+		border: 1px solid $darkteal;
 		margin-bottom: 20px;
 	}
 	&__item-img-wrap {
 		grid-row: 1/5;
 		// border is flipped
-		border-left: 2px solid $darkteal;
+		border-left: 1px solid $darkteal;
 		display: flex;
 		justify-content: center;
 		align-items: center;
@@ -465,10 +465,29 @@ button {
 		display: flex;
 		align-items: center;
 		&:not(:last-of-type) {
-			border-bottom: 2px solid $darkteal;
+			border-bottom: 1px solid $darkteal;
 		}
 	}
 	&__btn-wrap {
 		margin-top: 40px;
+	}
+}
+.how-to {
+	&__item {
+		margin-bottom: 10px;
+		border-bottom: 1px solid $darkteal;
+		padding: 10px 0;
+		overflow: hidden;
+		p:not(:first-of-type) {
+			margin-top: 10px;
+		}
+	}
+	&__item-img {
+		float: left;
+		margin-right: 10px;
+		margin-bottom: 10px;
+	}
+	&__btn-wrap {
+		margin: 20px 0;
 	}
 }

@@ -2,7 +2,6 @@
 ## Ideas
 - Monsters Random Generation
 - Drop
-- Monstropedia
 - Menu (first screen) supports keybord
 - Tooltips on hover
 - Add linter
