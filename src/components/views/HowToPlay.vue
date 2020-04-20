@@ -19,11 +19,10 @@
 				</span>
 			</span> 
 			<p>
-				
-				Also each hero and each monster has certain number of health points <img src="@/assets/img/heart.png" alt="">. When this number is equal or less than 0,
+				Each hero and each monster has certain number of health points <img src="@/assets/img/heart.png" alt="">. When this number is equal or less than 0,
 				monster (or hero) dies;
 				When hero dies, the game is over. When hero defeats last monster, he recieves a prize;
-				Currently {{monsters.length}} monster is avaliable in this game.
+				Currently {{monsters.length}} monster is avaliable in game.
 			</p>
 		</div>
 		<div class="how-to__item">
@@ -38,7 +37,7 @@
 				</span>
 			</span> 
 			<p>
-				Each hero has simple attack, which is his main weapon in this game. 
+				Each hero has simple attack, which is his main instrument to deal damage. 
 				Also after each 3d turn he can use special attack, that deals much more damage to monster. Notice, that each hero has his own special attack.
 			</p>
 			<p>
@@ -49,9 +48,8 @@
 		</div>
 		<div class="how-to__item">
 			<p>
-				If you see that you are loosing this game,<span v-colorize> you can use cheats</span> . Just press ~ (tilda)
-				on your keyboard and you`ll see cheat console with hints. Type cheat to console and you`ll get some bonuses,
-				that will help you to win game.
+				If you realize that you are loosing this game,<span v-colorize> you can use cheats</span> . Just press ~ (tilda)
+				on your keyboard and you`ll see cheat console with hints.
 			</p>
 		</div>
 		<div class="how-to__btn-wrap text-center">

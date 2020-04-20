@@ -23,7 +23,7 @@
 
 <script>
 import { mapGetters } from "vuex";
-import defaultBg from './assets/img/bg.jpg';
+import defaultBg from './assets/img/bg.png';
 
 export default {
 	computed: {

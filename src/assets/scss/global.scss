@@ -161,7 +161,7 @@ button {
 	border-collapse: collapse;
 	width: 100%;
 	tr {
-		border: 1px solid $darkteal;
+		border: 2px solid $darkteal;
 		padding: 2px;
 		&.no-border {
 			border: none;
@@ -170,7 +170,7 @@ button {
 	td {
 		padding: 4px;
 		&.no-padding {padding: 0;}
-		&:not(:last-of-type) {border-right: 1px solid $darkteal}
+		&:not(:last-of-type) {border-right: 2px solid $darkteal}
 	}
 }
 .difficulty {
@@ -447,13 +447,13 @@ button {
 		display: grid;
 		grid-template-columns: 200px 1fr;
 		grid-template-rows: repeat(4,1fr);
-		border: 1px solid $darkteal;
+		border: 2px solid $darkteal;
 		margin-bottom: 20px;
 	}
 	&__item-img-wrap {
 		grid-row: 1/5;
 		// border is flipped
-		border-left: 1px solid $darkteal;
+		border-left: 2px solid $darkteal;
 		display: flex;
 		justify-content: center;
 		align-items: center;
@@ -465,7 +465,7 @@ button {
 		display: flex;
 		align-items: center;
 		&:not(:last-of-type) {
-			border-bottom: 1px solid $darkteal;
+			border-bottom: 2px solid $darkteal;
 		}
 	}
 	&__btn-wrap {
