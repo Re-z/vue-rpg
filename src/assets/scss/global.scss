@@ -52,6 +52,23 @@ button {
 .justify-end {
 	justify-content: flex-end;
 }
+.big-title {
+	@include text-shadow;
+	font-size: 50px;
+	color: $lightteal;
+	text-transform: uppercase;
+}
+.title {
+	font-size: $font-l;
+	text-align: center;
+	margin-bottom: 10px;
+}
+.input-text {
+	padding: 5px 10px;
+	border: 3px solid transparent;
+	outline: none;
+	border-color: $lightteal
+}
 .footer {
 	display: flex;
 	align-items: center;
@@ -98,11 +115,7 @@ button {
 		}
 	}
 }
-.title {
-	font-size: $font-l;
-	text-align: center;
-	margin-bottom: 10px;
-}
+
 .heroChoose {
  	&__heroes {
 		display: flex;
@@ -122,10 +135,7 @@ button {
 	}
 	&__name-input {
 		width: 400px;
-		padding: 5px 10px;
-		border: 3px solid transparent;
-		outline: none;
-		border-color: $lightteal
+		
 	}
 	&__table-wrap {
 		margin: 10px 0 30px 0;
@@ -134,23 +144,7 @@ button {
 		margin-bottom: 10px;
 		min-height: 72px;
 	}
-	&__table {
-		margin: 10px 0;
-		border-collapse: collapse;
-		width: 100%;
-		tr {
-			border: 1px solid $darkteal;
-			padding: 2px;
-			&.no-border {
-				border: none;
-			}
-		}
-		td {
-			padding: 4px;
-			&.no-padding {padding: 0;}
-			&:not(:last-of-type) {border-right: 1px solid $darkteal}
-		}
-	}
+
 	&__btn-wrap {
 		margin-top: 40px;
 		text-align: center;
@@ -161,6 +155,23 @@ button {
 	background: $lightteal;
 	padding: 10px 20px;
 	font-size: $font-l;
+}
+.table {
+	margin: 10px 0;
+	border-collapse: collapse;
+	width: 100%;
+	tr {
+		border: 1px solid $darkteal;
+		padding: 2px;
+		&.no-border {
+			border: none;
+		}
+	}
+	td {
+		padding: 4px;
+		&.no-padding {padding: 0;}
+		&:not(:last-of-type) {border-right: 1px solid $darkteal}
+	}
 }
 .difficulty {
 	margin: 20px 0;
@@ -180,20 +191,14 @@ button {
 		}
 	}
 }
+
 .battle {
 	&__round {
 		text-align: center;
 		margin-bottom: 20px;
 	}
-	&__title, &__subtitle {
-		@include text-shadow;
-	}
-	&__title {
-		font-size: 50px;
-		color: $lightteal;
-		text-transform: uppercase;
-	}
 	&__subtitle {
+		@include text-shadow;
 		font-size: 30px;
 		color: $darkteal;
 		text-transform: uppercase;
@@ -430,5 +435,40 @@ button {
 		border: 0;
 		outline: 0;
 		color: white;
+	}
+}
+
+.monstropedia {
+	&__search {
+		margin: 40px 0;
+		width: 100%;
+	}
+	&__item {
+		display: grid;
+		grid-template-columns: 200px 1fr;
+		grid-template-rows: repeat(4,1fr);
+		border: 2px solid $darkteal;
+		margin-bottom: 20px;
+	}
+	&__item-img-wrap {
+		grid-row: 1/5;
+		// border is flipped
+		border-left: 2px solid $darkteal;
+		display: flex;
+		justify-content: center;
+		align-items: center;
+		// flips div to right
+		transform: scaleX(-1);
+	}
+	&__item-row {
+		padding: 2px 5px;
+		display: flex;
+		align-items: center;
+		&:not(:last-of-type) {
+			border-bottom: 2px solid $darkteal;
+		}
+	}
+	&__btn-wrap {
+		margin-top: 40px;
 	}
 }

@@ -1,7 +1,7 @@
 <template>
 	<div class="battle" >
 		<div class="battle__round">
-			<p class="battle__title">Round {{getCurrentRound}}</p>
+			<p class="big-title">Round {{getCurrentRound}}</p>
 			<p class="battle__subtitle">Turn {{getCurrentTurn.id}}</p>
 		</div>
 		

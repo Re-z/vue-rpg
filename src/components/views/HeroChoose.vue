@@ -18,7 +18,7 @@
 			<p class="heroChoose__table-descr">{{chosenHero.descr}}</p>
 
 			<table
-				class="heroChoose__table"
+				class="table"
 				v-if="chosenHero && dmgQuantifier"
 			>
 				<tr v-if="chosenHero.name">
@@ -72,7 +72,7 @@
 		<div class="heroChoose__name-wrap">
 			<span>Choose name: </span>
 			<input
-				class="heroChoose__name-input"
+				class="heroChoose__name-input input-text"
 				v-model.trim="chosenHero.name"
 				placeholder="Type hero name, please"
 			>
