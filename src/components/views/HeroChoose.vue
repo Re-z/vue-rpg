@@ -90,7 +90,7 @@
 
 import heroesData from '@/js/heroes';
 import Difficulty from '@/components/Difficulty'
-
+import * as constants from '@/js/helpers/constants'
 export default {
 	data() {
 		return {
@@ -102,7 +102,7 @@ export default {
 		startBattle() {
 			this.$store.commit('setHero', this.chosenHero);
 			this.$store.commit('increaseTurn')
-			this.$store.commit('changeScreen', 'battle');
+			this.$store.commit('changeScreen', constants.BATTLE_SCREEN);
 		}
 	},
 	computed: {

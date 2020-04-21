@@ -61,6 +61,9 @@
 <script>
 import monstersData from '@/js/monsters';
 import heroesData from '@/js/heroes';
+import * as constants from '@/js/helpers/constants'
+
+
 export default {
 	data() {
 		return {
@@ -70,7 +73,7 @@ export default {
 	},
 	methods: {
 		changeScreen() {
-			this.$store.commit('changeScreen', 'intro')
+			this.$store.commit('changeScreen', constants.INTRO_SCREEN)
 		}
 	}
 }

@@ -27,6 +27,7 @@
 
 <script>
 import {mapGetters} from 'vuex'
+import * as constants from '@/js/helpers/constants'
 
 export default {
 	data() {
@@ -59,7 +60,7 @@ export default {
 		//watching vuex turn change
 		// each turn - play sound
 		'getCurrentTurn.id': function() {
-			if(this.soundEnabled && this.getCurrentScreen === 'battle') {
+			if(this.soundEnabled && this.getCurrentScreen === constants.BATTLE_SCREEN) {
 				this.$refs.sound.play()
 			}
 		},

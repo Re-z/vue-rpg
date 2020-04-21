@@ -2,17 +2,15 @@
 ## Ideas
 - Monsters Random Generation
 - Drop
-- Menu (first screen) supports keybord
 - Tooltips on hover
 - Add linter
 ## Bugs
 
 ## To do refactor
-- sound generating (try to remove setTimeout 0 in Battle.vue)
 - create battle controls component
-- mark js active classes with prefix js
 ### Review refactor
- Screens change to constant variables
+Screens change to constant variables
+
 tilda btn to constant 192
 
 swtich/case component is component app.vue

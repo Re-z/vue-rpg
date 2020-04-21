@@ -24,7 +24,7 @@
 <script>
 import { mapGetters } from "vuex";
 import defaultBg from './assets/img/bg.png';
-
+import * as constants from '@/js/helpers/constants'
 export default {
 	computed: {
 		...mapGetters(["getCurrentScreen", "getMonster", "getConsole"]),
@@ -38,22 +38,22 @@ export default {
 		},
 		chooseComponent() {
 			switch(this.getCurrentScreen) {
-				case 'intro':
+				case constants.INTRO_SCREEN:
 					return 'app-intro';
-				case 'heroChoose':
+				case constants.HEROCHOOSE_SCREEN:
 					return 'app-hero-choose';
-				case 'battle':
+				case constants.BATTLE_SCREEN:
 					return 'app-battle';
-				case 'monstropedia':
+				case constants.MONSTROPEDIA_SCREEN:
 					return 'app-monstropedia';
-				case 'how-to-play':
+				case constants.HOWTOPLAY_SCREEN:
 					return 'app-how-to-play';
 			}
 		}
 	},
 	methods: {
 		toggleConsole($ev) {
-			if(this.getCurrentScreen === "battle") {
+			if(this.getCurrentScreen === constants.BATTLE_SCREEN) {
 				if(this.getConsole) {
 					this.$store.commit('setConsole', false)
 				} else {
@@ -64,10 +64,10 @@ export default {
 	},
 	created() {
         document.addEventListener('keydown', evt => {
-            if (evt.keyCode === 192) {
+            if (evt.keyCode === constants.TILDA_BTN) {
                 this.toggleConsole();
             }
-        });
+		});
     },
 };
 </script>
