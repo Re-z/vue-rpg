@@ -91,6 +91,9 @@
 import heroesData from '@/js/heroes';
 import Difficulty from '@/components/Difficulty'
 import * as constants from '@/js/helpers/constants'
+import startBattleSound from '@/assets/sound/roundone.mp3'
+
+
 export default {
 	data() {
 		return {
@@ -129,6 +132,8 @@ export default {
 		let heroes =  JSON.parse(JSON.stringify([...heroesData]));
 		this.heroes = heroes;
 		this.chosenHero = this.heroes[0];
+
+		this.$store.commit('setSoundToPlay', startBattleSound)
 	},
 	components: {
 		'app-difficulty': Difficulty

@@ -1,8 +1,6 @@
 import Vue from 'vue'
 import Vuex from 'vuex'
 
-import startBattleSound from '../assets/sound/roundone.mp3'
-
 
 Vue.use(Vuex)
 
@@ -17,7 +15,7 @@ export default new Vuex.Store({
     },
     consoleVisible: false,
     soundOptions: {
-      soundToPlay: startBattleSound,
+      soundToPlay: '',
     },
     screen: 'intro', //intro, heroChoose, battle, monstropedia
     hero: {},
@@ -106,7 +104,6 @@ export default new Vuex.Store({
       commit('setPopup', {});
       commit('setPlayerLog', '');
       commit('setMonsterLog', '');
-      commit('setSoundToPlay', startBattleSound);
     }
   },
   modules: {},
