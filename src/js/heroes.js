@@ -24,7 +24,7 @@ const heroes = [
 		descr: 'He has 3 axes: two in his hands and one in his pocket. That\'s why he is so attractive. He uses this third axe as special weapon against dirty monsters.',
 		avatar: warriorImg,
 		healthPoints: 100,
-		critChance: 5,
+		critChance: 10,
 		heal: {
 			potions: 1,
 		},

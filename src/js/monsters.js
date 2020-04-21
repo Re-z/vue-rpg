@@ -19,9 +19,9 @@ const monsters = [
 		backgroundImg: burningCastle,
 		dodgeChance: 10,
 		phrases: [
-			'I`m gonna burn your ass',
-			'Do you have something to eat?',
-			'I`m not shy about my weight',
+			'I`m gonna burn your ass!',
+			'God bless my sword!',
+			'I got a power!',
 		]
 	},
 	{
@@ -35,8 +35,8 @@ const monsters = [
 		dodgeChance: 15,
 		phrases: [
 			'Let`s play babe!',
-			'I`m barbie girl in a barbie world',
-			'Do you like my dress?',
+			'Feel my dark magic!',
+			'I will live forever!',
 		]
 
 	},
@@ -48,7 +48,7 @@ const monsters = [
 		healthPoints: 90,
 		currentHealth: 90,
 		backgroundImg: gladiatorArena,
-		dodgeChance: 10,
+		dodgeChance: 5,
 		phrases: [
 			'I`m gonna smash your head!',
 			'Feel the power of my sword!',

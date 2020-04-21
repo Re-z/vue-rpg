@@ -69,7 +69,6 @@ export default new Vuex.Store({
       state.currentRound = 1;
       state.currentTurn.id = 0;
       state.screen = 'intro';
-      state.popup.isVisible = false;
     },
     increaseTurn(state) {
       state.currentTurn.id++;
@@ -85,7 +84,6 @@ export default new Vuex.Store({
       state.currentTurn.dmgToMonster = dmg;
       state.monster.currentHealth -= dmg;
     },
-  
     setSoundToPlay(state,sound) {
       state.soundOptions.soundToPlay = sound;
     },
@@ -105,6 +103,9 @@ export default new Vuex.Store({
       commit('resetGameSettings');
       commit('setMonster', {});
       commit('setHero', {});
+      commit('setPopup', {});
+      commit('setPlayerLog', '');
+      commit('setMonsterLog', '');
       commit('setSoundToPlay', startBattleSound);
     }
   },
