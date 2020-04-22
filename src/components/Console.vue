@@ -34,9 +34,6 @@
 </template>
 
 <script>
-import '@/js/helpers/customDirectives'
-import '@/js/helpers/customFilters'
-
 export default {
 	data() {
 		return {

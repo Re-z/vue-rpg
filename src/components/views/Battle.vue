@@ -4,31 +4,27 @@
 			<p class="big-title">Round {{getCurrentRound}}</p>
 			<p class="battle__subtitle">Turn {{getCurrentTurn.id}}</p>
 		</div>
-		
 
 		<div class="battle__box">
 			<div class="battle__hero">
 				<!-- hero healthbar -->
 				<app-health-bar :hero="getHero" />
-
 				<div class="battle__img-wrap">
 					<img class="battle__hero-img" :src="getHero.avatar" alt="" />
 				</div>
-				
 			</div>
+			
 			<span class="battle__box-vs">VS</span>
+
 			<div class="battle__monster">
 				<!-- monster healthbar -->
 				<app-health-bar :hero="getMonster" />
-
 				<div class="battle__img-wrap justify-end">
 					<div class="battle__phrases-wrap">
 						<app-phrases v-if="getCurrentTurn.id % 3 === 0"/>
 					</div>
 					<img class="battle__hero-img" :src="getMonster.avatar" alt="" />
-					
 				</div>
-
 			</div>
 		</div>
 
@@ -51,9 +47,6 @@ import BattleLog from "../BattleLog.vue";
 import Phrases from "../Phrases.vue";
 import Console from "../Console.vue";
 import BattleControls from "../BattleControls.vue";
-
-import missSound from "@/assets/sound/miss.mp3"
-import healSound from '@/assets/sound/heal.mp3'
 
 import { mapGetters } from "vuex";
 

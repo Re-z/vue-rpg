@@ -210,9 +210,8 @@ export default {
 		])
 	},
 	created() {
-		//берем данные с монстрами, конвертим в строку и обратно.
-		//за счет этого объекты копируются, а не передаются по ссылке.
-		//и при рестарте игры данные не ломаются, а приходят новые
+		// JSON stringify\parse - in order to create new arrau, which we can modify
+		// during battle. 
 		let monsters = JSON.parse(JSON.stringify([...monstersData]))
 		this.monsters = monsters;
 		

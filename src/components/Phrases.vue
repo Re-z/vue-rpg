@@ -6,7 +6,7 @@
 
 <script>
 import {mapGetters} from 'vuex';
-import {getRandomArrayItem} from '../js/helpers'
+import {getRandomArrayItem} from '@/js/helpers'
 	export default {
 		computed: {
 			...mapGetters(['getMonster']),

@@ -7,7 +7,7 @@
 		<img class="intro__main-img" src="@/assets/img/orc.png" alt="">
 		<div class="intro__btns-wrap">
 			<button @click="changeScreenToNext(heroChooseScreen)">Start Game</button>
-			<button @click="changeScreenToNext(howToPlayScren)">How to play</button>
+			<button @click="changeScreenToNext(howToPlayScreen)">How to play</button>
 			<button @click="changeScreenToNext(monstropediaScreen)">Monstropedia</button>
 		</div>
 	</div>
@@ -20,7 +20,7 @@ export default {
 	data() {
 		return {
 			heroChooseScreen: constants.HEROCHOOSE_SCREEN,
-			howToPlayScren: constants.HOWTOPLAY_SCREEN,
+			howToPlayScreen: constants.HOWTOPLAY_SCREEN,
 			monstropediaScreen: constants.MONSTROPEDIA_SCREEN
 		}
 	},

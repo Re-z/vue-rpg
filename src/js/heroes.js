@@ -24,7 +24,7 @@ const heroes = [
 		descr: 'He has 3 axes: two in his hands and one in his pocket. That\'s why he is so attractive. He uses this third axe as special weapon against dirty monsters.',
 		avatar: warriorImg,
 		healthPoints: 100,
-		critChance: 10,
+		critChance: 15,
 		heal: {
 			potions: 1,
 		},
@@ -32,8 +32,8 @@ const heroes = [
 		simpleAttack: {
 			descr: 'Two axes',
 			img: axe,
-			minDmg: 40,
-			maxDmg: 50,
+			minDmg: 10,
+			maxDmg: 15,
 			sound: warriorSimpleSound
 		},
 		specialAttack: {
@@ -50,7 +50,7 @@ const heroes = [
 		descr: 'When he was young, he liked to shot birds with slingshot. When he turned 18, his mamma bought him a bow. Since that time, it became his favorite weapon.',
 		avatar: archerImg,
 		healthPoints: 90,
-		critChance: 50,
+		critChance: 10,
 		heal: {
 			potions: 1,
 		},

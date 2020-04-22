@@ -1,5 +1,4 @@
 <template>
-
 	<div class="main-wrap">
 		<div class="main-wrap__bg"
 			:style="{backgroundImage: backgroundImg}"
@@ -8,6 +7,7 @@
 		<div  class="container" >
 			<!-- //intro, hero choose, battle -->
 			<component :is="chooseComponent"></component>
+
 			<div class="footer">
 				<div class="footer__copy">
 					<p class="font-s">Made by Anton incorporated,</p>
@@ -23,8 +23,10 @@
 
 <script>
 import { mapGetters } from "vuex";
-import defaultBg from './assets/img/bg.png';
+import defaultBg from './assets/img/bg.jpg';
 import * as constants from '@/js/helpers/constants'
+
+
 export default {
 	computed: {
 		...mapGetters(["getCurrentScreen", "getMonster", "getConsole"]),
@@ -54,11 +56,9 @@ export default {
 	methods: {
 		toggleConsole($ev) {
 			if(this.getCurrentScreen === constants.BATTLE_SCREEN) {
-				if(this.getConsole) {
-					this.$store.commit('setConsole', false)
-				} else {
-					this.$store.commit('setConsole', true)
-				}
+				this.getConsole 
+					? this.$store.commit('setConsole', false) 
+					: this.$store.commit('setConsole', true)
 			}
 		}
 	},
@@ -72,29 +72,3 @@ export default {
 };
 </script>
 
-<style lang="scss">
-
-.main-wrap {
-	position: relative;
-	z-index: 10;
-	display: flex;
-	align-items: center;
-	height: 100vh;
-	&__bg {
-		background-repeat: no-repeat;
-		background-position: center center;
-		background-size: cover;
-		height: 100vh;
-		display: block;
-		z-index: 1;
-		position: fixed;
-		left: 0;
-		top: 0;
-		bottom: 0;
-		right: 0;
-		z-index: -1;
-		filter: blur(5px)
-	}
-}
-
-</style>

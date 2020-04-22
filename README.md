@@ -1,14 +1,14 @@
 # vue-rpg
 ## Description
 This is simple turn based role played game, based on Vue.js.
-How to play - read How to play at main screen;
+How to play - read How to play section at main screen;
+Demo http://codefantasy.xyz/
 
 ### Tech stack:
 - Vue.js + Vuex
 - HTML/JS/SASS
 
 ## Ideas
-- Monsters Random Generation
 - Drop
 - Tooltips on hover
 - Add linter

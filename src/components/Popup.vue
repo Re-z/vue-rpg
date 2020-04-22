@@ -23,12 +23,12 @@
 export default {
 	methods: {
 		resetGame() {
-			this.$store.dispatch('resetGame')
+			this.$store.dispatch('resetGame');
 		}
 	},
 	computed: {
 		getPopup() {
-			return this.$store.getters.getPopup
+			return this.$store.getters.getPopup;
 		}
 	}
 }
