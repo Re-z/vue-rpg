@@ -5,7 +5,9 @@
 			<div class="controls__attacks">
 				<div 
 					@click="handleHeroSimpleAttack"
-					class="controls__btn pointer"
+					class="controls__btn pointer has-tooltip"
+					data-tooltip="Bla bla tooltip"
+
 				>
 					<span class="controls__img-wrap">
 						<img :src="getHero.simpleAttack.img" alt="" />
@@ -56,14 +58,16 @@ import { mapGetters } from "vuex";
 
 import popupOptions from '@/js/popupOptions'
 
+import tooltip from '@/js/helpers/tooltip'
 export default {
 	data() {
 		return {
-			monsters: {} //
+			monsters: {}, //
 		}
 	},
 	methods: {
 		checkMonsterDeathAfterHeroAttack() {
+			
 			if(this.getMonster.currentHealth <= 0) {
 				this.$store.commit('setMonsterLog', `Monster ${this.getMonster.type} defeated`);
 				//if last monser dead - show win popup
@@ -216,6 +220,9 @@ export default {
 		this.monsters = monsters;
 		
 		this.$store.commit("setMonster", this.monsters[this.getCurrentRound - 1]);
+	},
+	mounted() {
+		tooltip();
 	}
 }
 </script>

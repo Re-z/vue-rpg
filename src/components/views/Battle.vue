@@ -29,7 +29,7 @@
 		</div>
 
 		<app-battle-controls />
-
+		
 		<app-console v-if="getConsole" />
 		<!-- show log after first turn -->
 		<app-battle-log v-if="getCurrentTurn.id != 1"/>
