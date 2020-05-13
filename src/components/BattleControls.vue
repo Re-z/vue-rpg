@@ -6,10 +6,9 @@
 				<div 
 					@click="handleHeroSimpleAttack"
 					class="controls__btn pointer has-tooltip"
-					data-tooltip="Bla bla tooltip"
-
+					:data-tooltip="simpleTooltip"
 				>
-					<span class="controls__img-wrap">
+					<span class="controls__img-wrap" >
 						<img :src="getHero.simpleAttack.img" alt="" />
 					</span>
 				</div>
@@ -20,8 +19,10 @@
 					:class="{'not-ready-control-btn': this.getCurrentTurn.id % 3 != 0}"
 				>
 					<div
-						class="controls__btn pointer"
+						class="controls__btn pointer has-tooltip"
 						@click="handleHeroSpecialAttack"
+						:data-tooltip="specialTooltip"
+
 					>
 						<span class="controls__img-wrap">
 							<img :src="getHero.specialAttack.img" alt="" />
@@ -35,10 +36,11 @@
 			<p class="controls__section-title">Potions:</p>
 			<div class="controls__btn-wrap">
 				<div 
-					class="controls__btn pointer"
+					class="controls__btn pointer has-tooltip"
 					@click="handleHeroHeal"
+					data-tooltip="Resstores 100 healing points"
 				>
-					<span class="controls__img-wrap">
+					<span class="controls__img-wrap" >
 						<img src="@/assets/img/potion.png" alt="" />
 					</span>
 				</div>
@@ -63,6 +65,7 @@ export default {
 	data() {
 		return {
 			monsters: {}, //
+			// simpleTooltip: this.getOptions.dmgQuantifier
 		}
 	},
 	methods: {
@@ -211,7 +214,14 @@ export default {
 			"getCurrentTurn",
 			"getCurrentRound",
 			"getOptions",
-		])
+		]),
+		simpleTooltip() {
+			return `Deals ${Math.round(this.getOptions.dmgQuantifier * this.getHero.simpleAttack.minDmg)}-${Math.round(this.getOptions.dmgQuantifier * this.getHero.simpleAttack.maxDmg)} damage`
+		},
+		specialTooltip() {
+			return `Deals ${Math.round(this.getOptions.dmgQuantifier * this.getHero.specialAttack.minDmg)}-${Math.round(this.getOptions.dmgQuantifier * this.getHero.specialAttack.maxDmg)} damage`
+		},
+
 	},
 	created() {
 		// JSON stringify\parse - in order to create new arrau, which we can modify
