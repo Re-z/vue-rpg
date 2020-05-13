@@ -4,9 +4,10 @@
 	position: absolute;
 	top: 110%;
 	padding: 5px;
-	border: 1px solid $darkteal;
+	border: 2px solid $darkteal;
 	background: white;	
-	left: 0%;
+	left: 50%;
+	transform: translateX(-50%);
 	max-width: 200px;
 	min-width: 100px;
 	text-align: center;

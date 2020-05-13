@@ -10,8 +10,8 @@ Demo http://codefantasy.xyz/
 
 ## Ideas
 - Drop
-- Tooltips on hover
 - Add linter
+- Upgrade documentation
 
 
 
