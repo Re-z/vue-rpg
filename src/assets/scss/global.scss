@@ -368,6 +368,7 @@ button {
 	text-align: center;
 	position: relative;
 	width: 180px;
+	min-height: 62px;
 	&:before, &:after {
 		display: inline-block;
 		content: "";
