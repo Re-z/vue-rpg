@@ -54,7 +54,8 @@
 import missSound from "@/assets/sound/miss.mp3"
 import healSound from '@/assets/sound/heal.mp3'
 
-import monstersData from '@/js/monsters'
+import monstersData from '@/js/monsters';
+import dropData from '@/js/drop';
 
 import { mapGetters } from "vuex";
 
@@ -65,10 +66,16 @@ export default {
 	data() {
 		return {
 			monsters: {}, //
+			drop: {},
 			// simpleTooltip: this.getOptions.dmgQuantifier
 		}
 	},
 	methods: {
+		showDropPopup(){
+			if(true) {
+				this.$store.commit('setPopup', this.drop[0]);
+			}
+		},
 		checkMonsterDeathAfterHeroAttack() {
 			
 			if(this.getMonster.currentHealth <= 0) {
@@ -81,6 +88,8 @@ export default {
 				else {
 					this.$store.commit('increaseRound');
 					this.$store.commit("setMonster", this.monsters[this.getCurrentRound - 1]);
+					alert(1)
+					this.showDropPopup();
 				}
 				this.$store.commit('increaseTurn');
 			}
@@ -108,6 +117,11 @@ export default {
 				}, 1500)
 			})
 			
+		},
+		checkDrop() {
+			const randomFrom0to100 = Math.ceil(Math.random() * 100);
+			const dropChance = 100;
+			return randomFrom0to100 <= dropChance;
 		},
 		isCriticalDmg(critChance) {
 			const randomFrom0to100 = Math.ceil(Math.random() * 100);
@@ -230,6 +244,9 @@ export default {
 		this.monsters = monsters;
 		
 		this.$store.commit("setMonster", this.monsters[this.getCurrentRound - 1]);
+
+		let drop = JSON.parse(JSON.stringify([...dropData]));
+		this.drop = drop;
 	},
 	mounted() {
 		tooltip();
