@@ -37,7 +37,7 @@ export default {
 		}
 	},
 	mounted() {
-		this.$refs.music.volume = 0.0;
+		this.$refs.music.volume = 0.1;
 		this.$refs.sound.volume = 0.1;
 
 	},

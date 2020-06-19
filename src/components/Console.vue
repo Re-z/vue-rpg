@@ -42,7 +42,7 @@ export default {
 			cheats: [
 				{
 					password: 'iddqd',
-					description: 'Set healing potions to 10;'
+					description: 'Add 10 healing potions;'
 				},
 				{
 					password: 'idkfa',

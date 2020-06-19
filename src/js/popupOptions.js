@@ -15,7 +15,7 @@ const popupOptions = {
 		type: 'heroWon',
 		title: 'Congratulations! You won this game.',
 		img: medal,
-		text: 'All monsters have been defeated. You can be proud about yourself.'
+		text: 'All monsters have been slayed. You can be proud of yourself.'
 	}
 }
 

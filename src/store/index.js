@@ -7,7 +7,7 @@ Vue.use(Vuex)
 export default new Vuex.Store({
   state: {
     options: {
-      dmgQuantifier: '',//based on difficulty level
+      dmgQuantifier: 0,//based on difficulty level
     },
     log: {
       player: '',
@@ -26,7 +26,7 @@ export default new Vuex.Store({
       type: '',
       title: '',
       img: '',
-      text: ''      
+      text: '',
     },
     currentRound: 1,
     currentTurn: {
@@ -42,20 +42,26 @@ export default new Vuex.Store({
     setDifficulty(state, dmgQuantifier) {
       state.options.dmgQuantifier = dmgQuantifier
     },
+    updateDifficulty(state, dmgQuantifier) {
+      state.options.dmgQuantifier += dmgQuantifier
+    },
     setHero(state,hero) {
       state.hero = hero;
     },
-    setHeroHealth(state, health) {
+    setHeroHealth(state, {health, usedPotion}) {
       state.hero.currentHealth += health;
-      state.hero.heal.potions -= 1; //remove used potion
-      //after healing, if current health is more then heroe`s maximum,
+      if(usedPotion) {
+        state.hero.heal.potions -= 1; //remove used potion
+        //after healing, 
+      }
+      // if current health is more then heroe`s maximum,
 			//set health to maximum
       if (state.hero.currentHealth > state.hero.healthPoints) {
         state.hero.currentHealth = state.hero.healthPoints;
       }
     },
     setHeroHealingPotions(state, potionsNumber) {
-      state.hero.heal.potions = potionsNumber;
+      state.hero.heal.potions += potionsNumber;
     },
     setMonster(state,monster) {
       state.monster = monster;
@@ -81,6 +87,10 @@ export default new Vuex.Store({
     setDmgToMonster(state, dmg) {
       state.currentTurn.dmgToMonster = dmg;
       state.monster.currentHealth -= dmg;
+    },
+    // used when player found cursed book
+    hitMonsterByHalfHp(state) {
+      state.monster.currentHealth -= state.monster.currentHealth/2
     },
     setSoundToPlay(state,sound) {
       state.soundOptions.soundToPlay = sound;

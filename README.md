@@ -9,7 +9,8 @@ Demo http://codefantasy.xyz/
 - HTML/JS/SASS
 
 ## Ideas
-- Drop
+- Drop (done);
+- Custom scroll
 - Add linter
 - Upgrade documentation
 

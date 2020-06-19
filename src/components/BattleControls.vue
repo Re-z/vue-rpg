@@ -59,21 +59,28 @@ import dropData from '@/js/drop';
 
 import { mapGetters } from "vuex";
 
-import popupOptions from '@/js/popupOptions'
+import popupOptions from '@/js/popupOptions';
 
-import tooltip from '@/js/helpers/tooltip'
+import tooltip from '@/js/helpers/tooltip';
+import {getRandomArrayItem} from '@/js/helpers.js'
 export default {
 	data() {
 		return {
-			monsters: {}, //
+			monsters: {},
 			drop: {},
-			// simpleTooltip: this.getOptions.dmgQuantifier
 		}
 	},
 	methods: {
+		checkDrop() {
+			const randomFrom0to100 = Math.ceil(Math.random() * 100);
+			const dropChance = 50; // 50%
+			return randomFrom0to100 >= dropChance;
+		},
+
 		showDropPopup(){
-			if(true) {
-				this.$store.commit('setPopup', this.drop[0]);
+			if( this.checkDrop() ) {
+				const dropItem = getRandomArrayItem(this.drop)
+				this.$store.commit('setPopup', dropItem);
 			}
 		},
 		checkMonsterDeathAfterHeroAttack() {
@@ -88,7 +95,7 @@ export default {
 				else {
 					this.$store.commit('increaseRound');
 					this.$store.commit("setMonster", this.monsters[this.getCurrentRound - 1]);
-					alert(1)
+					
 					this.showDropPopup();
 				}
 				this.$store.commit('increaseTurn');
@@ -118,11 +125,7 @@ export default {
 			})
 			
 		},
-		checkDrop() {
-			const randomFrom0to100 = Math.ceil(Math.random() * 100);
-			const dropChance = 100;
-			return randomFrom0to100 <= dropChance;
-		},
+		
 		isCriticalDmg(critChance) {
 			const randomFrom0to100 = Math.ceil(Math.random() * 100);
 			return randomFrom0to100 <= critChance;
@@ -202,7 +205,7 @@ export default {
 			this.$store.commit('setPlayerLog', 'Player use healing potion')
 			this.$store.commit('setSoundToPlay', healSound);
 			setTimeout(() => {
-				this.$store.commit('setHeroHealth', 100)
+				this.$store.commit('setHeroHealth', {health: 100, usedPotion: true})
 				this.handleMonsterAttack();
 				this.$store.commit('increaseTurn');
 			}, 0)
