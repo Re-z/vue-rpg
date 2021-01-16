@@ -2,7 +2,7 @@
 ## Description
 This is simple turn based role played game, based on Vue.js.
 How to play - read How to play section at main screen;
-Demo http://codefantasy.xyz/
+Demo http://vps-for.fun
 
 ### Tech stack:
 - Vue.js + Vuex
