@@ -16,15 +16,15 @@ import '@/assets/scss/global.scss'
 import '@/js/helpers/customDirectives'
 import '@/js/helpers/customFilters'
 
-Vue.component('app-intro', Intro)
-Vue.component('app-hero-choose', HeroChoose)
-Vue.component('app-battle', Battle)
+Vue.component('Intro', Intro)
+Vue.component('HeroChoose', HeroChoose)
+Vue.component('Battle', Battle)
 Vue.component('app-sound', Sound)
-Vue.component('app-monstropedia', Monstropedia)
-Vue.component('app-how-to-play', HowToPlay)
+Vue.component('Monstropedia', Monstropedia)
+Vue.component('HowToPlay', HowToPlay)
 
 
-Vue.component('app-popup', Popup)
+Vue.component('Popup', Popup);
 
 
 

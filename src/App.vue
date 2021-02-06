@@ -1,12 +1,11 @@
 <template>
 	<div class="main-wrap">
-		<div class="main-wrap__bg"
-			:style="{backgroundImage: backgroundImg}"
+		<div class="main-wrap__bg" :style="{backgroundImage: backgroundImg}"
 		></div>
 
-		<div  class="container" >
-			<!-- //intro, hero choose, battle -->
-			<component :is="chooseComponent"></component>
+		<div class="container" >
+
+			<component :is="this.getCurrentScreen" />
 
 			<div class="footer">
 				<div class="footer__copy">
@@ -15,6 +14,7 @@
 				</div>
 
 				<app-sound/>
+
 			</div>
 
 		</div>
@@ -30,35 +30,24 @@ import * as constants from '@/js/helpers/constants'
 export default {
 	computed: {
 		...mapGetters(["getCurrentScreen", "getMonster", "getConsole"]),
-		backgroundImg() {
-			if(this.getMonster.backgroundImg) {
-				return `url(${this.getMonster.backgroundImg})`
-			}
-			else {
-				return `url(${defaultBg})`
-			}
+
+    backgroundImg() {
+      return this.getMonster.backgroundImg
+        ? `url(${this.getMonster.backgroundImg})`
+        : `url(${defaultBg})`
 		},
+
 		chooseComponent() {
-			switch(this.getCurrentScreen) {
-				case constants.INTRO_SCREEN:
-					return 'app-intro';
-				case constants.HEROCHOOSE_SCREEN:
-					return 'app-hero-choose';
-				case constants.BATTLE_SCREEN:
-					return 'app-battle';
-				case constants.MONSTROPEDIA_SCREEN:
-					return 'app-monstropedia';
-				case constants.HOWTOPLAY_SCREEN:
-					return 'app-how-to-play';
-			}
+		  return this.getCurrentScreen
 		}
+
 	},
+
 	methods: {
-		toggleConsole($ev) {
+		toggleConsole() {
 			if(this.getCurrentScreen === constants.BATTLE_SCREEN) {
-				this.getConsole 
-					? this.$store.commit('setConsole', false) 
-					: this.$store.commit('setConsole', true)
+			  const isConsoleVisible = this.getConsole;
+        this.$store.commit('setConsole', !isConsoleVisible)
 			}
 		}
 	},

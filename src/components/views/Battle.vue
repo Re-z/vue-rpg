@@ -34,7 +34,7 @@
 		<!-- show log after first turn -->
 		<app-battle-log v-if="getCurrentTurn.id != 1"/>
 
-		<app-popup v-if="getPopup.isVisible"/>
+		<Popup v-if="getPopup.isVisible"/>
 	</div>
 </template>
 
