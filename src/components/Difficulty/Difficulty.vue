@@ -6,44 +6,36 @@
 				class="difficulty__item pointer"
 				:class="{'active': difficulty === choosenDifficulty}"
 				v-for="difficulty in difficulties"
-				:key="difficulty"
+				:key="difficulty.label"
 				@click="chooseDifficulty(difficulty)"
 			>
-				{{difficulty}}
+				{{difficulty.label}}
 			</button>
 		</div>
-			
 	</div>
 </template>
 
 <script>
+import {difficulties} from "./difficultySettings";
+const defaultDifficulty = difficulties[1] //Medium difficulty is default option
+
 export default {
+
 	data() {
 		return {
-			difficulties: ['Easy', 'Medium', 'Hard'],
-			choosenDifficulty: 'Medium' //Medium difficulty is default option
+			difficulties,
+			choosenDifficulty: defaultDifficulty
 		}
 	},
 	methods: {
 		chooseDifficulty(difficulty) {
 			this.choosenDifficulty = difficulty;
-			let dmgQuantifier;
-			switch(difficulty) {
-				case 'Easy':
-					dmgQuantifier = 1.3;
-					break;
-				case 'Medium':
-					dmgQuantifier = 1;
-					break;
-				case 'Hard':
-					dmgQuantifier = 0.7;
-					break;
-			}
+			let dmgQuantifier = difficulty.dmgQuantifier;
 			this.$store.commit('setDifficulty', dmgQuantifier)
 		}
 	},
 	mounted() {
-		this.chooseDifficulty(this.choosenDifficulty)
-	}
+		this.chooseDifficulty(this.choosenDifficulty);
+	},
 }
 </script>

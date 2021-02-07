@@ -37,10 +37,6 @@ export default {
         : `url(${defaultBg})`
 		},
 
-		chooseComponent() {
-		  return this.getCurrentScreen
-		}
-
 	},
 
 	methods: {

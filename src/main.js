@@ -7,8 +7,6 @@ import HeroChoose from '@/components/views/HeroChoose'
 import Battle from '@/components/views/Battle'
 import Monstropedia from '@/components/views/Monstropedia'
 import HowToPlay from '@/components/views/HowToPlay'
-
-
 import Popup from '@/components/Popup'
 import Sound from '@/components/Sound'
 
@@ -25,6 +23,8 @@ Vue.component('HowToPlay', HowToPlay)
 
 
 Vue.component('Popup', Popup);
+
+
 
 
 

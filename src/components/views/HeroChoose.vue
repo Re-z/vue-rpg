@@ -42,8 +42,12 @@
 					<td>Simple attack: </td>
 					<td class="no-padding">
 						<table>
-							<tr class="no-border"><td>{{chosenHero.simpleAttack.descr}}</td></tr>
-							<tr class="no-border"><td>Damage: {{simpleQuantifiedMinDmg}} - {{simpleQuantifiedMaxDmg}}</td></tr>
+							<tr class="no-border">
+                <td>{{chosenHero.simpleAttack.descr}}</td>
+              </tr>
+							<tr class="no-border">
+                <td>Damage: {{simpleQuantifiedMinDmg}} - {{simpleQuantifiedMaxDmg}}</td>
+              </tr>
 						</table>
 					</td>
 				</tr>
@@ -78,21 +82,26 @@
 			>
 		</div>
 
-		<app-difficulty />
+		<Difficulty />
 
 		<div class="heroChoose__btn-wrap">
-			<button class="btn" @click="startBattle">Start Battles</button>
+			<button class="btn" @click="startBattle">Start Battle</button>
 		</div>
 	</div>
+
 </template>
 
 <script>
+import Vue from "vue";
+import VueLodash from "vue-lodash";
+import lodash from "lodash";
 
 import heroesData from '@/js/heroes';
-import Difficulty from '@/components/Difficulty'
-import * as constants from '@/js/helpers/constants'
-import startBattleSound from '@/assets/sound/roundone.mp3'
+import Difficulty from '@/components/Difficulty/Difficulty';
+import * as constants from '@/js/helpers/constants';
+import startBattleSound from '@/assets/sound/roundone.mp3';
 
+Vue.use(VueLodash, {lodash: lodash })
 
 export default {
 	data() {
@@ -126,17 +135,12 @@ export default {
 		},
 	},
 	created() {
-		//берем данные с героями, конвертим в строку и обратно.
-		//за счет этого объекты копируются, а не передаются по ссылке.
-		//и при рестарте игры данные не ломаются, а приходят новые
-		let heroes =  JSON.parse(JSON.stringify([...heroesData]));
-		this.heroes = heroes;
+		this.heroes = this.lodash.cloneDeep(heroesData);
 		this.chosenHero = this.heroes[0];
-
-		this.$store.commit('setSoundToPlay', startBattleSound)
+		this.$store.commit('setSoundToPlay', startBattleSound);
 	},
 	components: {
-		'app-difficulty': Difficulty
+		Difficulty
 	}
 }
 </script>
