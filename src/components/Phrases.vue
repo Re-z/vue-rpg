@@ -6,12 +6,13 @@
 
 <script>
 import {mapGetters} from 'vuex';
-import {getRandomArrayItem} from '@/js/helpers'
+import lodash from "lodash";
+
 	export default {
 		computed: {
 			...mapGetters(['getMonster']),
 			randomPhrase() {
-				return getRandomArrayItem(this.getMonster.phrases)
+				return lodash.sample(this.getMonster.phrases)
 			}
 		},
 	}

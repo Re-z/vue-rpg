@@ -16,8 +16,8 @@
 				v-for="cheat in cheats"
 				:key="cheat.password">
 
-				<span v-colorize>{{cheat.password | toUpperCase}}</span>
-				<span> - {{cheat.description}}</span> 
+				<span v-colorize>{{cheat.code | toUpperCase}}</span>
+				<span> - {{cheat.description}}</span>
 			</p>
 		</div>
 		
@@ -34,15 +34,14 @@
 </template>
 
 <script>
-import {cheats} from './consoleSettings'
-import {cheatsConstants} from './consoleSettings'
+import {dmgCheat, healCheat} from './consoleSettings'
 
 export default {
 	data() {
 		return {
 			log: '',
 			inputValue: '',
-			cheats
+			cheats: [dmgCheat, healCheat]
 		}
 	},
 	methods: {
@@ -51,18 +50,18 @@ export default {
 		},
 		handleConsoleLogClear(str) {
 			this.log = str;
-			this.inputValue = ''
+			this.inputValue = '';
 		},
-		handleCheat() {
+    handleCheat() {
 			let inputValueLowerCase = this.inputValue.toLowerCase();
 			switch(inputValueLowerCase) {
-				case cheatsConstants.IDDQD:
+				case healCheat.code:
 					this.$store.commit('setHeroHealingPotions', 10);
-					this.handleConsoleLogClear('Potions cheat enabled.');
+					this.handleConsoleLogClear(healCheat.afterUse);
 					break;
-				case cheatsConstants.IDKFA:
+				case dmgCheat.code:
 					this.$store.commit('setDifficulty', 5);
-					this.handleConsoleLogClear('Damage quantifier set to 5. Your attacks are more powerfull now.');
+					this.handleConsoleLogClear(dmgCheat.afterUse);
 					break;
 				default:
 					this.handleConsoleLogClear('No executable scripts found');

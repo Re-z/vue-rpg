@@ -51,6 +51,7 @@
 </template>
 
 <script>
+import lodash from "lodash";
 import missSound from "@/assets/sound/miss.mp3"
 import healSound from '@/assets/sound/heal.mp3'
 
@@ -62,7 +63,7 @@ import { mapGetters } from "vuex";
 import {popupSettings} from '@/components/Popup/popupSettings';
 
 import tooltip from '@/js/helpers/tooltip';
-import {getRandomArrayItem} from '@/js/helpers.js'
+
 export default {
 	data() {
 		return {
@@ -72,14 +73,14 @@ export default {
 	},
 	methods: {
 		checkDrop() {
-			const randomFrom0to100 = Math.ceil(Math.random() * 100)
+			const randomFrom0to100 = lodash.random(0, 100);
 			const dropChance = 50; // 50%
 			return randomFrom0to100 >= dropChance;
 		},
 
 		showDropPopup(){
 			if( this.checkDrop() ) {
-				const dropItem = getRandomArrayItem(this.drop)
+				const dropItem = lodash.sample(this.drop);
 				this.$store.commit('setPopup', dropItem);
 			}
 		},
@@ -127,11 +128,11 @@ export default {
 		},
 		
 		isCriticalDmg(critChance) {
-			const randomFrom0to100 = Math.ceil(Math.random() * 100);
+			const randomFrom0to100 = lodash.random(0, 100);
 			return randomFrom0to100 <= critChance;
 		},
 		monsterDodge(dodgeChance) {
-			const randomFrom0to100 = Math.ceil(Math.random() * 100);
+			const randomFrom0to100 = lodash.random(0, 100);
 			return randomFrom0to100 <= dodgeChance;
 		},
 		handleHeroSimpleAttack(ev) {
@@ -247,7 +248,6 @@ export default {
 		this.monsters = monsters;
 		
 		this.$store.commit("setMonster", this.monsters[this.getCurrentRound - 1]);
-
 		let drop = JSON.parse(JSON.stringify([...dropData]));
 		this.drop = drop;
 	},

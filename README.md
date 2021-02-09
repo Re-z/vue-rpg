@@ -9,7 +9,8 @@ Demo http://vps-for.fun
 - HTML/JS/SASS
 
 ## Ideas
-- Drop (done);
+- Fix adding multiple tooltip event listeners to body
+- Add preload and dns prefetch for google fonts
 - Custom scroll
 - Add linter
 - Upgrade documentation

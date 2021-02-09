@@ -92,8 +92,6 @@
 </template>
 
 <script>
-import Vue from "vue";
-import VueLodash from "vue-lodash";
 import lodash from "lodash";
 
 import heroesData from '@/js/heroes';
@@ -101,7 +99,6 @@ import Difficulty from '@/components/Difficulty/Difficulty';
 import * as constants from '@/js/helpers/constants';
 import startBattleSound from '@/assets/sound/roundone.mp3';
 
-Vue.use(VueLodash, {lodash: lodash })
 
 export default {
 	data() {
@@ -135,7 +132,7 @@ export default {
 		},
 	},
 	created() {
-		this.heroes = this.lodash.cloneDeep(heroesData);
+		this.heroes = lodash.cloneDeep(heroesData);
 		this.chosenHero = this.heroes[0];
 		this.$store.commit('setSoundToPlay', startBattleSound);
 	},

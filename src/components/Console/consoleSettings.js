@@ -1,15 +1,10 @@
-export const cheatsConstants = {
-    IDDQD: 'iddqd',
-    IDKFA: 'idkfa'
+export const healCheat = {
+    code: 'iddqd',
+    description: 'Add 10 healing potions;',
+    afterUse: 'Potions cheat enabled.'
 }
-
-export const cheats = [
-    {
-        password: cheatsConstants.IDDQD,
-        description: 'Add 10 healing potions;'
-    },
-    {
-        password: cheatsConstants.IDKFA,
-        description: 'Set damage quantifier to 5;'
-    },
-]
+export const dmgCheat = {
+    code: 'idkfa',
+    description: 'Set damage quantifier to 5;',
+    afterUse: 'Damage quantifier set to 5. Your attacks are more powerfull now.'
+}
