@@ -1,5 +1,6 @@
 import Vue from 'vue'
 import Vuex from 'vuex'
+import * as constants from "@/js/helpers/constants";
 
 
 Vue.use(Vuex)
@@ -17,11 +18,11 @@ export default new Vuex.Store({
     soundOptions: {
       soundToPlay: '',
     },
-    screen: 'Intro', //intro, heroChoose, battle, monstropedia
+    screen: constants.INTRO_SCREEN, //intro, heroChoose, battle, monstropedia
     hero: {},
     monster: {},
     popup: {
-      //data is getting from popupOptions.js
+      //data is getting from popupSettings.js
       isVisible: false,
       type: '',
       title: '',

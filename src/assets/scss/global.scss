@@ -27,7 +27,6 @@ button {
 .container {
 	width: 800px;
 	height: 916px;
-	display: block;
 	margin: 0 auto;
 	padding: 40px 20px 10px;
 	border: 10px solid white;
@@ -196,24 +195,7 @@ button {
 		&:not(:last-of-type) {border-right: 2px solid $darkteal}
 	}
 }
-.difficulty {
-	margin: 20px 0;
-	&__title {
-		margin-bottom: 10px;
-	}
-	&__items-wrap {
-		display: flex;
-		justify-content: space-between;
-	}
-	&__item {
-		width: 30%;
-		padding: 5px 10px;
-		&.active {
-			background: $darkteal;
-			color: $beige;
-		}
-	}
-}
+
 
 .battle {
 	&__round {
@@ -268,18 +250,7 @@ button {
 		margin-right: 10px;
 	}
 }
-.healthbar {
-	&__imgs {
-		margin: 10px 0;
-	}
-	&__img {
-		display: inline-block;
-		margin-left: 5px;
-	}
-	&__numeric-health {
-		width: 100%;
-	}
-}
+
 .controls {
 	margin: 20px 0 40px 0;
 	
@@ -400,67 +371,8 @@ button {
 	padding: 200px 0;
 	z-index: 1000;
 }
-.popup {
-	width: 100%;
-	margin: 0 auto;
-	max-width: 500px;
-	min-height: auto;
-	padding: 40px 20px;
-	background: $beige;
-	display: grid;
-	grid-gap: 40px;
-	justify-content: center;
-	text-align: center;
-	@include gradientBorder(10px, $darkteal, $lightteal);
-	&__title {
-		font-size: $font-l;
-		text-transform: uppercase;
-		color: $darkteal;
-	}
-}
-.console {
-	color: white;
-	padding: 40px 20px 0 20px;
-	background: black;
-	position: fixed;
-	top: 0;
-	left: 0;
-	width: 100%;
-	z-index: 1000;
-	//before element is used here in order to
-	//prevent clicking outside console
-	//and keep focus on input
-	&:before {
-		display: block;
-		content: "";
-		position: absolute;
-		width: 100%;
-		left: 0;
-		top: 0;
-		background: transparent;
-		height: 100vh;
-		z-index: -1;
-	}
-	&__item {
-		color: white;
-		margin-bottom: 10px;
-		&_log {
-			margin-bottom: 40px;
-		}
-	}
-	&__box {
-		margin-top: 40px;
-	}
-	&__input {
-		display: block;
-		width: 100%;
-		caret-color: white;
-		background: transparent;
-		border: 0;
-		outline: 0;
-		color: white;
-	}
-}
+
+
 
 .monstropedia {
 	&__search {

@@ -13,7 +13,7 @@
 					<p class="font-s">2020 year.</p>
 				</div>
 
-				<app-sound/>
+				<Sound/>
 
 			</div>
 

@@ -2,7 +2,7 @@
 	<div class="healthbar" v-if="hero">
 		<p v-if="hero.name">{{hero.name}}</p>
 		<p v-else>{{hero.type}}</p>
-		<!-- show helthbar only when data from prop is ready -->
+		<!-- show healthbar only when data from prop is ready -->
 		<div v-if="hero.currentHealth" class="healthbar__imgs">
 		<!-- hearth img based on current hero/monster health -->
 			<img 
@@ -31,13 +31,25 @@ export default {
 		healthItems() {
 			//10 poinst of health === one hearth img
 			const numberOfImgs = Math.ceil(this.hero.currentHealth/10);
-			if(this.hero.currentHealth > 0) {
-				return numberOfImgs;
-			}
-			else {
-				return 0
-			}
+			return this.hero.currentHealth > 0
+        ? numberOfImgs
+        : 0
 		}
 	},
 }
 </script>
+
+<style lang="scss" scoped>
+.healthbar {
+  &__imgs {
+    margin: 10px 0;
+  }
+  &__img {
+    display: inline-block;
+    margin-left: 5px;
+  }
+  &__numeric-health {
+    width: 100%;
+  }
+}
+</style>

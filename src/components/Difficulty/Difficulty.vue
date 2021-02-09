@@ -30,8 +30,7 @@ export default {
 	methods: {
 		chooseDifficulty(difficulty) {
 			this.choosenDifficulty = difficulty;
-			let dmgQuantifier = difficulty.dmgQuantifier;
-			this.$store.commit('setDifficulty', dmgQuantifier)
+			this.$store.commit('setDifficulty', difficulty.dmgQuantifier)
 		}
 	},
 	mounted() {
@@ -39,3 +38,25 @@ export default {
 	},
 }
 </script>
+<style lang="scss" scoped>
+@import '@/assets/scss/helpers/variables.scss';
+
+.difficulty {
+  margin: 20px 0;
+  &__title {
+     margin-bottom: 10px;
+   }
+  &__items-wrap {
+     display: flex;
+     justify-content: space-between;
+   }
+  &__item {
+     width: 30%;
+     padding: 5px 10px;
+  &.active {
+     background: $darkteal;
+     color: $beige;
+   }
+  }
+}
+</style>

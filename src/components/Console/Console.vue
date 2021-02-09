@@ -3,7 +3,7 @@
 		ref="console"
 		class="console"
 		@click="focusInputField"
-		@keydown.enter="handleCheet">
+		@keydown.enter="handleCheat">
 
 		<p v-colorize class="console__item">Anton incorporated 2020, All rights reserved.</p>
 		<p class="console__item">Console allows you to configure game and get some benefits.</p>
@@ -34,21 +34,15 @@
 </template>
 
 <script>
+import {cheats} from './consoleSettings'
+import {cheatsConstants} from './consoleSettings'
+
 export default {
 	data() {
 		return {
 			log: '',
 			inputValue: '',
-			cheats: [
-				{
-					password: 'iddqd',
-					description: 'Add 10 healing potions;'
-				},
-				{
-					password: 'idkfa',
-					description: 'Set damage quantifier to 5;'
-				},
-			],
+			cheats
 		}
 	},
 	methods: {
@@ -59,15 +53,15 @@ export default {
 			this.log = str;
 			this.inputValue = ''
 		},
-		handleCheet() {
+		handleCheat() {
 			let inputValueLowerCase = this.inputValue.toLowerCase();
 			switch(inputValueLowerCase) {
-				case 'iddqd':
+				case cheatsConstants.IDDQD:
 					this.$store.commit('setHeroHealingPotions', 10);
 					this.handleConsoleLogClear('Potions cheat enabled.');
 					break;
-				case 'idkfa':
-					this.$store.commit('setDifficulty', 10);
+				case cheatsConstants.IDKFA:
+					this.$store.commit('setDifficulty', 5);
 					this.handleConsoleLogClear('Damage quantifier set to 5. Your attacks are more powerfull now.');
 					break;
 				default:
@@ -84,3 +78,49 @@ export default {
 	},
 }
 </script>
+
+<style lang="scss" scoped>
+.console {
+  color: white;
+  padding: 40px 20px 0 20px;
+  background: black;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  z-index: 1000;
+  //before element is used here in order to
+  //prevent clicking outside console
+  //and keep focus on input
+  &:before {
+    display: block;
+    content: "";
+    position: absolute;
+    width: 100%;
+    left: 0;
+    top: 0;
+    background: transparent;
+    height: 100vh;
+    z-index: -1;
+  }
+  &__item {
+    color: white;
+    margin-bottom: 10px;
+    &_log {
+      margin-bottom: 40px;
+    }
+  }
+  &__box {
+    margin-top: 40px;
+  }
+  &__input {
+    display: block;
+    width: 100%;
+    caret-color: white;
+    background: transparent;
+    border: 0;
+    outline: 0;
+    color: white;
+  }
+}
+</style>

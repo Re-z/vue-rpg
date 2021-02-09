@@ -45,7 +45,7 @@
 import HealthBar from "../HealthBar.vue";
 import BattleLog from "../BattleLog.vue";
 import Phrases from "../Phrases.vue";
-import Console from "../Console.vue";
+import Console from "../Console/Console.vue";
 import BattleControls from "../BattleControls.vue";
 
 import { mapGetters } from "vuex";

@@ -59,7 +59,7 @@ import dropData from '@/js/drop';
 
 import { mapGetters } from "vuex";
 
-import popupOptions from '@/js/popupOptions';
+import {popupSettings} from '@/components/Popup/popupSettings';
 
 import tooltip from '@/js/helpers/tooltip';
 import {getRandomArrayItem} from '@/js/helpers.js'
@@ -72,7 +72,7 @@ export default {
 	},
 	methods: {
 		checkDrop() {
-			const randomFrom0to100 = Math.ceil(Math.random() * 100);
+			const randomFrom0to100 = Math.ceil(Math.random() * 100)
 			const dropChance = 50; // 50%
 			return randomFrom0to100 >= dropChance;
 		},
@@ -89,7 +89,7 @@ export default {
 				this.$store.commit('setMonsterLog', `Monster ${this.getMonster.type} defeated`);
 				//if last monser dead - show win popup
 				if(this.getCurrentRound === this.monsters.length) {
-					this.$store.commit('setPopup', popupOptions.heroWon)
+					this.$store.commit('setPopup', popupSettings.heroWon)
 				}
 				// else - continue battle
 				else {
@@ -216,7 +216,7 @@ export default {
 			this.$store.commit('setMonsterLog', `Monster hit player with ${dmgToHero} hp`);
 
 			if(this.getHero.currentHealth <= 0 ) {
-				this.$store.commit('setPopup', popupOptions.heroDied)
+				this.$store.commit('setPopup', popupSettings.heroDied)
 			}
 		},
 		generateDmg(min, max) {

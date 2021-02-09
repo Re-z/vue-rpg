@@ -10,7 +10,7 @@
 			</div>
 
 			<button
-				v-if="getPopup.type === 'drop'"
+				v-if="getPopup.type === dropPopup"
 				class="btn"
 				@click="handleDrop()">
 				Continue
@@ -28,23 +28,31 @@
 </template>
 
 <script>
+import {dropConstants} from "@/js/drop";
+
 export default {
+  data() {
+    return {
+      dropPopup: dropConstants.TYPE_DROP
+    }
+  },
 	methods: {
 		resetGame() {
 			this.$store.dispatch('resetGame');
 		},
+
 		handleDrop() {
 			switch(this.getPopup.dropItem) {
-				case('potion'):
+				case(dropConstants.POTION):
 					this.$store.commit('setHeroHealingPotions', 1);
 					break;
-				case('steroids'):
+				case(dropConstants.STEROIDS):
 					this.$store.commit('updateDifficulty', 0.2);
 					break;
-				case('big tasty'):
+				case(dropConstants.BIG_TASTY_MENU):
 					this.$store.commit('setHeroHealth', {health: 100, usedPotion: false});
 					break;
-				case('book'):
+				case(dropConstants.BOOK):
 					this.$store.commit('hitMonsterByHalfHp');
 					break;
 			}
@@ -59,3 +67,27 @@ export default {
 	}
 }
 </script>
+
+<style lang="scss" scoped>
+@import "@/assets/scss/helpers/variables.scss";
+@import "@/assets/scss/helpers/mixins.scss";
+
+.popup {
+  width: 100%;
+  margin: 0 auto;
+  max-width: 500px;
+  min-height: auto;
+  padding: 40px 20px;
+  background: $beige;
+  display: grid;
+  grid-gap: 40px;
+  justify-content: center;
+  text-align: center;
+  @include gradientBorder(10px, $darkteal, $lightteal);
+  &__title {
+    font-size: $font-l;
+    text-transform: uppercase;
+    color: $darkteal;
+  }
+}
+</style>

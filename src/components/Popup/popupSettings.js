@@ -1,8 +1,8 @@
-import skull from '../assets/img/skull.png'
-import medal from '../assets/img/medal.png'
+import skull from '@/assets/img/skull.png'
+import medal from '@/assets/img/medal.png'
 
 
-const popupOptions = {
+export const popupSettings = {
 	heroDied: {
 		isVisible: true,
 		type: 'heroDied',
@@ -19,4 +19,3 @@ const popupOptions = {
 	}
 }
 
-export default popupOptions;
